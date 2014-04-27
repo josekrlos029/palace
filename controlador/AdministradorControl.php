@@ -26,6 +26,19 @@ class AdministradorControl extends Controlador{
         } catch (Exception $exc) {
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }
+    }  
+      public function registroPersona(){
+        try {
+           
+            $this->vista->set('titulo', 'Registrar Persona');
+            $this->vista->set('titulo', 'Registrar Persona');
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+     
+       
             
         }
     public function registrarPersona(){
