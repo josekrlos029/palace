@@ -53,7 +53,49 @@ Class Servicio extends Modelo{
         $this->precio = $precio;
     }
 
+    
+    private function mapearServicio(Servicio $servicio, array $props) {
+        if (array_key_exists('idServicio', $props)) {
+            $servicio->setIdServicio($props['idServicio']);
+        }
+         if (array_key_exists('nombre', $props)) {
+            $servicio->setNombre($props['nombre']);
+        }
+         if (array_key_exists('tiempo', $props)) {
+            $servicio->setTiempo($props['tiempo']);
+        }
+        if (array_key_exists('precio', $props)) {
+            $servicio->setPrecio($props['precio']);
+        }
+    }
+    
+    
+  
+    private function getParametros(Servicio $ser){
+              
+        $parametros = array(
+            ':idProducto' => $ser->getIdServicio(),
+            ':nombre' => $ser->getNombre(),
+            ':tiempo' => $ser->getTiempo(),
+            ':precio' => $ser->getPrecio()
+        );
+        return $parametros;
+    }
 
+    
+    public function leerServicio() {
+        $sql = "SELECT * FROM servicio";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $servicios = array();
+        foreach ($resultado as $fila) {
+            $servicio = new Servicio();
+            $this->mapearServicio($servicio, $fila);
+            $servicios[$servicio->getIdProducto()] = $servicio;
+        }
+        return $servicios;
+    }
+        
 
         
         

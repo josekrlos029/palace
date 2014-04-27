@@ -45,8 +45,44 @@ Class Producto extends Modelo{
         $this->precioVenta = $precioVenta;
     }
 
+    
+    private function mapearProducto(Producto $producto, array $props) {
+        if (array_key_exists('idProducto', $props)) {
+            $producto->setIdPersona($props['idProducto']);
+        }
+         if (array_key_exists('nombre', $props)) {
+            $producto->setNombre($props['nombre']);
+        }
+         if (array_key_exists('precioVento', $props)) {
+            $producto->setPrecioVenta($props['precioVento']);
+        }
+    }
+    
+    
+  
+    private function getParametros(Producto $pro){
+              
+        $parametros = array(
+            ':idProducto' => $pro->getIdProducto(),
+            ':nombre' => $pro->getNombre(),
+            ':precioVenta' => $pro->getPrecioVenta()
+        );
+        return $parametros;
+    }
 
-
+    
+    public function leerProductos() {
+        $sql = "SELECT * FROM producto";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $productos = array();
+        foreach ($resultado as $fila) {
+            $producto = new Producto();
+            $this->mapearProducto($producto, $fila);
+            $productos[$producto->getIdProducto()] = $producto;
+        }
+        return $productos;
+    }
         
         
 }

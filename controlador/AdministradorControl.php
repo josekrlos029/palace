@@ -20,7 +20,7 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Usuario Administrador');
-            $this->vista->set('titulo', 'Usuario Administrador');
+            
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -31,15 +31,13 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Registrar Persona');
-            $this->vista->set('titulo', 'Registrar Persona');
+            
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }  
-     
-       
-            
+      
         }
     public function registrarPersona(){
         
@@ -83,6 +81,23 @@ class AdministradorControl extends Controlador{
         $producto->setPrecioVenta($precioVenta);
     }
     
+    
+    public function factura(){
+        try {
+           
+            $this->vista->set('titulo', 'Facturar');
+            
+            $producto = new Producto();
+            $productos = $producto->leerProductos();
+                        
+            $servicio = new Servicio();
+            
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+    }
         
         
     
