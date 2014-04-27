@@ -130,12 +130,18 @@ class AdministradorControl extends Controlador{
         
     public function listarServidores($idServicio){
         
-        $persona = new Persona();
+        try {
+            $persona = new Persona();
         
         $personas = $persona->leerPorServicio($idServicio);
         
         $this->vista->set('personas', $personas);
             return $this->vista->imprimir();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+        
         
     }
         

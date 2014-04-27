@@ -202,7 +202,7 @@ class Persona extends Modelo{
     }
     
     public function leerPorServicio($idServicio) {
-        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p, servicio_empleado se  WHERE p.idPersona=se.idPersona AND se.idServicio'".$idServicio;
+        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p, servicio_empleado se  WHERE p.idPersona=se.idPersona AND se.idServicio=".$idServicio;
         $resultado = $this->consultar($sql);
         $pers = array();
         foreach ($resultado as $fila) {

@@ -1,12 +1,15 @@
-<script src="../source/js/jquery-1.8.3.min.js"></script>
+<script src="../utiles/js/jquery-1.11.0.min.js"></script>
 <script>
     
+    
+    /*
     $("#servicio").change(function(){
+        alert(".");
         var servicio = $("#servicio").val();
           
             $.ajax({
                 type: "POST",
-                url: "/rni/administrador/listarServidores/"+servicio,
+                url: "/palace/administrador/listarServidores/"+servicio,
                 data: { }
               })
                 .done(function( msg ) {
@@ -15,7 +18,23 @@
             
     
     });
-    
+    */
+   
+   function servidores(){
+      
+        var servicio = document.getElementById("servicio").value;
+          alert(servicio);
+            $.ajax({
+                type: "POST",
+                url: "/palace/administrador/listarServidores/"+servicio,
+                data: { }
+              })
+                .done(function( msg ) {
+                    $("#servidor").html(msg);
+                });
+            
+   }
+   
 </script>
 <table>
     <tr>
@@ -63,7 +82,7 @@
     </tr>
     <tr>
         <td>
-            <select id="servicio">
+            <select id="servicio" onchange="servidores()">
                 <?php foreach($servicios as $ser){ ?>
                 <option value="<?php echo $ser->getIdServicio(); ?>"><?php echo $ser->getNombre();?></option>
                 <?php } ?>

@@ -37,6 +37,7 @@ function cargadorClases(){
     require_once './modelo/IngresoProducto.php';
     require_once './modelo/Producto.php';
     require_once './modelo/Rol.php';
+    require_once './modelo/Inicio.php';
     require_once './modelo/Servicio.php';
     require_once './modelo/Usuario.php';
     require_once './controlador/Controlador.php';
