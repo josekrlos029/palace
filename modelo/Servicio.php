@@ -91,7 +91,7 @@ Class Servicio extends Modelo{
         foreach ($resultado as $fila) {
             $servicio = new Servicio();
             $this->mapearServicio($servicio, $fila);
-            $servicios[$servicio->getIdProducto()] = $servicio;
+            $servicios[$servicio->getIdServicio()] = $servicio;
         }
         return $servicios;
     }

@@ -48,7 +48,7 @@ Class Producto extends Modelo{
     
     private function mapearProducto(Producto $producto, array $props) {
         if (array_key_exists('idProducto', $props)) {
-            $producto->setIdPersona($props['idProducto']);
+            $producto->setIdProducto($props['idProducto']);
         }
          if (array_key_exists('nombre', $props)) {
             $producto->setNombre($props['nombre']);

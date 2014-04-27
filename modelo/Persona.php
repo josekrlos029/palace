@@ -190,7 +190,19 @@ class Persona extends Modelo{
     }
     
     public function leerPorRol($idRol) {
-        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p WHERE p.idPersona=r.idPersona AND r.idRol='".$idRol."'";
+        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p, rol_persona r WHERE p.idPersona=r.idPersona AND r.idRol='".$idRol."'";
+        $resultado = $this->consultar($sql);
+        $pers = array();
+        foreach ($resultado as $fila) {
+            $persona = new Persona();
+            $this->mapearPersona($persona, $fila);
+            $pers[$persona->getIdPersona()] = $persona;
+        }
+        return $pers;
+    }
+    
+    public function leerPorServicio($idServicio) {
+        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p, servicio_empleado se  WHERE p.idPersona=se.idPersona AND se.idServicio'".$idServicio;
         $resultado = $this->consultar($sql);
         $pers = array();
         foreach ($resultado as $fila) {

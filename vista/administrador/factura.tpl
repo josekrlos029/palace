@@ -1,3 +1,22 @@
+<script src="../source/js/jquery-1.8.3.min.js"></script>
+<script>
+    
+    $("#servicio").change(function(){
+        var servicio = $("#servicio").val();
+          
+            $.ajax({
+                type: "POST",
+                url: "/rni/administrador/listarServidores/"+servicio,
+                data: { }
+              })
+                .done(function( msg ) {
+                    $("#municipio").html(msg);
+                });
+            
+    
+    });
+    
+</script>
 <table>
     <tr>
         <td>Id Cliente:</td>
