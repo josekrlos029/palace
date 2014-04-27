@@ -81,10 +81,10 @@ background:#e5e9ec;
  background:#ffffff;
  height:65px;  
 }
-
 #cont-logo{
- background: #c3c3c3;
- width: 200px;
+ margin-top: 3px;
+ margin-right:10px; 
+ width: 150px;
  height: 100%;
  float:right;
 }

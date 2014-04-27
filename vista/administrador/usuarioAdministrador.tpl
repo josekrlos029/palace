@@ -19,7 +19,7 @@
        </div>
         <div id="cuerpo">
             <div id="menu-horizontal">
-                <div id="cont-logo"></div>
+                <div id="cont-logo"><img src="../utiles/image/logo.jpg" width="150px" height="60px"/> <div>
             </div>
         </div> 
     </body>
