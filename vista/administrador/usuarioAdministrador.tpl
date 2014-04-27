@@ -46,7 +46,8 @@
                 </li>
                 <li id="four" class="sign"><a href="#four">Inventario</a></li>
           </ul>
-        </div>    
+        </div> 
+          
 </div>
        </div>
         <div id="cuerpo">

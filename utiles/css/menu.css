@@ -29,7 +29,7 @@ root {
     min-width: 110px;
     padding: 0 10px 0 40px;
     color: #3bc3f5;
-    font: bold 12px/32px Arial, sans-serif;
+    font:  14px/32px Arial, sans-serif;
     text-decoration: none;
 
 }
@@ -40,7 +40,7 @@ root {
     right: 0;
     padding: 0 10px;
     margin-right: 10px;
-    font: normal bold 12px/18px Arial, sans-serif;
+    font: normal bold 14px/18px Arial, sans-serif;
     background: #404247;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -79,7 +79,7 @@ root {
 .accordion li.sign:target > a:before { background-position: -72px -24px; }
 
 .sub-menu li a {
-   color: #3bc3f5;
+   color: #c3c3c3;
    background: #272c35;
 }
  
@@ -106,14 +106,8 @@ root {
 .accordion > li:target > a {
     color: #ffffff;
     text-shadow: 1px 1px 1px rgba(255,255,255, .2);
-    /*background: url(../img/active.png) repeat-x;*/
-    /* background: #a5cd4e;
-    background: -moz-linear-gradient(top,  #a5cd4e 0%, #6b8f1a 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a));
-    background: -webkit-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
-    background: -o-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
-    background: -ms-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
-    background: linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);*/
+    background: url(../img/active.png) repeat-x;
+    background: #0090d9; 
 }
  
 .accordion > li:hover > a span,
