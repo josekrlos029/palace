@@ -20,39 +20,29 @@
                 <div style="text-align: center; margin-top: 5% "><h1>Registrar Persona</h1></div>
                 <table class="tablaRegsitro">
                     <tr>
-                        <td>Cedula:<td>
+                        <td>Codigo Cita:<td>
                         <td style="text-align: left;"><input type="text" name="idPersona" required></td>    
-                        <td>Nombre:</td>    
+                        <td>Nombre del Cliente:</td>    
                         <td style="text-align: left;"><input type="text" name="nombres" required></td> 
                     </tr>
                     <tr>
-                        <td>Primer Apellido:<td>
+                        <td>Nombre del Empleado:<td>
                         <td style="text-align: left;"><input type="text" name="pApellido" required></td>      
-                        <td>Segundo Apellido:</td>  
+                        <td>Servicio:</td>  
                         <td style="text-align: left;"><input type="text" name="sApellido" required></td>  
                     </tr>
                     <tr>
-                        <td>Sexo:<td>
-                        <td style="text-align: left;"><input type="text" name="sexo"  required></td>      
-                        <td>Fecha de Nacimiento:</td>  
+                        <td>Fecha:<td>
+                        <td style="text-align: left;"><input type="date" name="sexo"  required></td>      
+                        <td>Hora:</td>  
                         <td style="text-align: left;"><input type="date" name="fNacimiento" required></td>  
                     </tr>
                     <tr>
-                        <td>Telefono:<td>
+                        <td>Estado:<td>
                         <td style="text-align: left;"><input type="text" name="telefono" required></td>      
-                        <td>Celular:</td> 
-                        <td style="text-align: left;"><input type="text" name="celular" required></td>  
+                        
                     </tr>
-                    <tr>
-                        <td>Direccion:<td>
-                        <td style="text-align: left;"><input type="text" name="direccion"  required></td>      
-                        <td>Correo:</td>   
-                        <td style="text-align: left;"><input type="text" name="correo" required></td>  
-                    </tr>
-                    <tr>
-                        <td>Rol:<td>
-                        <td style="text-align: left;"><input type="text" name="Rol"  required></td>      
-                    </tr>
+                    
                 </table>
                 
                 <div style="width:20%; margin-left: 60%; margin-top: 3%;">

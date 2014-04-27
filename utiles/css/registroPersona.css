@@ -11,9 +11,9 @@ root {
 }
 
 .tablaRegsitro{
-    margin-left: 10%;
-    margin-top: 10%;
-    width: 70%;
+    margin-left: 5%;
+    margin-top: 5%;
+    width: 80%;
     height: 40%;
     
 }
@@ -25,7 +25,7 @@ root {
  input { 
 font-family: 'Arial';
 font-weight: bold;
-    border-radius:5px;
+    border-radius:0px;
 	width:100%;
 	color:#000;
 	border:1px solid #c3c3c3;
@@ -34,5 +34,6 @@ font-weight: bold;
 	-moz-box-shadow:inset 0 0 5px #c3c3c3;
     -webkit-box-shadow:inset 0 0 5px #c3c3c3;
      box-shadow:inset 0 0 5px #c3c3c3;
+margin-left: 5%;     
 }
 

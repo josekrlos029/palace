@@ -39,6 +39,32 @@ class AdministradorControl extends Controlador{
         }  
       
         }
+        
+      public function registroProducto(){
+        try {
+           
+            $this->vista->set('titulo', 'Registrar Persona');
+            
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
+        public function registroCita(){
+        try {
+           
+            $this->vista->set('titulo', 'Registrar Persona');
+            
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
     public function registrarPersona(){
         
         $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
