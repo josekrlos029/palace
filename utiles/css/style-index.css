@@ -39,6 +39,7 @@ border-collapse: collapse;
 border-spacing: 0;
 }
 
+/****** menu *****************/
 #menu{
 float:left;    
 width:20%;
@@ -49,26 +50,38 @@ background:#1b1e24;
 #cont-title{
  width:100%;   
  background:#272c35;
- height: 70px;
+ height: 45px;
+ padding-top: 20px;
+ text-align: center;
 }
 
 #cont-title h1{
     font-family: Arial;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     color:#FFFFFF;
 }
+#cont-title h1 spam{
+    font-family: Arial;
+    font-size: 16px;
+    font-style: italic;
+    color:#FFFFFF;
+}
 
+/***********************cuerpo*******************/
 #cuerpo{
 float:left;    
 width:80%;
 height: 100%;
-background:#ffffff;  
+background:#e5e9ec;  
 }
 
 #menu-horizontal{
  width:100%;   
  background:#ffffff;
- height:70px;    
+ height:65px;  
 }
 
+#cont-logo{
+    
+}

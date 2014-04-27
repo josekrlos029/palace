@@ -14,7 +14,7 @@
     <body>
        <div id="menu">
            <div id="cont-title">
-               <h1>Administrador</h1>
+               <h1><spam>Usuario</spam> | Administrador</h1>
            </div>
        </div>
         <div id="cuerpo">
