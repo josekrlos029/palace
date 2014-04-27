@@ -83,5 +83,8 @@ background:#e5e9ec;
 }
 
 #cont-logo{
-    
+ background: #c3c3c3;
+ width: 200px;
+ height: 100%;
+ float:right;
 }

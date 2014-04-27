@@ -19,7 +19,7 @@
        </div>
         <div id="cuerpo">
             <div id="menu-horizontal">
-                
+                <div id="cont-logo"></div>
             </div>
         </div> 
     </body>
