@@ -22,16 +22,29 @@
            </div>
         <div style="margin-top:20px;"> 
            <ul class="accordion">
-                <li id="one" class="files"><a href="#one">My Files<span>495</span></a>
+                <li id="one" class="files"><a href="#one">Clientes<span>495</span></a>
                             <ul class="sub-menu">
-                                <li><a href="#"><em>01</em>Dropbox<span>42</span></a></li>
-                                <li><a href="#"><em>02</em>Skydrive<span>87</span></a></li>
-                                <li><a href="#"><em>03</em>FTP Server<span>366</span></a></li>
+                                <li><a href="#"><em>01</em>Registrar Cliente<span</span></a></li>
+                                <li><a href="#"><em>02</em>Consultar Cliente<span></span></a></li> 
+                                <li><a href="#"><em>03</em>Modificar Cliente<span></span></a></li> 
                             </ul>
                 </li>
-                <li id="two" class="mail"><a href="#two">Mail<span>26</span></a></li>
-                <li id="three" class="cloud"><a href="#three">Cloud<span>58</span></a></li>
-                <li id="four" class="sign"><a href="#four">Sign Out</a></li>
+                <li id="two" class="mail"><a href="#two">Productos<span>26</span></a>
+                     <ul class="sub-menu">
+                                <li><a href="#"><em>01</em>Registrar Producto<span</span></a></li>
+                                <li><a href="#"><em>02</em>Consultar producto<span></span></a></li> 
+                                <li><a href="#"><em>03</em>Modificar Producto<span></span></a></li> 
+                            </ul>
+                </li>
+                <li id="three" class="cloud"><a href="#three">Citas<span>58</span></a>
+                         <ul class="sub-menu">
+                                <li><a href="#"><em>01</em>Reservar Citas<span</span></a></li>
+                                <li><a href="#"><em>02</em>Consultar Reservadas<span</span></a></li>
+                                <li><a href="#"><em>03</em>Cancelar Citas<span></span></a></li> 
+                                 <li><a href="#"><em>04</em>Historial de Citas<span></span></a></li>
+                            </ul>
+                </li>
+                <li id="four" class="sign"><a href="#four">Inventario</a></li>
           </ul>
         </div>    
 </div>

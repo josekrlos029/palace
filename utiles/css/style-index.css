@@ -45,6 +45,7 @@ float:left;
 width:20%;
 height: 100%;
 background:#1b1e24;
+
 }
 
 #cont-title{
@@ -53,6 +54,7 @@ background:#1b1e24;
  height: 45px;
  padding-top: 20px;
  text-align: center;
+ border-bottom:2px solid #68ff00; 
 }
 
 #cont-title h1{
@@ -79,7 +81,8 @@ background:#e5e9ec;
 #menu-horizontal{
  width:100%;   
  background:#ffffff;
- height:65px;  
+ height:65px; 
+ border-bottom:2px solid #68ff00; 
 }
 #cont-logo{
  margin-top: 3px;
