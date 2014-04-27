@@ -107,7 +107,6 @@ class AdministradorControl extends Controlador{
         $producto->setPrecioVenta($precioVenta);
     }
     
-    
     public function factura(){
         try {
            
@@ -117,7 +116,10 @@ class AdministradorControl extends Controlador{
             $productos = $producto->leerProductos();
                         
             $servicio = new Servicio();
+            $servicios = $servicio->leerServicios();
             
+            $this->vista->set('productos', $productos);
+            $this->vista->set('servicios', $servicios);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {

@@ -23,7 +23,9 @@
     <tr>
         <td>
             <select id="producto">
-                
+                <?php foreach($productos as $pro){ ?>
+                <option value="<?php echo $pro->getIdProducto(); ?>"><?php echo $pro->getNombre();?></option>
+                <?php } ?>
             </select>
         </td>
         <td><input id="cantidad" type="number" /></td>
@@ -43,7 +45,9 @@
     <tr>
         <td>
             <select id="servicio">
-                
+                <?php foreach($servicios as $ser){ ?>
+                <option value="<?php echo $ser->getIdServicio(); ?>"><?php echo $ser->getNombre();?></option>
+                <?php } ?>
             </select>
         </td>
         <td>
@@ -70,7 +74,7 @@
     <tr>
         <td>Servicio</td>
         <td>Servidor</td>
-        <td>Precio</td>
+        <td>Precio</td
     </tr>
     
 </table>

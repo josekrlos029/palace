@@ -83,7 +83,7 @@ Class Servicio extends Modelo{
     }
 
     
-    public function leerServicio() {
+    public function leerServicios() {
         $sql = "SELECT * FROM servicio";
         $this->__setSql($sql);
         $resultado = $this->consultar($sql);
