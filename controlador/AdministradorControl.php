@@ -16,7 +16,18 @@ class AdministradorControl extends Controlador{
     public function __construct($modelo, $accion) {
         parent::__construct($modelo, $accion);
     }
-    
+    public function usuarioAdministrador(){
+        try {
+           
+            $this->vista->set('titulo', 'Usuario Administrador');
+            $this->vista->set('titulo', 'Usuario Administrador');
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }
+            
+        }
     public function registrarPersona(){
         
         $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
@@ -57,10 +68,12 @@ class AdministradorControl extends Controlador{
         
         $producto->setNombre($nombre);
         $producto->setPrecioVenta($precioVenta);
-        
-        
-        
     }
+    
+        
+        
+    
+        
 
     
 }

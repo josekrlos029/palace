@@ -31,20 +31,17 @@ function cargadorClases(){
     require_once './config/Db.php';
     require_once './modelo/Modelo.php';
     require_once './modelo/Persona.php';
-    require_once './modelo/Evento.php';
-    require_once './modelo/Comentario.php';
-    require_once './modelo/Noticia.php';
-    require_once './modelo/Lugar.php';
-    require_once './modelo/Proyecto.php';
-    require_once './modelo/TipoEvento.php';
-    require_once './modelo/Unidad.php';
+    require_once './modelo/Cita.php';
+    require_once './modelo/DetalleProducto.php';
+    require_once './modelo/Factura.php';
+    require_once './modelo/IngresoProducto.php';
+    require_once './modelo/Producto.php';
+    require_once './modelo/Rol.php';
+    require_once './modelo/Servicio.php';
     require_once './modelo/Usuario.php';
-    require_once './modelo/Inicio.php';
-    require_once './modelo/Administrador.php';
     require_once './controlador/Controlador.php';
     require_once './controlador/InicioControl.php';
     require_once './controlador/AdministradorControl.php';
-    require_once './controlador/UsuarioControl.php';
     require_once './vista/Vista.php';
     
 }
