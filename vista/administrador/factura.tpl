@@ -1,29 +1,10 @@
 <script src="../utiles/js/jquery-1.11.0.min.js"></script>
 <script>
-    
-    
-    /*
-    $("#servicio").change(function(){
-        alert(".");
-        var servicio = $("#servicio").val();
-          
-            $.ajax({
-                type: "POST",
-                url: "/palace/administrador/listarServidores/"+servicio,
-                data: { }
-              })
-                .done(function( msg ) {
-                    $("#municipio").html(msg);
-                });
-            
-    
-    });
-    */
-   
+  
    function servidores(){
       
         var servicio = document.getElementById("servicio").value;
-          alert(servicio);
+          
             $.ajax({
                 type: "POST",
                 url: "/palace/administrador/listarServidores/"+servicio,
@@ -35,6 +16,20 @@
             
    }
    
+   function agregarProducto(){
+       var producto=$("#producto  option:selected").html();
+       var cantidad=$("#cantidad").val();
+       
+       $("#detallesProducto").append("<tr><td>"+producto+"</td><td>"+cantidad+"</td><td></td><td></td></tr>");
+   }
+   
+   function agregarServicio(){
+       
+       var servicio=$("#servicio  option:selected").html();
+       var servidor=$("#servidor  option:selected").html();
+       
+       $("#detallesServicio").append("<tr><td>"+servicio+"</td><td>"+servidor+"</td><td></td></tr>");
+   }
 </script>
 <table>
     <tr>
@@ -108,7 +103,7 @@
     </tr>
     
 </table>
-<table id="detallesservicio">
+<table id="detallesServicio">
     <tr>
         <td>Servicio</td>
         <td>Servidor</td>

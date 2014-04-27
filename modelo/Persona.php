@@ -31,8 +31,8 @@ class Persona extends Modelo{
         $this->idPersona = $idPersona;
     }
 
-    public function getPNombre() {
-        return $this->pNombre;
+    public function getNombres() {
+        return $this->nombres;
     }
 
     public function setNombres($nombres) {
@@ -190,7 +190,7 @@ class Persona extends Modelo{
     }
     
     public function leerPorRol($idRol) {
-        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p, rol_persona r WHERE p.idPersona=r.idPersona AND r.idRol='".$idRol."'";
+        $sql = "SELECT p.idPersona, p.nombres, p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM persona p, rol_persona r WHERE p.idPersona=r.idPersona AND r.idRol='".$idRol."'";
         $resultado = $this->consultar($sql);
         $pers = array();
         foreach ($resultado as $fila) {
@@ -202,7 +202,7 @@ class Persona extends Modelo{
     }
     
     public function leerPorServicio($idServicio) {
-        $sql = "SELECT p.idPersona, p.nombres p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM personas p, servicio_empleado se  WHERE p.idPersona=se.idPersona AND se.idServicio=".$idServicio;
+        $sql = "SELECT p.idPersona, p.nombres, p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM persona p, servicio_empleado se  WHERE p.idPersona=se.idPersona AND se.idServicio=".$idServicio;
         $resultado = $this->consultar($sql);
         $pers = array();
         foreach ($resultado as $fila) {
