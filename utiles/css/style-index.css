@@ -1,0 +1,90 @@
+/* 
+    Document   : style-index
+    Created on : 27/04/2014, 12:35:38 AM
+    Author     : andy henry
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+    Document   : general
+    Created on : 26/08/2013, 11:16:05 AM
+    Author     : andy henry
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+*{ margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;  
+}
+
+html,body{
+height: 100%;
+margin:0;
+font-family: 'Arial';
+font-size: 12px;
+line-height: 1;
+}
+
+a{
+ text-decoration: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+/****** menu *****************/
+#menu{
+float:left;    
+width:20%;
+height: 100%;
+background:#1b1e24;
+}
+
+#cont-title{
+ width:100%;   
+ background:#272c35;
+ height: 45px;
+ padding-top: 20px;
+ text-align: center;
+}
+
+#cont-title h1{
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    color:#FFFFFF;
+}
+#cont-title h1 spam{
+    font-family: Arial;
+    font-size: 16px;
+    font-style: italic;
+    color:#FFFFFF;
+}
+
+/***********************cuerpo*******************/
+#cuerpo{
+float:left;    
+width:80%;
+height: 100%;
+background:#e5e9ec;  
+}
+
+#menu-horizontal{
+ width:100%;   
+ background:#ffffff;
+ height:65px;  
+}
+
+#cont-logo{
+ background: #c3c3c3;
+ width: 200px;
+ height: 100%;
+ float:right;
+}
