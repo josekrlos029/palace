@@ -127,6 +127,21 @@ class AdministradorControl extends Controlador{
         }  
     }
         
+    public function gestionCita(){
+        try {
+           
+            $this->vista->set('titulo', 'Gestionar Cita');
+            
+            $servicio = new Servicio();
+            $servicios = $servicio->leerServicios();
+            
+            $this->vista->set('servicios', $servicios);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+    }
         
     public function listarServidores($idServicio){
         
