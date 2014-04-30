@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 .button, .button:visited { /* botones genéricos */
-
+margin-top:10px;
 display: inline-block;
 padding: 5px 10px 6px;
 color: #FFF;
@@ -76,7 +76,7 @@ padding: 8px 14px 9px;
 .red.button, .red.button:visited { background-color: #fe2b35; }
 .red.button:hover{ background-color: #E62727; }
 
-.orange.button, .orange.button:visited { background-color: #FF5C00; }
+.orange.button, .orange.button:visited { background-color: #f38631; }
 .orange.button:hover{ background-color: #D45500; }
 
 .blue.button, .blue.button:visited { background-color: #4c6eff; }

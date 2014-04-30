@@ -19,30 +19,27 @@
        <div id="menu">
            <div id="cont-title">
                <h1><spam>Usuario</spam> | Administrador</h1>
+               <div id="hora">
+                <?php
+                    date_default_timezone_set('UTC');
+                     echo date("r");
+                ?>    
+                </div>
            </div>
         <div style="margin-top:20px;"> 
            <ul class="accordion">
                 <li id="one" class="files"><a href="#one">Clientes<span>495</span></a>
-                            <ul class="sub-menu">
+                           <!-- <ul class="sub-menu">
                                 <li><a href="#"><em>01</em>Registrar Cliente<span</span></a></li>
                                 <li><a href="#"><em>02</em>Consultar Cliente<span></span></a></li> 
                                 <li><a href="#"><em>03</em>Modificar Cliente<span></span></a></li> 
-                            </ul>
+                            </ul>-->
                 </li>
                 <li id="two" class="mail"><a href="#two">Productos<span>26</span></a>
-                     <ul class="sub-menu">
-                                <li><a href="#"><em>01</em>Registrar Producto<span</span></a></li>
-                                <li><a href="#"><em>02</em>Consultar producto<span></span></a></li> 
-                                <li><a href="#"><em>03</em>Modificar Producto<span></span></a></li> 
-                            </ul>
+                    
                 </li>
                 <li id="three" class="cloud"><a href="#three">Citas<span>58</span></a>
-                         <ul class="sub-menu">
-                                <li><a href="#"><em>01</em>Reservar Citas<span</span></a></li>
-                                <li><a href="#"><em>02</em>Consultar Reservadas<span</span></a></li>
-                                <li><a href="#"><em>03</em>Cancelar Citas<span></span></a></li> 
-                                 <li><a href="#"><em>04</em>Historial de Citas<span></span></a></li>
-                            </ul>
+                      
                 </li>
                 <li id="four" class="sign"><a href="#four">Inventario</a></li>
           </ul>
@@ -52,7 +49,9 @@
        </div>
         <div id="cuerpo">
             <div id="menu-horizontal">
-                <div id="cont-logo"><img src="../utiles/image/logo.jpg" width="150px" height="60px"/> </div>
+                <div id="cont-logo">
+                    <img src="../utiles/image/logo.jpg" width="150px" height="60px"/> 
+                </div>
             </div>
         </div> 
     </body>
