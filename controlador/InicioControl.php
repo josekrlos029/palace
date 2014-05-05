@@ -39,24 +39,23 @@ class InicioControl extends Controlador{
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }
     }
-     public function verificarUsuario(){
-         try {
+     public function autenticar() {
+        try {
             $nombreUsuario = isset($_POST['usuario']) ? $_POST['usuario'] : NULL;
             $clave = isset($_POST['clave']) ? $_POST['clave'] : NULL;
             $user = new Usuario();
             $usuario = $user->verificarUsuario($nombreUsuario,$clave);
             if ($usuario == NULL) {
-                echo json_encode(0);
+                echo json_encode("error"); 
             }else{
-                session_start();
                 $_SESSION['idUsuario'] = $usuario->getIdPersona();
-                    $this->setVista('index');
-                    return $this->vista->imprimir();
+                echo json_encode("/palace/administrador/usuarioAdministrador"); 
             }
         } catch (Exception $exc){
             echo  json_encode('Error de aplicacion: ' . $exc->getMessage());
         }   
-        }
+        
+    }
         
 }
 
