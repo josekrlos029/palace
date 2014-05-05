@@ -42,6 +42,8 @@
                       
                 </li>
                 <li id="four" class="sign"><a href="#four">Inventario</a></li>
+                <li id="five" class="sign"><a href="#four">Servicios</a></li>
+                <li id="six" class="sign"><a href="#four">Empleados</a></li>
           </ul>
         </div> 
           

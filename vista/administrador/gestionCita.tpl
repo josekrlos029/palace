@@ -1,3 +1,12 @@
+<html>
+    <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../utiles/css/style-index.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="../utiles/css/registroPersona.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="../utiles/css/botones.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="../utiles/css/factura.css" rel="stylesheet" type="text/css" media="screen"/>
+        <title>Citas</title>
+    </head>   
 <link href="../utiles/css/fullcalendar.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="../utiles/css/fullcalendar.print.css" rel="stylesheet" type="text/css" media="screen"/>
 <script src="../utiles/js/jquery-1.11.0.min.js"></script>
@@ -46,7 +55,19 @@
        
    
 </script>
-<table>
+<body>
+    
+       <div id="menu">
+           <div id="cont-title">
+               <h1><spam>Usuario</spam> | Administrador</h1>
+           </div>
+       </div>
+        <div id="cuerpo">
+            <div id="menu-horizontal">
+                <div id="cont-logo"><img src="../utiles/image/logo.jpg" width="150px" height="60px"/> </div>
+            </div>
+    <div style="margin-left: 10%; margin-top: 10%;">        
+    <table>
     <tr>
         <td>Id Cliente:</td>
         <td><input id="idPersona" type="number" /></td>
@@ -93,3 +114,7 @@
             <div id="loading"></div>
             <div id="calendar" style="width: 500px; margin: 0 auto;" ></div>
 </div>
+</div>
+</div> 
+    </body>
+</html> 

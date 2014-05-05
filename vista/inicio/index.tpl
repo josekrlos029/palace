@@ -4,6 +4,7 @@
         <link href="../utiles/css/style-index.css" rel="stylesheet" type="text/css" media="screen"/>
         <link href="../utiles/css/registroPersona.css" rel="stylesheet" type="text/css" media="screen"/>
         <link href="../utiles/css/botones.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="../utiles/css/formularios.css" rel="stylesheet" type="text/css" media="screen"/>
         <title>Inicio de sesion</title>
     </head>
     <body>
@@ -14,30 +15,29 @@
         <div style="margin-top: 60%; margin-left: 25%; ">
             <h1>Iniciar Sesion</h1>
         </div>
-        <div style=" width: 80%; height: 20%; margin-top: 15%;margin-left: 10%; text-align: center;  ">
-            <table>
+        <div style=" width: 100%; height: 20%; margin-top: 10%;margin-left: 10%; text-align: center;  ">
+            <table style=" width: 80%;">
                 <tr>
                     <td>
-                        Usuario:
-                    </td>
-                    <td>
-                        <input type="text">
+                        <input class="box-text" placeholder="Usuario"  type="text">
                     </td>
                 </tr> 
                 <tr>
                     <td>
-                        Contraseña:
+                        <input class="box-text" placeholder="Contraseña" type="text">
                     </td>
-                    <td>
-                        <input type="text">
+                </tr>
+                <tr>
+                    <td align="center">                    
+                    <input name="registrarPersona" type="submit" class="button large blue " value="Iniciar Sesion" onclick="registroPersona()" />
                     </td>
                 </tr>
             </table>
         </div>
-        <div style="margin-left: 10%; width: 80% ">
-        <input name="registrarPersona" id="registrarPersona" type="submit" class="button large blue " value="Iniciar Sesion" onclick="registroPersona()" />
+        <div style="margin-left: 10%; width: 80%; ">
+        
         </div>
-        <div style=" margin-top: 10%; margin-left: 30%;">¿Olvidaste tu Contraseña?</div>
+        <div style=" margin-top: 10%; text-align: center;">¿Olvidaste tu Contraseña?</div>
     </div>
     </body>    
 </html>
