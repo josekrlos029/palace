@@ -25,6 +25,33 @@ class MedicoControl extends Controlador {
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }
     }  
+    
+    public function paciente(){
+        try {
+           
+            $this->vista->set('titulo', 'Informacion de Pacientes');
+            
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
+    public function medicamentos(){
+        try {
+           
+            $this->vista->set('titulo', 'Informacion de Medicamentos');
+            
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }    
+    
 }
 
 ?>
