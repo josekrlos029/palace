@@ -1,64 +1,58 @@
-<html>
-    <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="../utiles/css/style-index.css" rel="stylesheet" type="text/css" media="screen"/>
-        <link href="../utiles/css/registroPersona.css" rel="stylesheet" type="text/css" media="screen"/>
-        <link href="../utiles/css/botones.css" rel="stylesheet" type="text/css" media="screen"/>
-        <title>Administrador</title>
-    </head>   
-    <body>
-       <div id="menu">
-           <div id="cont-title">
-               <h1><spam>Usuario</spam> | Administrador</h1>
-           </div>
-       </div>
-        <div id="cuerpo">
-            <div id="menu-horizontal">
-                <div id="cont-logo"><img src="../utiles/image/logo.jpg" width="150px" height="60px"/> </div>
-            </div>
-            <div>
-                <div style="text-align: center; margin-top: 5% "><h1>Registrar Persona</h1></div>
-                <table class="tablaRegsitro">
-                    <tr>
-                        <td>Cedula:<td>
-                        <td style="text-align: left;"><input type="text" name="idPersona" required></td>    
-                        <td>Nombre:</td>    
-                        <td style="text-align: left;"><input type="text" name="nombres" required></td> 
-                    </tr>
-                    <tr>
-                        <td>Primer Apellido:<td>
-                        <td style="text-align: left;"><input type="text" name="pApellido" required></td>      
-                        <td>Segundo Apellido:</td>  
-                        <td style="text-align: left;"><input type="text" name="sApellido" required></td>  
-                    </tr>
-                    <tr>
-                        <td>Sexo:<td>
-                        <td style="text-align: left;"><input type="text" name="sexo"  required></td>      
-                        <td>Fecha de Nacimiento:</td>  
-                        <td style="text-align: left;"><input type="date" name="fNacimiento" required></td>  
-                    </tr>
-                    <tr>
-                        <td>Telefono:<td>
-                        <td style="text-align: left;"><input type="text" name="telefono" required></td>      
-                        <td>Celular:</td> 
-                        <td style="text-align: left;"><input type="text" name="celular" required></td>  
-                    </tr>
-                    <tr>
-                        <td>Direccion:<td>
-                        <td style="text-align: left;"><input type="text" name="direccion"  required></td>      
-                        <td>Correo:</td>   
-                        <td style="text-align: left;"><input type="text" name="correo" required></td>  
-                    </tr>
-                    <tr>
-                        <td>Rol:<td>
-                        <td style="text-align: left;"><input type="text" name="Rol"  required></td>      
-                    </tr>
+ <div id="cont-form">   
+     <table border="0" align="left" width="100%" >
+                     <tr><td style="text-align: left;"><h2>Registro de Clientes</h2></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
+                    <tr><td style="text-align: left;"><input type="text" name="nombres" required placeholder="Nombres"  class="box-text" ></td></tr> 
+                    <tr><td style="text-align: left;"><input type="text" name="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Segundo Apellido"  class="box-text" ></td></tr>
+                     <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Sexo"  class="box-text" ></td></tr>
+                     <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Fecha de Nacimiento"  class="box-text" ></td></tr>
+                     <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Telefono"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Celular"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Direccion"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
+
+                    <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar" onclick="envio()"></td></tr>
                 </table>
-                
-                <div style="width:20%; margin-left: 60%; margin-top: 3%;">
-                            <input type="submit" class="button green large"  value="Guardar" onclick="envio()">
+     
+ </div>
+
+  <div id="cont-consulta">
+   
+                <table border="0" align="right" width="70%">
+                     <tr><td style="text-align: center;"><h2>Consultar de Clientes</h2></td>
+                   <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Cedula del cliente" class="box-text" ></td>
+                </table>
+                 
+                <div style="margin-top:10%;">
+                 <table border="0" align="center" width="100%" id="mitabla" >
+                     <thead>
+                         <th>Cedula</th>
+                         <th>Nombres</th>
+                         <th width="30%">Apellidos</th>
+                         <th width="5%">Sexo</th>
+                         <th>Celular</th>
+                         <th width="5%"></th>
+                    </thead>
+                    <tbody>
+                     <tr align="left">
+                         <td>1065655456</td>
+                         <td>Andy Yair </td>
+                         <td>Bolaño Castilla</td>
+                         <td>M</td>
+                         <td>3215288972</td>
+                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td> 
+                     </tr>
+                      <tr align="left">
+                         <td>1065655456</td>
+                         <td>Andy Yair </td>
+                         <td>Bolaño Castilla</td>
+                         <td>M</td>
+                         <td>3215288972</td>
+                         <td valign="center" style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td> 
+                     </tr>
+                     </tbody>
+                </table>
                 </div>
-            </div>        
-        </div> 
-    </body>
-</html>
+                 
+                </div>
