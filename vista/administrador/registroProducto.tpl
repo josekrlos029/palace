@@ -1,4 +1,10 @@
- <div id="cont-form">
+  <script type="text/javascript">
+function consultaProducto(){
+    document.getElementById('light').style.display='block';
+    document.getElementById('fade').style.display='block'     
+}
+</script>
+<div id="cont-form">
       
                 <table border="0" align="left" width="100%" >
                      <tr><td style="text-align: left;"><h2>Registro de Productos</h2></td></tr>
@@ -14,7 +20,7 @@
    
                 <table border="0" align="right" width="70%">
                      <tr><td style="text-align: center;"><h2>Consultar Productos</h2></td>
-                   <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Cedula del cliente" class="box-text" ></td>
+                   <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Nombre del Produto" class="box-text" ></td>
                 </table>
                 
                 <div style="margin-top:10%;">
@@ -32,18 +38,20 @@
                          <td >Head and Shoulder</div></td>
                          <td >10000</div></td>
                          <td >50000</div></td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td>
+                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaProducto();"></td>
                          </tr>
-                          <tr align="left">
-                         <td >1065655456</div></td>
-                          <td >Head and Shoulder</div></td>
-                         <td >10000</div></td>
-                         <td >50000</div></td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td>
-                         </tr>
+                         
                          </tbody>
-                     </tb
+                     
                 </table>
                 </div>
-                 
-                </div>
+                 </div>
+               
+                
+         <div id="fade" class="overlay"></div>
+            <div id="light" class="modal">
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+                
+            </div>

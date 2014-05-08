@@ -1,4 +1,10 @@
- <div id="cont-form">   
+   <script type="text/javascript">
+function consultaPersona(){
+    document.getElementById('light').style.display='block';
+    document.getElementById('fade').style.display='block'     
+}
+</script>
+<div id="cont-form">   
      <table border="0" align="left" width="100%" >
                      <tr><td style="text-align: left;"><h2>Registro de Clientes</h2></td></tr>
                     <tr><td style="text-align: left;"><input type="text" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
@@ -41,18 +47,18 @@
                          <td>Bolaño Castilla</td>
                          <td>M</td>
                          <td>3215288972</td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td> 
+                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaPersona();"></td> 
                      </tr>
-                      <tr align="left">
-                         <td>1065655456</td>
-                         <td>Andy Yair </td>
-                         <td>Bolaño Castilla</td>
-                         <td>M</td>
-                         <td>3215288972</td>
-                         <td valign="center" style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td> 
-                     </tr>
+                     
                      </tbody>
                 </table>
                 </div>
                  
                 </div>
+<div id="fade" class="overlay"></div>
+            <div id="light" class="modal">
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+                
+            </div>
