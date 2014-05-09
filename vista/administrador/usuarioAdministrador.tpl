@@ -13,7 +13,7 @@
         <link href="../utiles/css/formularios.css" rel="stylesheet" type="text/css" media="screen"/>
         <link href="../utiles/css/botones.css" rel="stylesheet" type="text/css" media="screen"/>
         <link href="../utiles/css/tablas.css" rel="stylesheet" type="text/css" media="screen"/>
-        <script type='text/javascript' src='../utiles/js/estiloMensaje.js'></script>
+         <script src="../utiles/js/js.js" type="text/javascript"></script>
         <script src="../utiles/js/jquery-1.11.0.min.js" type="text/javascript"></script>
          <script type='text/javascript' src='../utiles/js/jquery-ui.custom.min.js'></script>
          
