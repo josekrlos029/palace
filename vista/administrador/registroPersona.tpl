@@ -108,26 +108,27 @@
                      <tr><td style="text-align: center;"><h2>Consultar de Clientes</h2></td>
                    <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Cedula del cliente" class="box-text" ></td>
                 </table>
-                 
-                <div style="margin-top:10%;">
+                 <div id="tablaConsulta"> 
+        
                  <table border="0" align="center" width="100%" id="mitabla" >
                      <thead>
-                         <th>Cedula</th>
-                         <th>Nombres</th>
+                         <th width="20%">Cedula</th>
+                         <th width="30%">Nombres</th>
                          <th width="30%">Apellidos</th>
                          <th width="5%">Sexo</th>
-                         <th>Celular</th>
+                         <th width="10%">Celular</th>
                          <th width="5%"></th>
                     </thead>
+
                     <tbody>
                     <?php foreach($personas as $persona){ ?>
                      <tr align="left">
-                         <td><?php echo $persona->getIdPersona(); ?></td>
-                         <td><?php echo $persona->getNombres(); ?></td>
-                         <td><?php echo $persona->getpApellido()." ".$persona->getsApellido(); ?></td>
-                         <td><?php echo $persona->getSexo(); ?></td>
-                         <td><?php echo $persona->getCelular(); ?></td>
-                         <td style="text-align:right;"><buttom type="submit" class="button small red"  onclick="consultaPersona('<?php echo $persona->getIdPersona(); ?>');">...</buttom></td> 
+                         <td width="20%"><?php echo $persona->getIdPersona(); ?></td>
+                         <td width="30%"><?php echo $persona->getNombres(); ?></td>
+                         <td width="30%" ><?php echo $persona->getpApellido()." ".$persona->getsApellido(); ?></td>
+                         <td width="5%"><?php echo $persona->getSexo(); ?></td>
+                         <td width="10%"><?php echo $persona->getCelular(); ?></td>
+                         <td width="5%" style="text-align:right;"><buttom type="submit" class="button small red"  onclick="consultaPersona('<?php echo $persona->getIdPersona(); ?>');">...</buttom></td> 
                      </tr>
                      <?php } ?>
                      

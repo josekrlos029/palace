@@ -23,6 +23,12 @@ height:85%;
  padding: 30px;
  height:85%;
 }
+#tablaConsulta{  
+    margin-top: 10%;
+ width:100%; 
+ overflow-x:hidden;
+ height:70%;
+}
 .title{
 color:#f38631;
 font-family: Arial, Helvetica, sans-serif;   
