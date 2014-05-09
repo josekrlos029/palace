@@ -64,17 +64,14 @@ Class Producto extends Modelo{
          if (array_key_exists('precioVenta', $props)) {
             $producto->setPrecioVenta($props['precioVenta']);
         }
-         if (array_key_exists('precioFabrica', $props)) {
-            $producto->setPrecioFabrica($props['precioFabrica']);
-        }
+ 
     }
       
     private function getParametros(Producto $pro){
               
         $parametros = array(
             ':nombre' => $pro->getNombre(),
-            ':precioVenta' => $pro->getPrecioVenta(),
-            ':precioFabrica' => $pro->getPrecioFabrica()
+            ':precioVenta' => $pro->getPrecioVenta()
         );
         return $parametros;
     }
@@ -94,7 +91,7 @@ Class Producto extends Modelo{
     }
         
     public function crearProducto(Producto $producto) {
-        $sql = "INSERT INTO producto (nombre, precioVenta, precioFabrica) VALUES ( :nombre, :precioVenta, :precioFabrica)";
+        $sql = "INSERT INTO producto (nombre, precioVenta) VALUES ( :nombre, :precioVenta)";
         $this->__setSql($sql);
         $this->ejecutar($this->getParametros($producto));
     }

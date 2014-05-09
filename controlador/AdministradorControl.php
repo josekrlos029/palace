@@ -140,13 +140,13 @@ class AdministradorControl extends Controlador{
         try {
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : NULL;
             $precioVenta = isset($_POST['pVenta']) ? $_POST['pVenta'] : NULL;
-            $pProveedor = isset($_POST['pProveedor']) ? $_POST['pProveedor'] : NULL;
+            
 
             $producto = new Producto();
 
             $producto->setNombre($nombre);
             $producto->setPrecioVenta($precioVenta);
-            $producto->setPrecioFabrica($pProveedor);
+            
 
             $producto->crearProducto($producto);
             echo json_encode("exito");

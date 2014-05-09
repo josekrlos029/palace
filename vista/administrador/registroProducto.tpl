@@ -11,14 +11,12 @@ $("#form").submit(function(){
 
     var nombre = $("#nombre").val();
     var pVenta = $("#pVenta").val();
-    var pProveedor = $("#pProveedor").val();
+    
     
     var producto = {
         
         nombre: nombre,
-        pVenta: pVenta,
-        pProveedor: pProveedor
-    
+        pVenta: pVenta    
     };
     
     $.ajax({
@@ -52,8 +50,7 @@ $("#form").submit(function(){
     <form action="javascript: return false;" id="form">
                 <table border="0" align="left" width="100%" >
                      <tr><td style="text-align: left;"><h2>Registro de Productos</h2></td></tr>
-                    <tr><td style="text-align: left;"><input type="text" id="nombre" required placeholder="Nombre"  class="box-text" ></td></tr> 
-                    <tr><td style="text-align: left;"><input type="text" id="pProveedor" required placeholder="Precio Proveedor"  class="box-text" ></td>      
+                    <tr><td style="text-align: left;"><input type="text" id="nombre" required placeholder="Nombre"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="text" id="pVenta" required placeholder="Precio Venta"  class="box-text" ></td></tr>
                      <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar"></td></tr>
                 </table>
