@@ -1,4 +1,6 @@
-  <script type="text/javascript">
+
+</head>
+<script type="text/javascript">
 function consultaProducto(){
     document.getElementById('light').style.display='block';
     document.getElementById('fade').style.display='block'     
@@ -52,6 +54,45 @@ function consultaProducto(){
             <div id="light" class="modal">
               <div style="float:right">
                   <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+                  
              </div>
+                <div style=" margin-top: 5%; margin-left: 10%;">
+                    <h2>Datos del producto</h2>
+                    <br><br>
+                    <table width="70%">
+                      <tr>
+                          <td>
+                              Codigo:
+                          </td>
+                          <td>
+                              <input type="text" class="box-text"/>
+                          </td>                          
+                      </tr>
+                      <tr>
+                          <td>
+                              Nombre:
+                          </td>
+                          <td>
+                              <input type="text" class="box-text"/>
+                          </td>                          
+                      </tr>
+                      <tr>
+                          <td>
+                              Precio Proveedor:
+                          </td>
+                          <td>
+                              <input type="text" class="box-text" />
+                          </td>                          
+                      </tr>
+                      <tr>
+                          <td>
+                              Precio Venta:
+                          </td>
+                          <td>
+                              <input type="text" class="box-text"/>
+                          </td>                          
+                      </tr>
+                  </table>
+                </div>
                 
             </div>

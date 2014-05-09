@@ -35,11 +35,11 @@
                $("#contenido").load("/palace/administrador/registroCita");
                $("#titulo").html("<h1>Gestion de Citas</h1>");
            }
-           function cargarRegistroPersona(){
-               $("#contenido").load("/palace/administrador/registroPersona");
+           function cargarGestionEmpleado(){
+               $("#contenido").load("/palace/administrador/registroEmpleado");
            }
-           function cargarRegistroPersona(){
-               $("#contenido").load("/palace/administrador/registroPersona");
+           function cargarGestionServicio(){
+               $("#contenido").load("/palace/administrador/gestionServicio");
            }
            
             
@@ -74,8 +74,8 @@
                       
                 </li>
                 <li id="four" class="sign"><a href="#">Inventario</a></li>
-                <li id="five" class="sign"><a href="#">Servicios</a></li>
-                <li id="six" class="sign"><a href="#">Empleados</a></li>
+                <li id="five" class="sign"><a onclick="cargarGestionServicio()" href="#">Servicios</a></li>
+                <li id="six" class="sign"><a onclick="cargarGestionEmpleado()" href="#">Empleados</a></li>
           </ul>
         </div> 
           
