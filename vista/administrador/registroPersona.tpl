@@ -62,6 +62,12 @@
                   });
         
     });
+    
+    function limpiar(){
+        
+        $("input").val("");
+        
+    }
    
 </script>
 <div  id="overlay"></div>
@@ -86,7 +92,7 @@
                     <tr><td style="text-align: left;"><input type="text" id="direccion" required placeholder="Direccion"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="email" id="correo" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
 
-                    <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar"></td></tr>
+                    <tr><td style="text-align:right;"><button type="submit" class="button orange large"  >Guardar</button></td></tr>
      </table>
     </form>
  </div>
