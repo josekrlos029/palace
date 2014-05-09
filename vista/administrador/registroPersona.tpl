@@ -48,6 +48,8 @@
                       var json = eval("(" + msg + ")");
               
                       if (json == "exito") {
+                      
+                            limpiarCajas();
                             x.html ( "<p>Persona Registrada Correctamente</p>");
                             y.html();
                             exito();
@@ -56,18 +58,18 @@
 
                       } else if(json == 23000) {
 
-                          alert("La persona o el correo de la persona ya existe en el sistema");
+                            limpiarCajas();
+                            x.html ( "<p>Error al registrar Persona</p>");
+                            y.html();
+                            error();
+                            ocultar();
 
                       }
                   });
         
     });
     
-    function limpiar(){
-        
-        $("input").val("");
-        
-    }
+    
    
 </script>
 <div  id="overlay"></div>
@@ -121,7 +123,7 @@
                          <td>Bolaño Castilla</td>
                          <td>M</td>
                          <td>3215288972</td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaPersona();"></td> 
+                         <td style="text-align:right;"><buttom type="submit" class="button small red"  onclick="consultaPersona();">...</buttom></td> 
                      </tr>
                      
                      </tbody>

@@ -2,6 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+function limpiarCajas(){
+        
+        $("input").val("");
+        
+    }
+
 function asignarColor(fondo,borde,texto,url) { 
  $("#mensaje").css("background-color",fondo );
  $("#mensaje").css("border-color",borde);
