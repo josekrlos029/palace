@@ -68,19 +68,18 @@ $("#form").submit(function(){
                       <thead>
                          <th >Codigo</th>
                          <th width="30%">Nombre</th>
-                         <th >Precio Proveerdor</th>
                          <th >Precion Venta</th>
                          <th  width="5%"</th>
                          </thead>
                          <tbody>
                       <tr align="left">
-                         <td >1065655456</div></td>
-                         <td >Head and Shoulder</div></td>
-                         <td >10000</div></td>
-                         <td >50000</div></td>
+                          <?php foreach($productos as $producto){ ?>
+                         <td ><?php echo $producto->getIdProducto(); ?></td>
+                         <td ><?php echo $producto->getNombre(); ?></td>
+                         <td ><?php echo $producto->getPrecioVenta(); ?></td>
                          <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaProducto();"></td>
                          </tr>
-                         
+                         <?php } ?>
                          </tbody>
                      
                 </table>

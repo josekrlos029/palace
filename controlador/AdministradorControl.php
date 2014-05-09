@@ -31,7 +31,10 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Registrar Persona');
-            
+
+            $persona = new Persona();
+            $personas = $persona->leerPersonas();
+            $this->vista->set('personas', $personas);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -44,7 +47,9 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Registrar Persona');
-            
+            $producto = new Producto();
+            $productos = $producto->leerProductos();
+            $this->vista->set('productos', $productos);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {

@@ -50,6 +50,7 @@
                       if (json == "exito") {
                       
                             limpiarCajas();
+                            recargarTablaPersonas();
                             x.html ( "<p>Persona Registrada Correctamente</p>");
                             y.html();
                             exito();
@@ -69,7 +70,9 @@
         
     });
     
-    
+    function recargarTablaPersonas(){
+        
+    }
    
 </script>
 <div  id="overlay"></div>
@@ -117,16 +120,18 @@
                          <th width="5%"></th>
                     </thead>
                     <tbody>
+                    <?php foreach($personas as $persona){ ?>
                      <tr align="left">
-                         <td>1065655456</td>
-                         <td>Andy Yair </td>
-                         <td>Bolaño Castilla</td>
-                         <td>M</td>
-                         <td>3215288972</td>
-                         <td style="text-align:right;"><buttom type="submit" class="button small red"  onclick="consultaPersona();">...</buttom></td> 
+                         <td><?php echo $persona->getIdPersona(); ?></td>
+                         <td><?php echo $persona->getNombres(); ?></td>
+                         <td><?php echo $persona->getpApellido()." ".$persona->getsApellido(); ?></td>
+                         <td><?php echo $persona->getSexo(); ?></td>
+                         <td><?php echo $persona->getCelular(); ?></td>
+                         <td style="text-align:right;"><buttom type="submit" class="button small red"  onclick="consultaPersona('<?php echo $persona->getIdPersona(); ?>');">...</buttom></td> 
                      </tr>
+                     <?php } ?>
                      
-                     </tbody>
+                     </div>
                 </table>
                 </div>
                  
