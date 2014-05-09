@@ -8,6 +8,11 @@
 
     $("#form").submit(function(){
         
+        var x = $("#mensaje");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("slow");
+ 
         var idPersona = $("#idPersona").val();
         var nombres = $("#nombres").val();
         var pApellido = $("#pApellido").val();
@@ -41,7 +46,10 @@
                       var json = eval("(" + msg + ")");
               
                       if (json == "exito") {
-                          alert("Persona Registrada Correctamente");
+                            x.html ( "<p>Persona Registrada Correctamente</p>");
+                            exito();
+                            ocultar();
+                         
 
                       } else if(json == 23000) {
 
@@ -53,6 +61,7 @@
     });
    
 </script>
+<div id="mensaje" hidden> </div>
 <div id="cont-form">   
     <form id="form" action="javascript: return false;">
      <table border="0" align="left" width="100%" >
