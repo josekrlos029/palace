@@ -9,9 +9,11 @@
     $("#form").submit(function(){
         
         var x = $("#mensaje");
+        var y = $("#overlay");
         cargando();
         x.html ("<p>Cargando...</p>");
         x.show("slow");
+        y.show("speed");
  
         var idPersona = $("#idPersona").val();
         var nombres = $("#nombres").val();
@@ -47,6 +49,7 @@
               
                       if (json == "exito") {
                             x.html ( "<p>Persona Registrada Correctamente</p>");
+                            y.html();
                             exito();
                             ocultar();
                          
@@ -61,7 +64,13 @@
     });
    
 </script>
-<div id="mensaje" hidden> </div>
+<div  id="overlay"></div>
+            <div  id="mensaje">
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+                
+            </div>
 <div id="cont-form">   
     <form id="form" action="javascript: return false;">
      <table border="0" align="left" width="100%" >

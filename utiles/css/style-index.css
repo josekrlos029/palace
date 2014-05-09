@@ -6,13 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-/* 
-    Document   : general
-    Created on : 26/08/2013, 11:16:05 AM
-    Author     : andy henry
-    Description:
-        Purpose of the stylesheet follows.
-*/
+
 
 root { 
     display: block;
@@ -130,18 +124,34 @@ height: 100%;
 
 /* FIN DE VENTANA FLOTANTE */
 
+
+ #overlay{
+     display: none;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: #000;
+     z-index:1001;
+     opacity:.40;
+     -moz-opacity: 0.40;
+     filter: alpha(opacity=40);
+}
+
 #mensaje{
-position:absolute;
-width:300px;
-height:30px;
-right: 30px; 
-font-size: 15px;
-border:1px solid;
-border-radius: 0px;
-padding:15px 10px 0px 50px;
-background-repeat: no-repeat;
-background-position: 10px center;
-transition-property:width;
-transition-duration:5s; 
-transition-delay:2s;
- }
+     display: none;
+     position: absolute;
+     top: 40%;
+     left: 35%;
+     width: 30%;
+     height: 20%;
+     background: #fff;
+     border: #b0b4b6 1px solid;
+     border-radius: 5px;
+     z-index:1002;
+     overflow: auto;
+-webkit-box-shadow: 4px 10px 13px -2px rgba(0,0,0,0.3);
+-moz-box-shadow: 4px 10px 13px -2px rgba(0,0,0,0.3);
+box-shadow: 4px 10px 13px -2px rgba(0,0,0,0.3);
+}
