@@ -11,6 +11,11 @@ class Rol extends Modelo{
     private $idRol;
     private $nombre;
     
+    private $administrador ="001";
+    private $medico = "002";
+    private $empleado = "003";
+    private $cliente = "004";
+    
     public function getIdRol() {
         return $this->idRol;
     }
@@ -26,7 +31,24 @@ class Rol extends Modelo{
     public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
+    
+    public function getAdministrador() {
+        return $this->administrador;
+    }
 
+    public function getMedico() {
+        return $this->medico;
+    }
+
+    public function getEmpleado() {
+        return $this->empleado;
+    }
+
+    public function getCliente() {
+        return $this->cliente;
+    }
+
+    
   public function leerRoles($idPersona){
         $sql =  "SELECT rp.idRol, r.nombre FROM rol_persona rp, rol r WHERE rp.idRol= r.idRol AND rp.idPersona='".$idPersona."'";
         $this->__setSql($sql);
@@ -64,6 +86,14 @@ private function mapearRol(Rol $rol, array $props){
         }
     }
 
-}
 
+    public function crearRolPersona($idPersona, $idRol){
+        $sql = "INSERT INTO rol_persona (idPersona, idRol) VALUES (:idPersona, :idRol)";
+        $this->__setSql($sql);
+        $this->ejecutar(array(":idPersona"=>$idPersona,":idRol"=>$idRol));
+        
+    }
+    
+    
+  }
 ?>

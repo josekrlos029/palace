@@ -21,8 +21,7 @@ class Persona extends Modelo{
     private $celular;
     private $correo;
     
-   
-    
+       
     public function getIdPersona() {
         return $this->idPersona;
     }
@@ -39,8 +38,7 @@ class Persona extends Modelo{
         $this->nombres = $nombres;
     }
 
-    
-
+   
     public function getPApellido() {
         return $this->pApellido;
     }
@@ -66,7 +64,7 @@ class Persona extends Modelo{
     }
 
     public function getFNacimiento() {
-        return $this->fechaNacimiento;
+        return $this->fNacimiento;
     }
 
     public function setFNacimiento($fNacimiento) {
@@ -112,8 +110,8 @@ class Persona extends Modelo{
 //Funciones CRUD
     
     private function mapearPersona(Persona $persona, array $props) {
-        if (array_key_exists('id_persona', $props)) {
-            $persona->setIdPersona($props['id_persona']);
+        if (array_key_exists('idPersona', $props)) {
+            $persona->setIdPersona($props['idPersona']);
         }
          if (array_key_exists('nombres', $props)) {
             $persona->setNombres($props['nombres']);
@@ -143,9 +141,7 @@ class Persona extends Modelo{
             $persona->setCorreo($props['correo']);
         }
         
-        
-        
-
+    
     }
     
     
@@ -153,14 +149,14 @@ class Persona extends Modelo{
     private function getParametros(Persona $per){
               
         $parametros = array(
-            ':id_persona' => $per->getIdPersona(),
+            ':idPersona' => $per->getIdPersona(),
             ':nombres' => $per->getNombres(),
             ':pApellido' => $per->getPApellido(),
             ':sApellido' => $per->getSApellido(),
             ':sexo' => $this->getSexo(),
             ':fNacimiento' => $per->getFNacimiento(),
             ':telefono' => $per->getTelefono(),
-            ':Celular' => $per->getCelular(),
+            ':celular' => $per->getCelular(),
             ':direccion' => $per->getDireccion(),
             ':correo' => $per->getCorreo(),
             
@@ -170,7 +166,7 @@ class Persona extends Modelo{
     }
     
     public function crearPersona(Persona $persona) {
-        $sql = "INSERT INTO persona (idPersona, nombres, pApellido, sApellido, sexo, fNacimiento, telefono, celular, direccion, correo) VALUES ( :idPersona, :nombres :pApellido, :sApellido, :sexo, :fechaNacimiento, :telefono, :celular, :direccion, :correo)";
+        $sql = "INSERT INTO persona (idPersona, nombres, pApellido, sApellido, sexo, fNacimiento, telefono, celular, direccion, correo) VALUES ( :idPersona, :nombres, :pApellido, :sApellido, :sexo, :fNacimiento, :telefono, :celular, :direccion, :correo)";
         $this->__setSql($sql);
         $this->ejecutar($this->getParametros($persona));
     }
