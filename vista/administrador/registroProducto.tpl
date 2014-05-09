@@ -1,22 +1,63 @@
 
 </head>
 <script type="text/javascript">
-function consultaProducto(){
+
+    function consultaProducto(){
     document.getElementById('light').style.display='block';
-    document.getElementById('fade').style.display='block'     
+    document.getElementById('fade').style.display='block' ;    
 }
+
+$("#form").submit(function(){
+
+    var nombre = $("#nombre").val();
+    var pVenta = $("#pVenta").val();
+    var pProveedor = $("#pProveedor").val();
+    
+    var producto = {
+        
+        nombre: nombre,
+        pVenta: pVenta,
+        pProveedor: pProveedor
+    
+    };
+    
+    $.ajax({
+                      type: "POST",
+                      url: "/palace/administrador/registrarProducto",
+                      data: producto
+                  })
+                  .done(function(msg) {
+                      
+                      var json = eval("(" + msg + ")");
+              
+                      if (json == "exito") {
+                          alert("exito");
+                            //x.html ( "<p>Producto Registrada Correctamente</p>");
+                            //exito();
+                            //ocultar();
+                         
+
+                      } else if(json == 23000) {
+
+                          alert("El producto ya Existe en el sistema");
+
+                      }
+                  });
+
+
+
+});
 </script>
 <div id="cont-form">
-      
+    <form action="javascript: return false;" id="form">
                 <table border="0" align="left" width="100%" >
                      <tr><td style="text-align: left;"><h2>Registro de Productos</h2></td></tr>
-                    <tr><td style="text-align: left;"><input type="text" name="idPersona" required placeholder="Codigo Producto" class="box-text" ></td></tr>    
-                    <tr><td style="text-align: left;"><input type="text" name="nombres" required placeholder="Nombre"  class="box-text" ></td></tr> 
-                    <tr><td style="text-align: left;"><input type="text" name="pApellido" required placeholder="Precio Proveedor"  class="box-text" ></td>      
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Precio Venta"  class="box-text" ></td></tr>
-                     <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar" onclick="envio()"></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" id="nombre" required placeholder="Nombre"  class="box-text" ></td></tr> 
+                    <tr><td style="text-align: left;"><input type="text" id="pProveedor" required placeholder="Precio Proveedor"  class="box-text" ></td>      
+                    <tr><td style="text-align: left;"><input type="text" id="pVenta" required placeholder="Precio Venta"  class="box-text" ></td></tr>
+                     <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar"></td></tr>
                 </table>
-                
+    </form>            
                 </div>
                <div id="cont-consulta">
    

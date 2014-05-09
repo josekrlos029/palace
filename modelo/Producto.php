@@ -19,6 +19,7 @@ Class Producto extends Modelo{
     private $idProducto;
     private $nombre;
     private $precioVenta;
+    private $precioFabrica;
         
     public function getIdProducto() {
         return $this->idProducto;
@@ -27,7 +28,6 @@ Class Producto extends Modelo{
     public function getNombre() {
         return $this->nombre;
     }
-
 
     public function getPrecioVenta() {
         return $this->precioVenta;
@@ -45,7 +45,15 @@ Class Producto extends Modelo{
         $this->precioVenta = $precioVenta;
     }
 
-    
+    public function getPrecioFabrica() {
+        return $this->precioFabrica;
+    }
+
+    public function setPrecioFabrica($precioFabrica) {
+        $this->precioFabrica = $precioFabrica;
+    }
+
+        
     private function mapearProducto(Producto $producto, array $props) {
         if (array_key_exists('idProducto', $props)) {
             $producto->setIdProducto($props['idProducto']);
@@ -53,19 +61,20 @@ Class Producto extends Modelo{
          if (array_key_exists('nombre', $props)) {
             $producto->setNombre($props['nombre']);
         }
-         if (array_key_exists('precioVento', $props)) {
-            $producto->setPrecioVenta($props['precioVento']);
+         if (array_key_exists('precioVenta', $props)) {
+            $producto->setPrecioVenta($props['precioVenta']);
+        }
+         if (array_key_exists('precioFabrica', $props)) {
+            $producto->setPrecioFabrica($props['precioFabrica']);
         }
     }
-    
-    
-  
+      
     private function getParametros(Producto $pro){
               
         $parametros = array(
-            ':idProducto' => $pro->getIdProducto(),
             ':nombre' => $pro->getNombre(),
-            ':precioVenta' => $pro->getPrecioVenta()
+            ':precioVenta' => $pro->getPrecioVenta(),
+            ':precioFabrica' => $pro->getPrecioFabrica()
         );
         return $parametros;
     }
@@ -84,7 +93,12 @@ Class Producto extends Modelo{
         return $productos;
     }
         
+    public function crearProducto(Producto $producto) {
+        $sql = "INSERT INTO producto (nombre, precioVenta, precioFabrica) VALUES ( :nombre, :precioVenta, :precioFabrica)";
+        $this->__setSql($sql);
+        $this->ejecutar($this->getParametros($producto));
+    }
+    
         
 }
-
 ?>

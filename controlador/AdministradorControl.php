@@ -137,13 +137,24 @@ class AdministradorControl extends Controlador{
     
     public function registrarProducto(){
         
-        $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : NULL;
-        $precioVenta = isset($_POST['precioVenta']) ? $_POST['precioVenta'] : NULL;
-        
-        $producto = new Producto();
-        
-        $producto->setNombre($nombre);
-        $producto->setPrecioVenta($precioVenta);
+        try {
+            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : NULL;
+            $precioVenta = isset($_POST['pVenta']) ? $_POST['pVenta'] : NULL;
+            $pProveedor = isset($_POST['pProveedor']) ? $_POST['pProveedor'] : NULL;
+
+            $producto = new Producto();
+
+            $producto->setNombre($nombre);
+            $producto->setPrecioVenta($precioVenta);
+            $producto->setPrecioFabrica($pProveedor);
+
+            $producto->crearProducto($producto);
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
+
     }
     
     public function factura(){
