@@ -74,7 +74,6 @@ Class Servicio extends Modelo{
     private function getParametros(Servicio $ser){
               
         $parametros = array(
-            ':idProducto' => $ser->getIdServicio(),
             ':nombre' => $ser->getNombre(),
             ':tiempo' => $ser->getTiempo(),
             ':precio' => $ser->getPrecio()
@@ -96,7 +95,11 @@ Class Servicio extends Modelo{
         return $servicios;
     }
         
-
+    public function crearServicio(Servicio $servicio) {
+        $sql = "INSERT INTO servicio (nombre, tiempo, precio) VALUES ( :nombre, :tiempo, :precio)";
+        $this->__setSql($sql);
+        $this->ejecutar($this->getParametros($servicio));
+    }
         
         
 }

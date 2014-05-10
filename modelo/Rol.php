@@ -12,8 +12,8 @@ class Rol extends Modelo{
     private $nombre;
     
     private $administrador ="001";
-    private $medico = "002";
-    private $empleado = "003";
+    private $medico = "003";
+    private $empleado = "002";
     private $cliente = "004";
     
     public function getIdRol() {

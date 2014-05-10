@@ -32,8 +32,10 @@ class AdministradorControl extends Controlador{
            
             $this->vista->set('titulo', 'Registrar Persona');
 
+            $rol = new Rol();
             $persona = new Persona();
-            $personas = $persona->leerPersonas();
+            
+            $personas = $persona->leerPersonasPorRol($rol->getCliente());
             $this->vista->set('personas', $personas);
             return $this->vista->imprimir();
  
@@ -75,7 +77,11 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Registro Empleado');
+             $rol = new Rol();
+            $persona = new Persona();
             
+            $personas = $persona->leerPersonasPorRol($rol->getEmpleado());
+            $this->vista->set('personas', $personas);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -88,7 +94,9 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Gestion Servicio');
-            
+            $servicio = new Servicio();
+            $productos = $servicio->leerServicios();
+            $this->vista->set('servicios', $productos);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -109,6 +117,8 @@ class AdministradorControl extends Controlador{
             $celular = isset($_POST['celular']) ? $_POST['celular'] : NULL;
             $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : NULL;
             $correo = isset($_POST['correo']) ? $_POST['correo'] : NULL;
+            $r = isset($_POST['rol']) ? $_POST['rol'] : NULL;
+            
             
             $persona = new Persona();
 
@@ -126,8 +136,15 @@ class AdministradorControl extends Controlador{
             $persona->crearPersona($persona);
             
             $rol = new Rol();
+            if($r == "C"){
+                $idRol = $rol->getCliente();
+            }elseif($r == "E"){
+                $idRol = $rol->getEmpleado();
+            }
             
-            $idRol = $rol->getCliente();
+            
+            
+            
             $rol->crearRolPersona($idPersona, $idRol);
             
             echo json_encode("exito");
@@ -154,6 +171,30 @@ class AdministradorControl extends Controlador{
             
 
             $producto->crearProducto($producto);
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
+
+    }
+    
+    public function registrarServicio(){
+        
+        try {
+            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : NULL;
+            $tiempo = isset($_POST['tiempo']) ? $_POST['tiempo'] : NULL;
+            $precio = isset($_POST['precio']) ? $_POST['precio'] : NULL;
+            
+
+            $servicio = new Servicio();
+
+            $servicio->setNombre($nombre);
+            $servicio->setTiempo($tiempo);
+            $servicio->setPrecio($precio);
+            
+
+            $servicio->crearServicio($servicio);
             echo json_encode("exito");
             
         } catch (Exception $exc) {

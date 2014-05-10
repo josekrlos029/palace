@@ -35,7 +35,8 @@
                     telefono: telefono,
                     celular:celular,
                     direccion:direccion,
-                    correo:correo        
+                    correo:correo,
+                    rol: "C"
         };
         
         $.ajax({
@@ -51,7 +52,7 @@
                       
                             limpiarCajas();
                             recargarTablaPersonas();
-                            x.html ( "<p>Persona Registrada Correctamente</p>");
+                            x.html ( "<p>Cliente Registrado Correctamente</p>");
                             y.html();
                             exito();
                             ocultar();
@@ -60,7 +61,7 @@
                       } else if(json == 23000) {
 
                             limpiarCajas();
-                            x.html ( "<p>Error al registrar Persona</p>");
+                            x.html ( "<p>Error al registrar Cliente</p>");
                             y.html();
                             error();
                             ocultar();

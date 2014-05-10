@@ -3,24 +3,96 @@ function consultaPersona(){
     document.getElementById('light').style.display='block';
     document.getElementById('fade').style.display='block'     
 }
-</script>
-<div id="cont-form">   
-     <table border="0" align="left" width="100%" >
-                     <tr><td style="text-align: left;"><h2>Registro de Empleados</h2></td></tr>
-                    <tr><td style="text-align: left;"><input type="text" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
-                    <tr><td style="text-align: left;"><input type="text" name="nombres" required placeholder="Nombres"  class="box-text" ></td></tr> 
-                    <tr><td style="text-align: left;"><input type="text" name="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Segundo Apellido"  class="box-text" ></td></tr>
-                     <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Sexo"  class="box-text" ></td></tr>
-                     <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Fecha de Nacimiento"  class="box-text" ></td></tr>
-                     <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Telefono"  class="box-text" ></td></tr>
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Celular"  class="box-text" ></td></tr>
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Direccion"  class="box-text" ></td></tr>
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
 
-                    <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar" onclick="envio()"></td></tr>
-                </table>
-     
+$("#form").submit(function(){
+        
+        var x = $("#mensaje");
+        var y = $("#overlay");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("slow");
+        y.show("speed");
+ 
+        var idPersona = $("#idPersona").val();
+        var nombres = $("#nombres").val();
+        var pApellido = $("#pApellido").val();
+        var sApellido = $("#sApellido").val();
+        var sexo = $("#sexo").val();
+        var fecha = $("#fNacimiento").val();
+        var telefono = $("#telefono").val();
+        var celular = $("#celular").val();
+        var direccion = $("#direccion").val();
+        var correo = $("#correo").val();
+        
+        var persona ={ idPersona:idPersona,
+                    nombres: nombres,
+                    pApellido: pApellido,
+                    sApellido: sApellido,
+                    sexo: sexo,
+                    fNacimiento: fecha,
+                    telefono: telefono,
+                    celular:celular,
+                    direccion:direccion,
+                    correo:correo,
+                    rol: "E"
+        };
+        
+        $.ajax({
+                      type: "POST",
+                      url: "/palace/administrador/registrarPersona",
+                      data: persona
+                  })
+                  .done(function(msg) {
+                      
+                      var json = eval("(" + msg + ")");
+              
+                      if (json == "exito") {
+                      
+                            limpiarCajas();
+                            x.html ( "<p>Empleado Registrado Correctamente</p>");
+                            y.html();
+                            exito();
+                            ocultar();
+                         
+
+                      } else if(json == 23000) {
+
+                            limpiarCajas();
+                            x.html ( "<p>Error al registrar Empleado</p>");
+                            y.html();
+                            error();
+                            ocultar();
+
+                      }
+                  });
+        
+    });
+</script>
+<div  id="overlay"></div>
+            <div  id="mensaje">
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+                
+            </div>
+<div id="cont-form">   
+     <form id="form" action="javascript: return false;">
+     <table border="0" align="left" width="100%" >
+                     <tr><td style="text-align: left;"><h2>Registro de Clientes</h2></td></tr>
+                     <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
+                    <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" ></td></tr> 
+                    <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido" required placeholder="Segundo Apellido"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><select id="sexo"><option>M</option><option>F</option></select></td></tr>
+                    <tr><td style="text-align: left;"><input type="date" id="fNacimiento" required placeholder="Fecha de Nacimiento"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="number" id="telefono" required placeholder="Telefono"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" id="direccion" required placeholder="Direccion"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="email" id="correo" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
+
+                    <tr><td style="text-align:right;"><button type="submit" class="button orange large"  >Guardar</button></td></tr>
+     </table>
+    </form>
  </div>
 
   <div id="cont-consulta">
@@ -41,14 +113,16 @@ function consultaPersona(){
                          <th width="5%"></th>
                     </thead>
                     <tbody>
+                     <?php foreach($personas as $persona){ ?>
                      <tr align="left">
-                         <td>1065655456</td>
-                         <td>Andy Yair </td>
-                         <td>Bolaño Castilla</td>
-                         <td>M</td>
-                         <td>3215288972</td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaPersona();"></td> 
+                         <td width="20%"><?php echo $persona->getIdPersona(); ?></td>
+                         <td width="30%"><?php echo $persona->getNombres(); ?></td>
+                         <td width="30%" ><?php echo $persona->getpApellido()." ".$persona->getsApellido(); ?></td>
+                         <td width="5%"><?php echo $persona->getSexo(); ?></td>
+                         <td width="10%"><?php echo $persona->getCelular(); ?></td>
+                         <td width="5%" style="text-align:right;"><buttom type="submit" class="button small red"  onclick="consultaPersona('<?php echo $persona->getIdPersona(); ?>');">...</buttom></td> 
                      </tr>
+                     <?php } ?>
                      
                      </tbody>
                 </table>

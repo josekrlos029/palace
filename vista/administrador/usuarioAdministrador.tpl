@@ -37,9 +37,11 @@
            }
            function cargarGestionEmpleado(){
                $("#contenido").load("/palace/administrador/registroEmpleado");
+               $("#titulo").html("<h1>Gestion de Empleados</h1>");
            }
            function cargarGestionServicio(){
                $("#contenido").load("/palace/administrador/gestionServicio");
+               $("#titulo").html("<h1>Gestion de Servicios</h1>");
            }
            
             
