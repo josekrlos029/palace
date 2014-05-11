@@ -1,7 +1,10 @@
    <script type="text/javascript">
-function consultaCita(){
+function consultaDisponibilidad(idPersona){
     document.getElementById('light').style.display='block';
-    document.getElementById('fade').style.display='block'     
+    document.getElementById('fade').style.display='block';  
+    
+    $("#consulta").html("...");
+    
 }
 
 function buscar(){
@@ -29,6 +32,24 @@ function buscar(){
 
                     <tr><td style="text-align:right;"><button type="submit" class="button orange large"  onclick="envio()"> Guardar </button></td></tr>
                 </table> 
+    <br>
+    
+    <table border="0" align="center" width="100%" id="mitabla">
+        <thead>
+                         <th >N°</th>
+                         <th width="30%">Nombre del Cliente</th>
+                          <th></th>
+                         </thead>
+                         <tbody>
+                      <tr align="left">
+                         <td >1</td>
+                          <td >Jose Carlos Jimenez</td>
+                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaDisponibilidad();">...</button></td>
+                         </tr>
+                         </tbody>
+    </table>
+    
+    
  </div>
  <div id="cont-consulta">
    
@@ -55,16 +76,17 @@ function buscar(){
                          </tr>
                          
                          </tbody>
-                     </tb
+                     
                 </table>
                 </div>
                  
                 </div>
                 <div id="fade" class="overlay"></div>
             <div id="light" class="modal">
-              <div style="float:right">
-                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
-             </div>
+                <div style="float:right">
+                    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+                </div>    
+                <div id="consulta" style="float: left;"></div>
                 
             </div>
               

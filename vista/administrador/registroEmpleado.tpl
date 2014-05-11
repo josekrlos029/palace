@@ -1,5 +1,5 @@
    <script type="text/javascript">
-function consultaPersona(){
+function consultaPersona(idPersona){
     document.getElementById('light').style.display='block';
     document.getElementById('fade').style.display='block'     
 }

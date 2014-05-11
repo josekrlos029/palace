@@ -96,6 +96,20 @@ Class Producto extends Modelo{
         $this->ejecutar($this->getParametros($producto));
     }
     
+    public function leerProductoPorId($idProducto) {
+        $sql = "SELECT * FROM producto WHERE idProducto=".$idProducto;
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $producto = NULL;
+        foreach ($resultado as $fila) {
+            $producto = new Producto();
+            $this->mapearProducto($producto, $fila);
+            
+        }
+        return $producto;
+    }
+        
+    
         
 }
 ?>

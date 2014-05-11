@@ -8,19 +8,25 @@
  x.html ("<p>Cargando...</p>");
  x.show("slow");
 
-var y= $("#tablaConsulta"); 
-var url="/palace/administrador/";
-var data="idProducto="+idProducto;
- envioJson2(url,data,function respuesta(res){   
-   x.hide();            
-    y.html (res);
-    
-    document.getElementById('light').style.display='block';
-    document.getElementById('fade').style.display='block'
-});
+var data={ idProducto:idProducto };
+
+$.ajax({
+        type: "POST",
+        url: "/palace/administrador/consultarProducto",
+        data: data
+         }).done(function(msg){
+             
+             var json = eval("(" + msg + ")");
+             $("#codProducto").val(json.idProducto);
+             $("#nombreProducto").val(json.nombre);
+             $("#pVentaProducto").val(json.precio);
+             
+             document.getElementById('light').style.display='block';
+             document.getElementById('fade').style.display='block';
+         });
+           
  
-      
-}
+    }      
   
 $("#form").submit(function(){
     var x = $("#mensaje");
@@ -128,7 +134,7 @@ $("#form").submit(function(){
                               Codigo:
                           </td>
                           <td>
-                         
+                              <input class="box-text" value="" id="codProducto" type="text" >
                           </td>                          
                       </tr>
                       <tr>
@@ -136,7 +142,7 @@ $("#form").submit(function(){
                               Nombre:
                           </td>
                           <td>
-                             
+                             <input class="box-text" value="" id="nombreProducto" type="text" >
                           </td>                          
                       </tr>
                       <tr>
@@ -144,7 +150,7 @@ $("#form").submit(function(){
                               Precio Proveedor:
                           </td>
                           <td>
-                              
+                              <input class="box-text" value="" id="pProveedor" type="number" >
                           </td>                          
                       </tr>
                       <tr>
@@ -152,7 +158,15 @@ $("#form").submit(function(){
                               Precio Venta:
                           </td>
                           <td>
-                             
+                             <input class="box-text" value="" id="pVentaProducto" type="number" >
+                          </td>                          
+                      </tr>
+                      <tr>
+                          <td>
+                              Unidades Disponibles:
+                          </td>
+                          <td>
+                             <input class="box-text" value="" id="unidades" type="number" >
                           </td>                          
                       </tr>
                   </table>

@@ -266,8 +266,20 @@ class AdministradorControl extends Controlador{
         
         
     }
-       
-        
+    
+    public function consultarProducto(){
+        try {
+                 $idProducto = isset($_POST['idProducto']) ? $_POST['idProducto'] : NULL;
+                 $producto = new Producto();
+                 $p = $producto->leerProductoPorId($idProducto);
+                 
+                 echo json_encode(array("idProducto"=>$p->getIdProducto(),"nombre"=>$p->getNombre(),"precio"=>$p->getPrecioVenta()));      
+                 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
 
+
+    }
     
 }
