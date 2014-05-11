@@ -20,7 +20,19 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Usuario Administrador');
-            
+            $persona = new Persona();
+            $rol = new Rol();
+            $personas = $persona->leerPersonasPorRol($rol->getCliente());
+            $this->vista->set('personas', $personas);
+            $producto = new Producto();
+            $productos = $producto->leerProductos();
+            $this->vista->set('productos', $productos);
+            $empleado = new Persona();
+            $servicio = new Servicio();
+            $empleados = $empleado->leerPersonasPorRol($rol->getEmpleado());
+            $servicios = $servicio->leerServicios();
+            $this->vista->set('empleados', $empleados);
+            $this->vista->set('servicios', $servicios);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
