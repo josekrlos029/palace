@@ -26,7 +26,9 @@ function buscar(){
                         </td>
                     </tr>
                     
-    </table> 
+
+                    <tr><td style="text-align:right;"><button type="submit" class="button orange large"  onclick="envio()"> Guardar </button></td></tr>
+                </table> 
  </div>
  <div id="cont-consulta">
    
@@ -49,7 +51,7 @@ function buscar(){
                          <td >Jose Carlos Jimenez</div></td>
                          <td >10000</div></td>
                          <td >50000</div></td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaCita();"></td>
+                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaCita();">...</button></td>
                          </tr>
                          
                          </tbody>

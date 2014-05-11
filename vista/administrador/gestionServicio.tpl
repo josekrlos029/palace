@@ -35,7 +35,6 @@ $("#form").submit(function(){
                       if (json == "exito") {
                       
                             limpiarCajas();
-                            
                             x.html ( "<p>Servicio Registrado Correctamente</p>");
                             y.html();
                             exito();
@@ -100,7 +99,7 @@ $("#form").submit(function(){
                          <td ><?php echo $servicio->getNombre(); ?></td>
                          <td ><?php echo $servicio->getTiempo(); ?></td>
                          <td ><?php echo $servicio->getPrecio(); ?></td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaCita();"></td>
+                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaCita();">...</button></td>
                          </tr>
                       <?php } ?>   
                          </tbody>
