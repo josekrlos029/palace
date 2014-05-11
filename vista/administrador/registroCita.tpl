@@ -13,7 +13,24 @@
         $("#consulta").load("/palace/administrador/consultarPersonaPorServicio/" + idServicio);
 
     }
-
+    
+    $(document).ready(function(){
+        $('#calendario').fullCalendar({
+		       header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: false,
+			defaultView: 'agendaDay',
+			events: "",
+			loading: function(bool) {
+				if (bool) $('#loading').show();
+				else $('#loading').hide();
+			}
+			
+		});
+    })
 </script>
 <div id="cont-form">   
     <table border="0" align="left" width="100%" >
@@ -95,11 +112,17 @@
                </tr>
            </table>
        </div>
+    
+    <br>
+    <div id="calendario" style="width: 90%;position: absolute;"></div>
+    
     <div style="margin-top: 40%; margin-left: 80%;">
+        
         <button class="button small red"> Agendar</button>
     </div>
     <div id="consultaServidor" style="float: left;"></div>
-
+    
+    
 </div>
 
 

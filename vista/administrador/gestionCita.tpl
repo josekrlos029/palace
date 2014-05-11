@@ -36,7 +36,7 @@
             $('#calendar').fullCalendar({
 		
 			editable: false,
-			
+			defaultView: 'agendaDay',
 			events: "",
 			
 			eventDrop: function(event, delta) {
