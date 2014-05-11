@@ -330,7 +330,7 @@ class AdministradorControl extends Controlador{
                  $persona = new Persona();
                  $p = $persona->leerPorId($idPersona);
                  
-                 echo json_encode(array("idPersona"=>$p->getIdPersona(),"nombre"=>$p->getNombres(),"primerApellido"=>$p->getPApellido(),"segundoApellido"=>$p->getSApellido(),"sexo"=>$p->getSexo(),"fechaNacimiento"=>$p->getFNacimiento(),"telefono"=>$p->getTelefono(),"celular"=>$p->getCelular(),"direccion"=>$p->getDireccion(),"correo"=>$p->getCorreo()));      
+                 echo json_encode(array("idPersona"=>$p->getIdPersona(),"nombre"=>$p->getNombres(),"primerApellido"=>$p->getPApellido(),"segundoApellido"=>$p->getSApellido(),"sexo"=>$p->getSexo(),"fechaNacimiento"=>$p->getFNacimiento()->format('Y-m-d'),"telefono"=>$p->getTelefono(),"celular"=>$p->getCelular(),"direccion"=>$p->getDireccion(),"correo"=>$p->getCorreo()));      
                  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -354,5 +354,42 @@ class AdministradorControl extends Controlador{
         }  
     }
     
+    public function modificarPersona(){
+        try {
+            $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+            $nombres = isset($_POST['nombres']) ? $_POST['nombres'] : NULL;
+            $pApellido = isset($_POST['pApellido']) ? $_POST['pApellido'] : NULL;
+            $sApellido = isset($_POST['sApellido']) ? $_POST['sApellido'] : NULL;
+            $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : NULL;
+            $fNacimiento = isset($_POST['fNacimiento']) ? $_POST['fNacimiento'] : NULL;
+            $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : NULL;
+            $celular = isset($_POST['celular']) ? $_POST['celular'] : NULL;
+            $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : NULL;
+            $correo = isset($_POST['correo']) ? $_POST['correo'] : NULL;
+            
+            $persona = new Persona();
+
+            $persona->setIdPersona($idPersona);
+            $persona->setNombres($nombres);
+            $persona->setPApellido($pApellido);
+            $persona->setSApellido($sApellido);
+            $persona->setSexo($sexo);
+            $persona->setFNacimiento($fNacimiento);
+            $persona->setTelefono($telefono);
+            $persona->setCelular($celular);
+            $persona->setDireccion($direccion);
+            $persona->setCorreo($correo);
+
+            $persona->actualizarPersona($persona);
+            
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
+
+        
+        
+    }
     
 }

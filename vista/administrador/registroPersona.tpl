@@ -101,6 +101,69 @@
     function recargarTablaPersonas(){
         
     }
+    
+    function modificarPersona(){
+        
+        var x = $("#mensaje");
+        var y = $("#overlay");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+        y.show("speed");
+ 
+        var idPersona = $("#idPersonas").val();
+        var nombres = $("#nombre").val();
+        var pApellido = $("#pApellidos").val();
+        var sApellido = $("#sApellidos").val();
+        var sexo = $("#sexos").val();
+        var fecha = $("#fNacimientos").val();
+        var telefono = $("#telefonos").val();
+        var celular = $("#celulars").val();
+        var direccion = $("#direccions").val();
+        var correo = $("#correos").val();
+        
+        var persona ={ idPersona:idPersona,
+                    nombres: nombres,
+                    pApellido: pApellido,
+                    sApellido: sApellido,
+                    sexo: sexo,
+                    fNacimiento: fecha,
+                    telefono: telefono,
+                    celular:celular,
+                    direccion:direccion,
+                    correo:correo
+                    
+        };
+        
+        $.ajax({
+                      type: "POST",
+                      url: "/palace/administrador/modificarPersona",
+                      data: persona
+                  })
+                  .done(function(msg) {
+                      
+                      var json = eval("(" + msg + ")");
+              
+                      if (json == "exito") {
+                      
+                            limpiarCajas();
+                            x.html ( "<p>Cliente Modificada Correctamente</p>");
+                            y.html();
+                            exito();
+                            ocultar();
+                         
+
+                      } else if(json == 23000) {
+
+                            limpiarCajas();
+                            x.html ( "<p>Error al Modificar Cliente</p>");
+                            y.html();
+                            error();
+                            ocultar();
+
+                      }
+                  });
+    }
    
 </script>
 <div  id="overlay"></div>
@@ -256,7 +319,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><button type="submit" class="button red small" >Modificar</button></td>
+                <td><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td>
             </tr>
         </table>
     </div>  
