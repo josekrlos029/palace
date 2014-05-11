@@ -20,7 +20,8 @@ Class Producto extends Modelo{
     private $nombre;
     private $precioVenta;
     private $precioFabrica;
-        
+    private $unidades;
+    
     public function getIdProducto() {
         return $this->idProducto;
     }
@@ -53,7 +54,15 @@ Class Producto extends Modelo{
         $this->precioFabrica = $precioFabrica;
     }
 
-        
+    public function getUnidades() {
+        return $this->unidades;
+    }
+
+    public function setUnidades($unidades) {
+        $this->unidades = $unidades;
+    }
+
+            
     private function mapearProducto(Producto $producto, array $props) {
         if (array_key_exists('idProducto', $props)) {
             $producto->setIdProducto($props['idProducto']);
@@ -63,6 +72,10 @@ Class Producto extends Modelo{
         }
          if (array_key_exists('precioVenta', $props)) {
             $producto->setPrecioVenta($props['precioVenta']);
+        }
+        
+        if (array_key_exists('unidades', $props)) {
+            $producto->setUnidades($props['unidades']);
         }
  
     }
@@ -108,8 +121,14 @@ Class Producto extends Modelo{
         }
         return $producto;
     }
-        
     
+    public function leerIngresoProducto($idProducto) {
+        $sql = "SELECT * FROM ingreso_producto WHERE idProducto=".$idProducto." ORDER BY fechaIngreso DESC";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        
+        return $resultado;
+    }
         
 }
 ?>

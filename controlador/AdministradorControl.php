@@ -202,6 +202,30 @@ class AdministradorControl extends Controlador{
 
     }
     
+    public function registrarIngresoProducto(){
+        
+        try {
+            $idProducto = isset($_POST['idProducto']) ? $_POST['idProducto'] : NULL;
+            $precio = isset($_POST['precio']) ? $_POST['precio'] : NULL;
+            $cantidad = isset($_POST['unidades']) ? $_POST['unidades'] : NULL;
+            $fecha = getdate();
+             $FechaTxt=$fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
+            $producto = new IngresoProducto();
+            $producto->setIdProducto($idProducto);
+            $producto->setCantidad($cantidad);
+            $producto->setPrecioFabrica($precio);
+            $producto->setFechaIngreso($FechaTxt);
+            
+
+            $producto->crearProducto($producto);
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
+
+    }
+    
     public function registrarServicio(){
         
         try {
@@ -285,7 +309,15 @@ class AdministradorControl extends Controlador{
                  $producto = new Producto();
                  $p = $producto->leerProductoPorId($idProducto);
                  
-                 echo json_encode(array("idProducto"=>$p->getIdProducto(),"nombre"=>$p->getNombre(),"precio"=>$p->getPrecioVenta()));      
+                 $ingresos = $producto->leerIngresoProducto($idProducto);
+                 
+                 foreach($ingresos as $ingreso){
+                     
+                     $p->setPrecioFabrica($ingreso["precioFabrica"]);
+                     break;
+                 }
+                 
+                 echo json_encode(array("idProducto"=>$p->getIdProducto(),"nombre"=>$p->getNombre(),"precio"=>$p->getPrecioVenta(),"precioFabrica"=>$p->getPrecioFabrica(),"unidades"=>$p->getUnidades()));      
                  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

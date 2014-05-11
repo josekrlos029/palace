@@ -8,7 +8,7 @@
         x.html("<p>Cargando...</p>");
         x.show("slow");
 
-        var data = {idProducto: idProducto};
+        var data = { idProducto: idProducto };
 
         $.ajax({
             type: "POST",
@@ -21,9 +21,12 @@
             $("#nombreProducto").val(json.nombre);
             $("#tituloProducto").html(json.nombre);
             $("#pVentaProducto").val(json.precio);
+            $("#unidades").val(json.unidades);
+            $("#pProveedor").val(json.precioFabrica);
 
             document.getElementById('light').style.display = 'block';
             document.getElementById('fade').style.display = 'block';
+            ocultar();
         });
 
 
@@ -78,6 +81,60 @@
 
 
     });
+    
+    
+    function registrarPedido(){
+        
+        var idProducto = $("#codProducto").val();
+        var precio = $("#pProveedorP").val();
+        var unidades = $("#unidadesP").val();
+        
+        var x = $("#mensaje");
+        var y = $("#overlay");
+        cargando();
+        x.html("<p>Cargando...</p>");
+        x.show("speed");
+        y.show("speed");
+
+        var producto = {
+            idProducto: idProducto,
+            precio: precio,
+            unidades: unidades
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/registrarIngresoProducto",
+            data: producto
+        })
+                .done(function(msg) {
+
+                    var json = eval("(" + msg + ")");
+
+                    if (json == "exito") {
+                    
+                    
+                        limpiarCajas();
+                        x.html("<p>Pedido Registrado Correctamente</p>");
+                        y.html();
+                        exito();
+                        ocultar();
+
+
+                    } else if (json == 23000) {
+
+                        limpiarCajas();
+                        x.html("<p>Error al registrar Producto</p>");
+                        y.html();
+                        error();
+                        ocultar();
+
+                    }
+                });
+
+
+
+    }
 </script>
 <div  id="overlay"></div>
             <div  id="mensaje">
@@ -190,9 +247,9 @@
             <table border="0" align="left" width="100%" >
                 <tr><td style="text-align: left;"><h2>Registrar Pedidos</h2></td></tr>
                 <tr><td style="text-align: left;"><h1 id="tituloProducto"></h1></td></tr>
-                <tr><td style="text-align: left;"><input type="number" id="unidades" required placeholder="unidades"  class="box-text" ></td></tr>
-                <tr><td style="text-align: left;"><input type="number" id="pVenta" required placeholder="Precio Proveedor"  class="box-text" ></td></tr>
-                <tr><td style="text-align:right;"><button type="submit" class="button orange large" >Guardar </button></td></tr>
+                <tr><td style="text-align: left;"><input type="number" id="unidadesP" required placeholder="unidades"  class="box-text" ></td></tr>
+                <tr><td style="text-align: left;"><input type="number" id="pProveedorP" required placeholder="Precio Proveedor"  class="box-text" ></td></tr>
+                <tr><td style="text-align:right;"><button type="submit" class="button orange large" onclick="registrarPedido()">Guardar </button></td></tr>
             </table>
         </form> 
 

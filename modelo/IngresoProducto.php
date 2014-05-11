@@ -16,14 +16,14 @@ Class IngresoProducto extends Modelo{
         parent::__construct();
     }
     
-    private $idFactura;
+    private $idPedido;
     private $idProducto;
     private $cantidad;
     private $fechaIngreso;
     private $precioFabrica;
         
-    public function getIdFactura() {
-        return $this->idFactura;
+    public function getIdPedido() {
+        return $this->idPedido;
     }
 
     public function getIdProducto() {
@@ -43,8 +43,8 @@ Class IngresoProducto extends Modelo{
         return $this->precioFabrica;
     }
     
-   public function setIdFactura($idFactura) {
-        $this->idFactura = $idFactura;
+   public function setIdPedido($idFactura) {
+        $this->idPedido = $idFactura;
     }
     
     public function setIdProducto($idProducto) {
@@ -63,9 +63,47 @@ Class IngresoProducto extends Modelo{
         $this->precioFabrica = $precioFabrica;
     }
 
-
-
+    
+    
+    private function mapearPedido(IngresoProducto $producto, array $props) {
+        if (array_key_exists('idIngreso', $props)) {
+            $producto->setIdPedido($props['idIngreso']);
+        }
+        if (array_key_exists('idProducto', $props)) {
+            $producto->setIdProducto($props['idProducto']);
+        }
+         if (array_key_exists('cantidad', $props)) {
+            $producto->setCantidad($props['cantidad']);
+        }
+         if (array_key_exists('fechaIngreso', $props)) {
+            $producto->setFechaIngreso($props['fechaIngreso']);
+        }
         
+        if (array_key_exists('precioFabrica', $props)) {
+            $producto->setPrecioFabrica($props['precioFabrica']);
+        }
+ 
+    }
+      
+    private function getParametros(IngresoProducto $pro){
+              
+        $parametros = array(
+            ':idProducto' => $pro->getIdProducto(),
+            ':cantidad' => $pro->getCantidad(),
+            ':fechaIngreso' => $pro->getFechaingreso(),
+            ':precioFabrica' => $pro->getPrecioFabrica()
+        );
+        return $parametros;
+    }
+
+    
+    
+public function crearProducto(IngresoProducto $producto) {
+        $sql = "INSERT INTO ingreso_producto (idProducto, cantidad, fechaIngreso, precioFabrica) VALUES (:idProducto, :cantidad, :fechaIngreso, :precioFabrica)";
+        $this->__setSql($sql);
+        $this->ejecutar($this->getParametros($producto));
+    }
+
         
 }
 
