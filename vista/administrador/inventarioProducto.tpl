@@ -19,6 +19,7 @@ $.ajax({
              var json = eval("(" + msg + ")");
              $("#codProducto").val(json.idProducto);
              $("#nombreProducto").val(json.nombre);
+             $("#tituloProducto").html(json.nombre);
              $("#pVentaProducto").val(json.precio);
              
              document.getElementById('light').style.display='block';
@@ -134,12 +135,12 @@ $("#form").submit(function(){
                               Codigo:
                           </td>
                           <td>
-                              <input class="box-text" value="" id="codProducto" type="text" >
+                              <input class="box-text-disable" value="" id="codProducto" type="text" disabled >
                           </td>                          
                       </tr>
                       <tr>
                           <td>
-                              Nombre:
+                              Nombre del producto:
                           </td>
                           <td>
                              <input class="box-text" value="" id="nombreProducto" type="text" >
@@ -150,7 +151,7 @@ $("#form").submit(function(){
                               Precio Proveedor:
                           </td>
                           <td>
-                              <input class="box-text" value="" id="pProveedor" type="number" >
+                              <input class="box-text-disable" value="" id="pProveedor" type="number" disabled>
                           </td>                          
                       </tr>
                       <tr>
@@ -166,8 +167,12 @@ $("#form").submit(function(){
                               Unidades Disponibles:
                           </td>
                           <td>
-                             <input class="box-text" value="" id="unidades" type="number" >
+                              <input class="box-text-disable" value="" id="unidades" type="number" disabled >
                           </td>                          
+                      </tr>
+                      <tr>
+                      <td></td>
+                      <td><button type="submit" class="button red small" >Modificar</button></td>
                       </tr>
                   </table>
                 </div>
@@ -175,7 +180,7 @@ $("#form").submit(function(){
                  <form action="javascript: return false;" id="form">
                 <table border="0" align="left" width="100%" >
                      <tr><td style="text-align: left;"><h2>Registrar Pedidos</h2></td></tr>
-                    <tr><td style="text-align: left;"><h1>NAME PRODUCTO</h1></td></tr>
+                    <tr><td style="text-align: left;"><h1 id="tituloProducto"></h1></td></tr>
                     <tr><td style="text-align: left;"><input type="number" id="unidades" required placeholder="unidades"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="number" id="pVenta" required placeholder="Precio Proveedor"  class="box-text" ></td></tr>
                     <tr><td style="text-align:right;"><button type="submit" class="button orange large" >Guardar </button></td></tr>
