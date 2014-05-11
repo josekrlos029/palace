@@ -64,7 +64,9 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Registrar Persona');
-            
+            $servicio = new Servicio();
+            $servicios = $servicio->leerServicios();
+            $this->vista->set('servicios', $servicios);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -79,9 +81,11 @@ class AdministradorControl extends Controlador{
             $this->vista->set('titulo', 'Registro Empleado');
              $rol = new Rol();
             $persona = new Persona();
-            
+            $servicio = new Servicio();
             $personas = $persona->leerPersonasPorRol($rol->getEmpleado());
+            $servicios = $servicio->leerServicios();
             $this->vista->set('personas', $personas);
+            $this->vista->set('servicios', $servicios);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -141,10 +145,16 @@ class AdministradorControl extends Controlador{
                 $idRol = $rol->getCliente();
             }elseif($r == "E"){
                 $idRol = $rol->getEmpleado();
+                $servicios = isset($_POST['servicios']) ? $_POST['servicios'] : NULL;
+                $servicios = json_decode($servicios);
+                
+                $servicio = new Servicio();
+                foreach ($servicios as $a){
+                    
+                    $servicio->crearServicioPersona($a, $idPersona);
+                }
+                
             }
-            
-            
-            
             
             $rol->crearRolPersona($idPersona, $idRol);
             

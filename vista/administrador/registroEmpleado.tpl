@@ -24,6 +24,17 @@ $("#form").submit(function(){
         var direccion = $("#direccion").val();
         var correo = $("#correo").val();
         
+        var servicios = document.getElementById("servicios").options;
+        var arreglo = new Array();
+        var j=0;
+        for (var i=0; i<servicios.length; i++){ 
+         if (servicios[i].selected == true){
+          arreglo[j]=servicios[i].value;
+          j++;
+          }
+        }
+        
+        
         var persona ={ idPersona:idPersona,
                     nombres: nombres,
                     pApellido: pApellido,
@@ -34,7 +45,8 @@ $("#form").submit(function(){
                     celular:celular,
                     direccion:direccion,
                     correo:correo,
-                    rol: "E"
+                    rol: "E",
+                    servicios: JSON.stringify(arreglo)
         };
         
         $.ajax({
@@ -78,7 +90,7 @@ $("#form").submit(function(){
 <div id="cont-form">   
      <form id="form" action="javascript: return false;">
      <table border="0" align="left" width="100%" >
-                     <tr><td style="text-align: left;"><h2>Registro de Clientes</h2></td></tr>
+                     <tr><td style="text-align: left;"><h2>Registro de Empleados</h2></td></tr>
                      <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
                     <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" ></td></tr> 
                     <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      
@@ -89,7 +101,12 @@ $("#form").submit(function(){
                     <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="text" id="direccion" required placeholder="Direccion"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="email" id="correo" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
-
+                    <tr><td style="text-align: left;"><select multiple="" id="servicios">
+                                                        <?php foreach($servicios as $servicio){ ?>
+                                                            <option value="<?php echo $servicio->getIdServicio(); ?>"><?php echo $servicio->getNombre(); ?></option>
+                                                        <?php } ?>
+                                                    </select></td>
+                    </tr>
                     <tr><td style="text-align:right;"><button type="submit" class="button orange large"  >Guardar</button></td></tr>
      </table>
     </form>

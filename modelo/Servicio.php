@@ -100,6 +100,12 @@ Class Servicio extends Modelo{
         $this->__setSql($sql);
         $this->ejecutar($this->getParametros($servicio));
     }
+    
+    public function crearServicioPersona($idServicio, $idPersona) {
+        $sql = "INSERT INTO servicio_empleado (idPersona, idServicio) VALUES ( :idPersona, :idServicio)";
+        $this->__setSql($sql);
+        $this->ejecutar(array(":idPersona"=>$idPersona, ":idServicio"=>$idServicio));
+    }
         
         
 }
