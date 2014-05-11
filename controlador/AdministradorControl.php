@@ -105,6 +105,7 @@ class AdministradorControl extends Controlador{
       
         }
         
+        
     public function registrarPersona(){
         try {
             $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
