@@ -79,7 +79,6 @@
                       if (json == "exito") {
                       
                             limpiarCajas();
-                            recargarTablaPersonas();
                             x.html ( "<p>Cliente Registrado Correctamente</p>");
                             y.html();
                             exito();
