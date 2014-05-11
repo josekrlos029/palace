@@ -9,7 +9,8 @@ function consultaDisponibilidad(idPersona){
 
 function buscar(){
     
-    alert("_");
+    var idServicio = $("#servicio").val();
+    $("#consulta").load("/palace/administrador/consultarPersonaPorServicio/"+idServicio);
     
 }
 
@@ -28,26 +29,12 @@ function buscar(){
                             </select>
                         </td>
                     </tr>
-                    
-
-                    <tr><td style="text-align:right;"><button type="submit" class="button orange large"  onclick="envio()"> Guardar </button></td></tr>
+ 
                 </table> 
     <br>
-    
-    <table border="0" align="center" width="100%" id="mitabla">
-        <thead>
-                         <th >N°</th>
-                         <th width="30%">Nombre del Cliente</th>
-                          <th></th>
-                         </thead>
-                         <tbody>
-                      <tr align="left">
-                         <td >1</td>
-                          <td >Jose Carlos Jimenez</td>
-                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaDisponibilidad();">...</button></td>
-                         </tr>
-                         </tbody>
-    </table>
+    <div id="consulta">
+        
+    </div>
     
     
  </div>

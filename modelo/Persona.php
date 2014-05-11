@@ -198,6 +198,19 @@ class Persona extends Modelo{
         return $pers;
     }
     
+    public function leerPersonasPorServicio($idServicio) {
+        $sql = "SELECT persona.* FROM persona INNER JOIN servicio_empleado ON (persona.idPersona = servicio_empleado.idPersona) AND servicio_empleado.idServicio='".$idServicio."'";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $pers = array();
+        foreach ($resultado as $fila) {
+            $persona = new Persona();
+            $this->mapearPersona($persona, $fila);
+            $pers[$persona->getIdPersona()] = $persona;
+        }
+        return $pers;
+    }
+    
     public function leerPorRol($idRol) {
         $sql = "SELECT p.idPersona, p.nombres, p.pApellido, p.sApellido, p.sexo, p.fNacimiento, p.telefono, p.celular, p.direccion, p.correo  FROM persona p, rol_persona r WHERE p.idPersona=r.idPersona AND r.idRol='".$idRol."'";
         $resultado = $this->consultar($sql);

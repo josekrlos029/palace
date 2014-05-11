@@ -279,7 +279,23 @@ class AdministradorControl extends Controlador{
             echo $exc->getTraceAsString();
         }
 
-
     }
+    
+    public function consultarPersonaPorServicio($idServicio){
+        try {
+           
+            $this->vista->set('titulo', 'Gestionar Cita');
+            
+            $persona = new Persona();
+            $personas = $persona->leerPersonasPorServicio($idServicio);
+            
+            $this->vista->set('personas', $personas);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+    }
+    
     
 }
