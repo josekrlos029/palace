@@ -28,7 +28,7 @@
            }
            
            function cargarRegistroProducto(){
-               $("#contenido").load("/palace/administrador/registroProducto");
+               $("#contenido").load("/palace/administrador/inventarioProducto");
                $("#titulo").html("<h1>Gestion de Productos</h1>");
            }
            function cargarCitas(){
@@ -48,11 +48,7 @@
                $("#contenido").load("/palace/administrador/factura");
                $("#titulo").html("<h1>Facturar Servicio</h1>");
            }
-           function cargarInventario(){
-               $("#contenido").load("/palace/administrador/inventario");
-               $("#titulo").html("<h1>Inventario</h1>");
-           }
-           
+       
             
         </script>
         
@@ -78,16 +74,17 @@
                                 <li><a href="#"><em>03</em>Modificar Cliente<span></span></a></li> 
                             </ul>-->
                 </li>
-                <li id="two" class="mail"><a onclick="cargarRegistroProducto()" href="#">Productos<span>26</span></a>
-                    
-                </li>
+                
                 <li id="three" class="cloud"><a onclick="cargarCitas()" href="#">Citas<span>58</span></a>
                       
                 </li>
                 <li id="six" class="sign"><a onclick="cargarGestionEmpleado()" href="#">Empleados</a></li>
+                <li id="two" class="mail"><a onclick="cargarRegistroProducto()" href="#">Inventario de Productos<span>26</span></a>
+                    
+                </li>
                 <li id="five" class="sign"><a onclick="cargarGestionServicio()" href="#">Servicios</a></li>
                 <li id="six" class="sign"><a onclick="cargarFactura()" href="#">Facturar</a></li>
-                <li id="four" class="sign"><a onclick="cargarInventario()" href="#">Inventario</a></li>
+               
           </ul>
         </div> 
           

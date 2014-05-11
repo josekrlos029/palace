@@ -45,7 +45,7 @@ class AdministradorControl extends Controlador{
       
         }
         
-      public function registroProducto(){
+      public function inventarioProducto(){
         try {
            
             $this->vista->set('titulo', 'Registrar Persona');
@@ -266,6 +266,7 @@ class AdministradorControl extends Controlador{
         
         
     }
+       
         
 
     
