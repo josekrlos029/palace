@@ -280,6 +280,19 @@ class AdministradorControl extends Controlador{
         }
 
     }
+    public function consultarPersona(){
+        try {
+                 $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+                 $persona = new Persona();
+                 $p = $persona->leerPorId($idPersona);
+                 
+                 echo json_encode(array("idPersona"=>$p->getIdPersona(),"nombre"=>$p->getNombres(),"primerApellido"=>$p->getPApellido(),"segundoApellido"=>$p->getSApellido(),"sexo"=>$p->getSexo(),"fechaNacimiento"=>$p->getFNacimiento(),"telefono"=>$p->getTelefono(),"celular"=>$p->getCelular(),"direccion"=>$p->getDireccion(),"correo"=>$p->getCorreo()));      
+                 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+    }
     
     public function consultarPersonaPorServicio($idServicio){
         try {
