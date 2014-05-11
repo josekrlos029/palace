@@ -55,8 +55,10 @@
                     var json = eval("(" + msg + ")");
 
                     if (json == "exito") {
+                    
+                    
                         limpiarCajas();
-                        x.html("<p>Producto Registrada Correctamente</p>");
+                        x.html("<p>Producto Registrado Correctamente</p>");
                         y.html();
                         exito();
                         ocultar();
@@ -77,6 +79,13 @@
 
     });
 </script>
+<div  id="overlay"></div>
+            <div  id="mensaje">
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+                
+            </div>
 <div id="cont-form">
     <form action="javascript: return false;" id="form">
         <table border="0" align="left" width="100%" >

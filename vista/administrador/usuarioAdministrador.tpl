@@ -29,7 +29,7 @@
 
             function cargarRegistroProducto() {
                 $("#contenido").load("/palace/administrador/inventarioProducto");
-                $("#titulo").html("<h1>Gestion de Productos</h1>");
+                $("#titulo").html("<h1>Inventario de Productos</h1>");
             }
             function cargarCitas() {
                 $("#contenido").load("/palace/administrador/registroCita");

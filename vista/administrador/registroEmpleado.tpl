@@ -102,7 +102,7 @@
             <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" ></td></tr>
             <tr><td style="text-align: left;"><input type="text" id="direccion" required placeholder="Direccion"  class="box-text" ></td></tr>
             <tr><td style="text-align: left;"><input type="email" id="correo" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
-            <tr><td style="text-align: left;"><select multiple="" id="servicios">
+            <tr><td style="text-align: left;"><select multiple="" id="servicios" class="box-text" >
                         <?php foreach($servicios as $servicio){ ?>
                         <option value="<?php echo $servicio->getIdServicio(); ?>"><?php echo $servicio->getNombre(); ?></option>
                         <?php } ?>

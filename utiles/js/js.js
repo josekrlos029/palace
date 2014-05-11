@@ -28,7 +28,7 @@ setTimeout("asignarColor('#FFBABA','#e5582b','#D8000C','url(../utiles/imagenes/i
  }
  
  function ocultar(){
- setTimeout("$('#mensaje').hide();", 3000);
- setTimeout("$('#overlay').hide();", 3000);
+ setTimeout("$('#mensaje').hide();", 2000);
+ setTimeout("$('#overlay').hide();", 2000);
  }
  
