@@ -12,7 +12,7 @@
         var y = $("#overlay");
         cargando();
         x.html ("<p>Cargando...</p>");
-        x.show("slow");
+        x.show("speed");
         y.show("speed");
  
         var idPersona = $("#idPersona").val();

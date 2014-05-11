@@ -8,10 +8,15 @@
 }
 
 $("#form").submit(function(){
-
+    var x = $("#mensaje");
+    var y = $("#overlay");
+    cargando();
+    x.html ("<p>Cargando...</p>");
+    x.show("speed");
+    y.show("speed");
+    
     var nombre = $("#nombre").val();
     var pVenta = $("#pVenta").val();
-    
     
     var producto = {
         
@@ -29,15 +34,20 @@ $("#form").submit(function(){
                       var json = eval("(" + msg + ")");
               
                       if (json == "exito") {
-                          alert("exito");
-                            //x.html ( "<p>Producto Registrada Correctamente</p>");
-                            //exito();
-                            //ocultar();
+                           limpiarCajas();
+                            x.html ( "<p>Producto Registrada Correctamente</p>");
+                            y.html();
+                            exito();
+                            ocultar();
                          
 
                       } else if(json == 23000) {
 
-                          alert("El producto ya Existe en el sistema");
+                          limpiarCajas();
+                            x.html ( "<p>Error al registrar Producto</p>");
+                            y.html();
+                            error();
+                            ocultar();
 
                       }
                   });
@@ -52,7 +62,7 @@ $("#form").submit(function(){
                      <tr><td style="text-align: left;"><h2>Registro de Productos</h2></td></tr>
                     <tr><td style="text-align: left;"><input type="text" id="nombre" required placeholder="Nombre"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="text" id="pVenta" required placeholder="Precio Venta"  class="box-text" ></td></tr>
-                     <tr><td style="text-align:right;"><input type="submit" class="button orange large"  value="Guardar"></td></tr>
+                    <tr><td style="text-align:right;"><button type="submit" class="button orange large" >Guardar </button></td></tr>
                 </table>
     </form>            
                 </div>
@@ -77,7 +87,7 @@ $("#form").submit(function(){
                          <td ><?php echo $producto->getIdProducto(); ?></td>
                          <td ><?php echo $producto->getNombre(); ?></td>
                          <td ><?php echo $producto->getPrecioVenta(); ?></td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaProducto();"></td>
+                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaProducto();">...</button></td>
                          </tr>
                          <?php } ?>
                          </tbody>

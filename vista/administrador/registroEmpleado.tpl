@@ -78,7 +78,7 @@ $("#form").submit(function(){
 <div id="cont-form">   
      <form id="form" action="javascript: return false;">
      <table border="0" align="left" width="100%" >
-                     <tr><td style="text-align: left;"><h2>Registro de Clientes</h2></td></tr>
+                     <tr><td style="text-align: left;"><h2>Registro de Empleados</h2></td></tr>
                      <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
                     <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" ></td></tr> 
                     <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      

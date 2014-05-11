@@ -48,6 +48,10 @@
                $("#contenido").load("/palace/administrador/factura");
                $("#titulo").html("<h1>Facturar Servicio</h1>");
            }
+           function cargarInventario(){
+               $("#contenido").load("/palace/administrador/inventario");
+               $("#titulo").html("<h1>Inventario</h1>");
+           }
            
             
         </script>
@@ -80,10 +84,10 @@
                 <li id="three" class="cloud"><a onclick="cargarCitas()" href="#">Citas<span>58</span></a>
                       
                 </li>
-                <li id="four" class="sign"><a href="#">Inventario</a></li>
-                <li id="five" class="sign"><a onclick="cargarGestionServicio()" href="#">Servicios</a></li>
                 <li id="six" class="sign"><a onclick="cargarGestionEmpleado()" href="#">Empleados</a></li>
+                <li id="five" class="sign"><a onclick="cargarGestionServicio()" href="#">Servicios</a></li>
                 <li id="six" class="sign"><a onclick="cargarFactura()" href="#">Facturar</a></li>
+                <li id="four" class="sign"><a onclick="cargarInventario()" href="#">Inventario</a></li>
           </ul>
         </div> 
           
