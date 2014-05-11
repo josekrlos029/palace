@@ -3,7 +3,7 @@ function consultaDisponibilidad(idPersona){
     document.getElementById('light').style.display='block';
     document.getElementById('fade').style.display='block';  
     
-    $("#consulta").html("...");
+    $("#consultaServidor").html("...");
     
 }
 
@@ -73,7 +73,7 @@ function buscar(){
                 <div style="float:right">
                     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
                 </div>    
-                <div id="consulta" style="float: left;"></div>
+                <div id="consultaServidor" style="float: left;"></div>
                 
             </div>
               
