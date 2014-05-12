@@ -162,7 +162,7 @@
             <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Nombre del Produto" class="box-text" ></td>
     </table>
 
-    <div style="margin-top:10%;">
+   <div id="tablaConsulta"> 
         <table border="0" align="center" width="100%" id="mitabla">
             <thead>
             <th >Codigo</th>
