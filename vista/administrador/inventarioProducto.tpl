@@ -41,18 +41,11 @@
         y.show("speed");
       
  
-        var idPersona = $("#idPersonas").val();
-        var nombres = $("#nombre").val();
-        var pApellido = $("#pApellidos").val();
-        var sApellido = $("#sApellidos").val();
-        var sexo = $("#sexos").val();
-        var fecha = $("#fNacimientos").val();
-        var telefono = $("#telefonos").val();
-        var celular = $("#celulars").val();
-        var direccion = $("#direccions").val();
-        var correo = $("#correos").val();
+        var nombreProductoC = $("#nombreProductoC").val();
+        var pVentaProductoC = $("#pVentaProductoC").val();
+     ;
         
-        var persona ={ idPersona:idPersona,
+        var producto ={ idPersona:idPersona,
                     nombres: nombres,
                     pApellido: pApellido,
                     sApellido: sApellido,
@@ -271,7 +264,7 @@
                     Nombre del producto:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="nombreProducto" type="text" >
+                    <input class="box-text" value="" id="nombreProductoC" type="text" >
                 </td>                          
             </tr>
             <tr>
@@ -287,7 +280,7 @@
                     Precio Venta:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="pVentaProducto" type="number" >
+                    <input class="box-text" value="" id="pVentaProductoC" type="number" >
                 </td>                          
             </tr>
             <tr>
