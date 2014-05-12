@@ -4,8 +4,9 @@
     function consultaPersona(idPersona) {
         var x = $("#mensaje");
         cargando();
-        x.html("<p>Cargando...</p>");
-        x.show("slow");
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+      
 
         var data = {idPersona: idPersona};
 
@@ -103,13 +104,14 @@
     }
     
     function modificarPersona(){
-        
+   
         var x = $("#mensaje");
         var y = $("#overlay");
         cargando();
         x.html ("<p>Cargando...</p>");
         x.show("speed");
         y.show("speed");
+      
  
         var idPersona = $("#idPersonas").val();
         var nombres = $("#nombre").val();
@@ -146,13 +148,13 @@
               
                       if (json == "exito") {
                       
-                            limpiarCajas();
-                            x.html ( "<p>Cliente Modificada Correctamente</p>");
+                         document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+                         
+                            
+                            x.html ( "<p>Cliente Modificado Correctamente</p>");
                             y.html();
                             exito();
                             ocultar();
-                         
-
                       } else if(json == 23000) {
 
                             limpiarCajas();
@@ -233,6 +235,7 @@
               <div style="float:right">
                   <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
              </div>
+                
               <div style=" margin-top: 2%;margin-left: 5%; float:left; width:45%;">
         <h2>Datos del Cliente</h2>
         </br>

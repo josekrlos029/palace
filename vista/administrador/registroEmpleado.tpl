@@ -1,7 +1,99 @@
 <script type="text/javascript">
-    function consultaPersona(idPersona) {
-        document.getElementById('light').style.display = 'block';
-        document.getElementById('fade').style.display = 'block'
+     function consultaPersona(idPersona) {
+        var x = $("#mensaje");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+      
+
+        var data = {idPersona: idPersona};
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/consultarPersona",
+            data: data
+        }).done(function(msg) {
+
+            var json = eval("(" + msg + ")");
+            $("#idPersonas").val(json.idPersona);
+            $("#nombre").val(json.nombre);
+            $("#pApellidos").val(json.primerApellido);
+            $("#sApellidos").val(json.segundoApellido);
+            $("#sexos").val(json.sexo);
+            $("#fNacimientos").val(json.fechaNacimiento);
+            $("#telefonos").val(json.telefono);
+            $("#celulars").val(json.celular);
+            $("#direccions").val(json.direccion);
+            $("#correos").val(json.correo);
+            ocultar();
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+        });
+
+
+    }  
+function modificarPersona(){
+   
+        var x = $("#mensaje");
+        var y = $("#overlay");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+        y.show("speed");
+      
+ 
+        var idPersona = $("#idPersonas").val();
+        var nombres = $("#nombre").val();
+        var pApellido = $("#pApellidos").val();
+        var sApellido = $("#sApellidos").val();
+        var sexo = $("#sexos").val();
+        var fecha = $("#fNacimientos").val();
+        var telefono = $("#telefonos").val();
+        var celular = $("#celulars").val();
+        var direccion = $("#direccions").val();
+        var correo = $("#correos").val();
+        
+        var persona ={ idPersona:idPersona,
+                    nombres: nombres,
+                    pApellido: pApellido,
+                    sApellido: sApellido,
+                    sexo: sexo,
+                    fNacimiento: fecha,
+                    telefono: telefono,
+                    celular:celular,
+                    direccion:direccion,
+                    correo:correo
+                    
+        };
+        
+        $.ajax({
+                      type: "POST",
+                      url: "/palace/administrador/modificarPersona",
+                      data: persona
+                  })
+                  .done(function(msg) {
+                      
+                      var json = eval("(" + msg + ")");
+              
+                      if (json == "exito") {
+                      
+                         document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+                         
+                            
+                            x.html ( "<p>Empleado Modificado Correctamente</p>");
+                            y.html();
+                            exito();
+                            ocultar();
+                      } else if(json == 23000) {
+
+                            limpiarCajas();
+                            x.html ( "<p>Error al Modificar Empleado</p>");
+                            y.html();
+                            error();
+                            ocultar();
+
+                      }
+                  });
     }
 
     $("#form").submit(function() {
@@ -149,9 +241,106 @@
 </div>
 <div id="fade" class="overlay"></div>
 <div id="light" class="modal">
-    <div style="float:right">
-        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
-                document.getElementById('fade').style.display = 'none'"><img src="../utiles/image/close.png"/></a>
-    </div>
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+                
+       <div style=" margin-top: 5%;margin-left: 5%; float:left; width:45%;">
+        <h2>Datos del Empleado</h2>
+        </br>
+        <table width="100%">
+            <tr>
+                <td>
+                    cedula:
+                </td>
+                <td>
+                    <input class="box-text-disable" value="" id="idPersonas" type="text" disabled >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Nombres:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="nombre" type="text" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Primer Apellido:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="pApellidos" type="text">
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Segundo Apellido:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="sApellidos" type="text" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    sexo:
+                </td>
+                <td>
+                    <input class="box-text-disable" value="" id="sexos" type="text" disabled >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    fecha de Nacimiento:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="fNacimientos" type="date" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    telefono:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="telefonos" type="number">
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Celular:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="celulars" type="number" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Direccion:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="direccions" type="text" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Correo:
+                </td>
+                <td>
+                    <input  class="box-text" value="" id="correos" type="text"  >
+                </td>                          
+            </tr>
+           
+        </table>
+        </div>
+          <div style=" margin-top: 5%; margin-left:5%;float:right; width: 40%;">
+        <form action="javascript: return false;" id="form">
+            <table border="0" align="left" width="100%" >
+                <tr><td style="text-align: left;"><h2>Servicios</h2></td></tr>
+                <tr><td style="text-align: left;"><input type="number" id="unidadesP" required placeholder="unidades"  class="box-text" ></td></tr>
+                <tr><td align="right"><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td></tr>
+            </table>
+        </form> 
 
-</div>
+    </div>
+    </div>  
+          

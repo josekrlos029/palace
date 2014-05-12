@@ -31,7 +31,69 @@
 
 
     }
+ function modificarProducto(){
+   
+        var x = $("#mensaje");
+        var y = $("#overlay");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+        y.show("speed");
+      
+ 
+        var idPersona = $("#idPersonas").val();
+        var nombres = $("#nombre").val();
+        var pApellido = $("#pApellidos").val();
+        var sApellido = $("#sApellidos").val();
+        var sexo = $("#sexos").val();
+        var fecha = $("#fNacimientos").val();
+        var telefono = $("#telefonos").val();
+        var celular = $("#celulars").val();
+        var direccion = $("#direccions").val();
+        var correo = $("#correos").val();
+        
+        var persona ={ idPersona:idPersona,
+                    nombres: nombres,
+                    pApellido: pApellido,
+                    sApellido: sApellido,
+                    sexo: sexo,
+                    fNacimiento: fecha,
+                    telefono: telefono,
+                    celular:celular,
+                    direccion:direccion,
+                    correo:correo
+                    
+        };
+        
+        $.ajax({
+                      type: "POST",
+                      url: "/palace/administrador/modificarPersona",
+                      data: persona
+                  })
+                  .done(function(msg) {
+                      
+                      var json = eval("(" + msg + ")");
+              
+                      if (json == "exito") {
+                      
+                         document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+                         
+                            
+                            x.html ( "<p>Cliente Modificado Correctamente</p>");
+                            y.html();
+                            exito();
+                            ocultar();
+                      } else if(json == 23000) {
 
+                            limpiarCajas();
+                            x.html ( "<p>Error al Modificar Cliente</p>");
+                            y.html();
+                            error();
+                            ocultar();
+
+                      }
+                  });
+    }
     $("#form").submit(function() {
         var x = $("#mensaje");
         var y = $("#overlay");
@@ -238,7 +300,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><button type="submit" class="button red small" >Modificar</button></td>
+                <td><button type="submit" class="button red small" onclick="modificarProducto()">Modificar</button></td>
             </tr>
         </table>
     </div>
