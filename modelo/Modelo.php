@@ -86,6 +86,24 @@ abstract class Modelo {
             self::enviarError($this->db->errorInfo());
         }
     }
+    
+    /**
+     * Función para ejecutar consultar de tipo INSERT, UPDATE, DELETE
+     * @param array $parametros
+     * @param string $sql
+     */
+    protected function ejecutar2($parametros, $sql = null){
+        if($sql == null)
+            $sql = $this->sql;
+        $sentencia = $this->db->prepare($sql);
+        if(!$sentencia->execute($parametros)){
+            self::enviarError($this->db->errorInfo());
+        }else{
+            return $this->db->lastInsertId();
+        }
+        
+    }
+    
     protected static function formatearFecha(DateTime $fecha, $formato = 'Y-m-d') {
         return empty($formato) ? $fecha->format(DateTime::ISO8601) : $fecha->format($formato);
     }

@@ -95,6 +95,18 @@ Class Servicio extends Modelo{
         return $servicios;
     }
         
+    public function leerServicioPorId($idServicio) {
+        $sql = "SELECT * FROM servicio WHERE idServicio=".$idServicio;
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $servicio = NULL;
+        foreach ($resultado as $fila) {
+            $servicio = new Servicio();
+            $this->mapearServicio($servicio, $fila);
+        }
+        return $servicio;
+    }
+    
     public function crearServicio(Servicio $servicio) {
         $sql = "INSERT INTO servicio (nombre, tiempo, precio) VALUES ( :nombre, :tiempo, :precio)";
         $this->__setSql($sql);

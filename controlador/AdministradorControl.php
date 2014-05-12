@@ -324,6 +324,20 @@ class AdministradorControl extends Controlador{
         }
 
     }
+    
+    public function consultarServicio(){
+        try {
+                 $idServicio = isset($_POST['idServicio']) ? $_POST['idServicio'] : NULL;
+                 $servicio = new Servicio();
+                 $s = $servicio->leerServicioPorId($idServicio);
+                 
+                 echo json_encode(array("idServicio"=>$s->getIdServicio(),"nombre"=>$s->getNombre(),"tiempo"=>$s->getTiempo(),"precio"=>$s->getPrecio()));      
+                 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+    }
     public function consultarPersona(){
         try {
                  $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
@@ -331,6 +345,25 @@ class AdministradorControl extends Controlador{
                  $p = $persona->leerPorId($idPersona);
                  
                  echo json_encode(array("idPersona"=>$p->getIdPersona(),"nombre"=>$p->getNombres(),"primerApellido"=>$p->getPApellido(),"segundoApellido"=>$p->getSApellido(),"sexo"=>$p->getSexo(),"fechaNacimiento"=>$p->getFNacimiento()->format('Y-m-d'),"telefono"=>$p->getTelefono(),"celular"=>$p->getCelular(),"direccion"=>$p->getDireccion(),"correo"=>$p->getCorreo()));      
+                 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+    }
+    
+    public function consultarNombrePersona(){
+        try {
+                 $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+                 $persona = new Persona();
+                 $p = $persona->leerPorId($idPersona);
+                 
+                 if($p){
+                     echo json_encode($p->getNombres()." ".$p->getPApellido()." ".$p->getSApellido());      
+                 }else{
+                     echo json_encode("No existe en la Base de Datos");      
+                 }
+                 
                  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
