@@ -420,9 +420,48 @@ class AdministradorControl extends Controlador{
         } catch (Exception $exc) {
             echo json_encode($exc->getCode());
         }
-
-        
-        
+   
     }
+    
+    public function guardarFactura(){
+        try {
+            $servicios = isset($_POST['servicios']) ? $_POST['servicios'] : NULL;
+            $servicios = json_decode($servicios);
+            $productos = isset($_POST['productos']) ? $_POST['productos'] : NULL;
+            $productos = json_decode($productos);
+            $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+            $fecha = getdate();
+            $fecha = $fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
+            $hora = date("H:i:s");
+            $factura = new Factura();
+            $factura->setIdPersona($idPersona);
+            $factura->setFecha($fecha);
+            $factura->setHora($hora);
+            $idFactura = $factura->crearFactura($factura);
+            
+            foreach ($productos as $p){
+                $df = new DetalleProducto();
+                $df->setIdFactura($idFactura);
+                $df->setIdProducto($p[0]);
+                $df->setCantidad($p[1]);
+                $df->setPrecioVenta($p[2]);
+                $df->crearDetalleProducto($df);
+            }
+            
+            foreach ($servicios as $s){
+                $ds = new DetalleServicio();
+                $ds->setIdFactura($idFactura);
+                $ds->setIdServicio($s[0]);
+                $ds->setIdPersona($s[1]);
+                $ds->setPrecio($s[2]);
+                $ds->crearDetalleServicio($ds);
+            }
+            
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getTraceAsString());
+        }
+        }
     
 }

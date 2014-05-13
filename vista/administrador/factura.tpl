@@ -41,7 +41,7 @@
 
             var arregloProductos = new Array();
             i =0;
-            $("#tServicios .rs").each(function(index) {
+            $("#tProductos .rc").each(function(index) {
                 var idProducto, nombreProducto, cantidad, precio, subtotal;
 
                 $(this).children("td").each(function(index2) {
@@ -65,7 +65,7 @@
                     }
                     $(this).css("background-color", "#ECF8E0");
                 });
-                arregloProductos[i] = new Array(idServicio, idPersona, precio);
+                arregloProductos[i] = new Array(idProducto, cantidad, precio);
                 i++;
             });
             var servicios = JSON.stringify(arregloServicios);
@@ -84,8 +84,18 @@
                 })
                         .done(function(msg) {
                             var json = eval("(" + msg + ")");
+                            if(json == "exito"){
+                                x.html ( "<p>Factura Guardada Correctamente</p>");
+                                
+                                exito();
+                                ocultar();
+                            }else{
+                                x.html ( "<p>Error al Guardar Factura</p>");
 
-                            $("#nombre").html(json);
+                                error();
+                                ocultar();
+                            }
+                            
                 });
             
             
@@ -95,7 +105,7 @@
 
         $('#idPersona').keypress(function(event) {
             var keycode = (event.which) ? event.which : event.keyCode;
-            alert(keycode);
+            
             if (keycode == '13') {
                 $.ajax({
                     type: "POST",
@@ -106,6 +116,7 @@
                             var json = eval("(" + msg + ")");
 
                             $("#nombre").html(json);
+                            $("#idPersona").attr("disabled","disabled");
                         });
             } else if (keycode == '8' || keycode == '46') {
 
@@ -153,18 +164,26 @@
             $("#servidor").css("background-color", "#fffff");
             $("#producto").removeAttr("disabled");
             $("#producto").css("background-color", "#fffff");
-            $("#cantidad").attr("disabled", "disabled");
+            $("#cantidad").removeAttr("disabled");
             $("#cantidad").css("background-color", "#fffff");
-            $("#precioUnid").removeAttr("disabled");
+            
             $("#precioTotal").css("background-color", "#fffff");
             $("#modPrecio").css("display", "none");
+            $("#servicio").val("");
+            $("#servidor").val("");
+            $("#producto").val("");
+            $("#cantidad").val("");
+            $("#precioUnid").val("");
+            $("#precioTotal").val("");
 
-        }
+    }
 
         function servidores() {
 
             var servicio = document.getElementById("servicio").value;
-
+            
+            $("#producto").val("");
+            
             $.ajax({
                 type: "POST",
                 url: "/palace/administrador/listarServidores/" + servicio,
@@ -208,6 +227,7 @@
             var cantidad = $("#cantidad").val();
             var precioU = $("#precioUnid").val();
             var precioT = $("#precioTotal").val();
+            
 
             if ($("#servicio").attr("disabled") == "disabled") {
                 //Agregar Producto
