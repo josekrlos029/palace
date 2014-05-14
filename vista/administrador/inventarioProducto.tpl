@@ -44,14 +44,16 @@
         var nombreProductoC = $("#nombreProducto").val();
         var pVentaProductoC = $("#pVentaProducto").val();
      ;
-        
+       
         var producto ={ codProduct:codProductoC,          
                         nombreProduct:nombreProductoC,
                         pVentaProduct: pVentaProductoC
                     
         };
-        
+     
         $.ajax({
+                
+        
                       type: "POST",
                       url: "/palace/administrador/modificarProducto",
                       data: producto

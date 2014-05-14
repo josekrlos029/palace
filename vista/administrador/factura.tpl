@@ -211,8 +211,9 @@
                         $("#precioUnid").val(json.precio);
                         $("#modPrecio").css("display", "block");
                     });
-
-        }
+                    
+}
+        
 
         function habilitarPrecio() {
             $("#precioUnid").removeAttr("disabled");
