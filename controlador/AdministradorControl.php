@@ -324,6 +324,20 @@ class AdministradorControl extends Controlador{
         }
 
     }
+    
+    public function consultarServicio(){
+        try {
+                 $idServicio = isset($_POST['idServicio']) ? $_POST['idServicio'] : NULL;
+                 $servicio = new Servicio();
+                 $s = $servicio->leerServicioPorId($idServicio);
+                 
+                 echo json_encode(array("idServicio"=>$s->getIdServicio(),"nombre"=>$s->getNombre(),"tiempo"=>$s->getTiempo(),"precio"=>$s->getPrecio()));      
+                 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+    }
     public function consultarPersona(){
         try {
                  $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
@@ -331,6 +345,25 @@ class AdministradorControl extends Controlador{
                  $p = $persona->leerPorId($idPersona);
                  
                  echo json_encode(array("idPersona"=>$p->getIdPersona(),"nombre"=>$p->getNombres(),"primerApellido"=>$p->getPApellido(),"segundoApellido"=>$p->getSApellido(),"sexo"=>$p->getSexo(),"fechaNacimiento"=>$p->getFNacimiento()->format('Y-m-d'),"telefono"=>$p->getTelefono(),"celular"=>$p->getCelular(),"direccion"=>$p->getDireccion(),"correo"=>$p->getCorreo()));      
+                 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+    }
+    
+    public function consultarNombrePersona(){
+        try {
+                 $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+                 $persona = new Persona();
+                 $p = $persona->leerPorId($idPersona);
+                 
+                 if($p){
+                     echo json_encode($p->getNombres()." ".$p->getPApellido()." ".$p->getSApellido());      
+                 }else{
+                     echo json_encode("No existe en la Base de Datos");      
+                 }
+                 
                  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -387,10 +420,9 @@ class AdministradorControl extends Controlador{
         } catch (Exception $exc) {
             echo json_encode($exc->getCode());
         }
-
-        
-        
+   
     }
+
      public function modificarProducto(){
         try {
             $idProducto = isset($_POST['codProduct']) ? $_POST['codProduct'] : NULL;
@@ -415,4 +447,48 @@ class AdministradorControl extends Controlador{
         
         
     }
+
+    
+    public function guardarFactura(){
+        try {
+            $servicios = isset($_POST['servicios']) ? $_POST['servicios'] : NULL;
+            $servicios = json_decode($servicios);
+            $productos = isset($_POST['productos']) ? $_POST['productos'] : NULL;
+            $productos = json_decode($productos);
+            $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+            $fecha = getdate();
+            $fecha = $fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
+            $hora = date("H:i:s");
+            $factura = new Factura();
+            $factura->setIdPersona($idPersona);
+            $factura->setFecha($fecha);
+            $factura->setHora($hora);
+            $idFactura = $factura->crearFactura($factura);
+            
+            foreach ($productos as $p){
+                $df = new DetalleProducto();
+                $df->setIdFactura($idFactura);
+                $df->setIdProducto($p[0]);
+                $df->setCantidad($p[1]);
+                $df->setPrecioVenta($p[2]);
+                $df->crearDetalleProducto($df);
+            }
+            
+            foreach ($servicios as $s){
+                $ds = new DetalleServicio();
+                $ds->setIdFactura($idFactura);
+                $ds->setIdServicio($s[0]);
+                $ds->setIdPersona($s[1]);
+                $ds->setPrecio($s[2]);
+                $ds->crearDetalleServicio($ds);
+            }
+            
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getTraceAsString());
+        }
+        }
+    
+
 }

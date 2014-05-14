@@ -38,8 +38,8 @@ class DetalleProducto extends Modelo{
         return $this->precioVenta;
     }
     
-   public function setIdFactura($idFactura) {
-        $this->idFactura = $idFactura;
+   public function setIdFactura($idDetalleProducto) {
+        $this->idFactura = $idDetalleProducto;
     }
     
     public function setIdProducto($idProducto) {
@@ -54,10 +54,39 @@ class DetalleProducto extends Modelo{
         $this->precioVenta = $precioVenta;
     }
 
-
-
+private function mapearDetalleProducto(DetalleProducto $factura, array $props) {
+        if (array_key_exists('idFactura', $props)) {
+            $factura->setIdFactura($props['idFactura']);
+        }
+         if (array_key_exists('idProducto', $props)) {
+            $factura->setIdProducto($props['idProducto']);
+        }
+         if (array_key_exists('cantidad', $props)) {
+            $factura->setCantidad($props['cantidad']);
+        }
         
-        
+        if (array_key_exists('precioVenta', $props)) {
+            $factura->setPrecioVenta($props['precioVenta']);
+        }
+ 
+    }
+      
+    private function getParametros(DetalleProducto $pro){
+              
+        $parametros = array(
+            ':idFactura' => $pro->getIdFactura(),
+            ':idProducto' => $pro->getIdProducto(),
+            ':cantidad' => $pro->getCantidad(),
+            ':precioVenta' => $pro->getPrecioVenta()
+        );
+        return $parametros;
+    }
+
+        public function crearDetalleProducto(DetalleProducto $factura) {
+        $sql = "INSERT INTO detalles_producto (idFactura,idProducto, cantidad, precioVenta) VALUES ( :idFactura, :idProducto, :cantidad, :precioVenta)";
+        $this->__setSql($sql);
+        return $this->ejecutar2($this->getParametros($factura));
+        }
 }
 
 ?>
