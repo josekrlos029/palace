@@ -40,28 +40,21 @@
         x.show("speed");
         y.show("speed");
       
- 
-        var nombreProductoC = $("#nombreProductoC").val();
-        var pVentaProductoC = $("#pVentaProductoC").val();
+        var codProductoC   = $("#codProducto").val();
+        var nombreProductoC = $("#nombreProducto").val();
+        var pVentaProductoC = $("#pVentaProducto").val();
      ;
         
-        var producto ={ idPersona:idPersona,
-                    nombres: nombres,
-                    pApellido: pApellido,
-                    sApellido: sApellido,
-                    sexo: sexo,
-                    fNacimiento: fecha,
-                    telefono: telefono,
-                    celular:celular,
-                    direccion:direccion,
-                    correo:correo
+        var producto ={ codProduct:codProductoC,          
+                        nombreProduct:nombreProductoC,
+                        pVentaProduct: pVentaProductoC
                     
         };
         
         $.ajax({
                       type: "POST",
-                      url: "/palace/administrador/modificarPersona",
-                      data: persona
+                      url: "/palace/administrador/modificarProducto",
+                      data: producto
                   })
                   .done(function(msg) {
                       
@@ -72,14 +65,14 @@
                          document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
                          
                             
-                            x.html ( "<p>Cliente Modificado Correctamente</p>");
+                            x.html ( "<p>Producto Modificado Correctamente</p>");
                             y.html();
                             exito();
                             ocultar();
                       } else if(json == 23000) {
 
                             limpiarCajas();
-                            x.html ( "<p>Error al Modificar Cliente</p>");
+                            x.html ( "<p>Error al Modificar Producto</p>");
                             y.html();
                             error();
                             ocultar();
@@ -169,7 +162,7 @@
                     if (json == "exito") {
                     
                     
-                        limpiarCajas();
+                  
                         x.html("<p>Pedido Registrado Correctamente</p>");
                         y.html();
                         exito();
@@ -178,7 +171,7 @@
 
                     } else if (json == 23000) {
 
-                        limpiarCajas();
+                       
                         x.html("<p>Error al registrar Producto</p>");
                         y.html();
                         error();
@@ -264,7 +257,7 @@
                     Nombre del producto:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="nombreProductoC" type="text" >
+                    <input class="box-text" value="" id="nombreProducto" type="text" >
                 </td>                          
             </tr>
             <tr>
@@ -280,7 +273,7 @@
                     Precio Venta:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="pVentaProductoC" type="number" >
+                    <input class="box-text" value="" id="pVentaProducto" type="number" >
                 </td>                          
             </tr>
             <tr>

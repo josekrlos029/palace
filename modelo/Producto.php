@@ -108,6 +108,12 @@ Class Producto extends Modelo{
         $this->__setSql($sql);
         $this->ejecutar($this->getParametros($producto));
     }
+    public function actualizarProducto(Producto $producto) {
+           $sql = "UPDATE producto SET nombre=:nombre, precioVenta=:precioVenta WHERE idProducto=:idProducto";
+        $this->__setSql($sql);
+        $this->ejecutar($this->getParametros($producto));
+        
+    }
     
     public function leerProductoPorId($idProducto) {
         $sql = "SELECT * FROM producto WHERE idProducto=".$idProducto;

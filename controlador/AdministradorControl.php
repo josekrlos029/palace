@@ -391,5 +391,28 @@ class AdministradorControl extends Controlador{
         
         
     }
-    
+     public function modificarProducto(){
+        try {
+            $idProducto = isset($_POST['codProduct']) ? $_POST['codProduct'] : NULL;
+            $nombre = isset($_POST['nombreProduct']) ? $_POST['nombreProduct'] : NULL;
+            $precioVenta = isset($_POST['pVentaProduct']) ? $_POST['pVentaProduct'] : NULL;
+           
+            
+            $producto = new Producto();
+            $producto->setIdProducto($idProducto);
+            $producto->setNombre($nombre);
+            $producto->setPrecioVenta($precioVenta);
+          
+
+            $producto->actualizarProducto($producto);
+            
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
+
+        
+        
+    }
 }
