@@ -121,6 +121,36 @@ class AdministradorControl extends Controlador{
       
         }
         
+        public function consultas(){
+        try {
+           
+            $this->vista->set('titulo', 'Consultas');
+            $servicio = new Servicio();
+            $productos = $servicio->leerServicios();
+            $this->vista->set('consultas', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
+        public function ingresoTotal(){
+        try {
+           
+            $this->vista->set('titulo', 'Ingresos Totales');
+            $servicio = new Servicio();
+            $productos = $servicio->leerServicios();
+            $this->vista->set('ingreso total', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
         
     public function registrarPersona(){
         try {

@@ -51,6 +51,11 @@
                 $("#contenido").load("/palace/administrador/factura");
                 $("#titulo").html("<h1>Facturar Servicio</h1>");
             }
+            
+            function cargarConsultas() {
+                $("#contenido").load("/palace/administrador/consultas");
+                $("#titulo").html("<h1>Consultas</h1>");
+            }
 
 
         </script>
@@ -87,6 +92,7 @@
                     </li>
                     <li id="five" class="sign"><a onclick="cargarGestionServicio()" href="#">Servicios<span><?php echo count($servicios); ?></span></a></li>
                     <li id="six" class="sign"><a onclick="cargarFactura()" href="#">Facturar</a></li>
+                    <li id="seven" class="sign"><a onclick="cargarConsultas()" href="#">Consultas</a></li>
 
                 </ul>
             </div> 
