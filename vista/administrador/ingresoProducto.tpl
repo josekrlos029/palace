@@ -1,7 +1,7 @@
 
 <div style=" margin-left: 5%; margin-top: 5%">
     
-    <h2>Ingreso Total</h2><br>
+    <h2>Ingreso por producto</h2><br>
     <h3>Ingrese el rango de fecha que desea consultar</h3><br>
     <table width="100%">
         <tr>
@@ -9,6 +9,17 @@
             <td><input type="date" class="box-text"></td>
             <td align="right">Fecha Final:</td>
             <td><input type="date" class="box-text"></td>
+        </tr>
+    </table>
+    <table width="100%">
+        <tr>
+            <td width="18%" align="right">Producto:</td>
+            <td> 
+           <select  class="box-text">
+               
+            </select>
+            </td>    
+            <td style="text-align:right;"><button type="submit" class="button orange large" >Buscar</button></td>
         </tr>
     </table>
     <div id="mitabla">

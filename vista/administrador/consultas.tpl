@@ -7,17 +7,17 @@
             
             
             function cargarIngresoEmpleado() {
-                $("#cont-consulta").load("/palace/administrador/consultas");
+                $("#cont-consulta").load("/palace/administrador/ingresoEmpleado");
                 $("#titulo").html("<h1>Consultas</h1>");
             }
             
             function cargarIngresoServicio() {
-                $("#cont-consulta").load("/palace/administrador/consultas");
+                $("#cont-consulta").load("/palace/administrador/ingresoServicio");
                 $("#titulo").html("<h1>Consultas</h1>");
             }
             
             function cargarIngresoProducto() {
-                $("#cont-consulta").load("/palace/administrador/consultas");
+                $("#cont-consulta").load("/palace/administrador/ingresoProducto");
                 $("#titulo").html("<h1>Consultas</h1>");
             }
 </script>
@@ -42,7 +42,7 @@
                      
                     
 
-                    <tr><td style="text-align:right;"><button type="submit" class="button orange large" >Guardar</button></td></tr>
+                    
                 </table>
     </form>
  </div>

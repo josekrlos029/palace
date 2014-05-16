@@ -151,6 +151,51 @@ class AdministradorControl extends Controlador{
       
         }
         
+        public function ingresoEmpleado(){
+        try {
+           
+            $this->vista->set('titulo', 'Ingresos por Empleado');
+            $servicio = new Servicio();
+            $productos = $servicio->leerServicios();
+            $this->vista->set('ingresos por empleado', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
+        public function ingresoServicio(){
+        try {
+           
+            $this->vista->set('titulo', 'Ingresos por Servicio');
+            $servicio = new Servicio();
+            $productos = $servicio->leerServicios();
+            $this->vista->set('ingresos por servicio', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
+        public function ingresoProducto(){
+        try {
+           
+            $this->vista->set('titulo', 'Ingresos por producto');
+            $servicio = new Servicio();
+            $productos = $servicio->leerServicios();
+            $this->vista->set('ingresos por producto', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
         
     public function registrarPersona(){
         try {
