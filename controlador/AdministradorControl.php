@@ -498,21 +498,22 @@ class AdministradorControl extends Controlador{
    
     }
 
-     public function modificarProducto(){
+     public function modificarServicio(){
         try {
             
-            $idProducto = isset($_POST['codProduct']) ? $_POST['codProduct'] : NULL;
-            $nombre = isset($_POST['nombreProduct']) ? $_POST['nombreProduct'] : NULL;
-            $precioVenta = isset($_POST['pVentaProduct']) ? $_POST['pVentaProduct'] : NULL;
+            $idServicio = isset($_POST['codServic']) ? $_POST['codServic'] : NULL;
+            $nombreServicio = isset($_POST['nombreServic']) ? $_POST['nombreServic'] : NULL;
+            $tiempoServicio = isset($_POST['tServic']) ? $_POST['tServic'] : NULL;
+            $precioServicio = isset($_POST['pServic']) ? $_POST['pServic'] : NULL;
            
             
-            $producto = new Producto();
-            $producto->setIdProducto($idProducto);
-            $producto->setNombre($nombre);
-            $producto->setPrecioVenta($precioVenta);
-          
+            $servicio = new Servicio();
+            $servicio->setIdServicio($idServicio);
+            $servicio->setNombre($nombreServicio);
+            $servicio->setPrecio($precioServicio);
+            $servicio->setTiempo($tiempoServicio);
 
-            $producto->actualizarProducto($producto);
+            $servicio->actualizarServicio($servicio);
             
             echo json_encode("exito");
             

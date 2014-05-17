@@ -17,7 +17,8 @@
                       <thead>
                          <th >Codigo</th>
                          <th width="30%">Nombre</th>
-                         <th >Precion Venta</th>
+                         <th >Precio Venta</th>
+                         <th >Catidad</th>
                          <th  width="5%"</th>
                          </thead>
                          <tbody>
@@ -26,6 +27,7 @@
                          <td ><?php echo $producto->getIdProducto(); ?></td>
                          <td ><?php echo $producto->getNombre(); ?></td>
                          <td ><?php echo $producto->getPrecioVenta(); ?></td>
+                         <td ><?php echo $producto->getUnidades(); ?></td>
                          <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaProducto();">...</button></td>
                          </tr>
                          <?php } ?>

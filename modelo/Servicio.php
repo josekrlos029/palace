@@ -80,6 +80,17 @@ Class Servicio extends Modelo{
         );
         return $parametros;
     }
+    
+    private function getParametros2(Servicio $ser){
+              
+        $parametros = array(
+            ':idServicio' => $ser->getIdServicio(),
+            ':nombre' => $ser->getNombre(),
+            ':tiempo' => $ser->getTiempo(),
+            ':precio' => $ser->getPrecio()
+        );
+        return $parametros;
+    }
 
     
     public function leerServicios() {
@@ -118,8 +129,15 @@ Class Servicio extends Modelo{
         $this->__setSql($sql);
         $this->ejecutar(array(":idPersona"=>$idPersona, ":idServicio"=>$idServicio));
     }
+       
+    public function actualizarServicio(Servicio $servicio) {
+           $sql = "UPDATE servicio SET nombre=:nombre, tiempo=:tiempo, precio=:precio WHERE idServicio=:idServicio";
+        $this->__setSql($sql);
+        $this->ejecutar($this->getParametros2($servicio));
         
+    }
         
 }
+
 
 ?>

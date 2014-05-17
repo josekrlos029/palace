@@ -1,8 +1,34 @@
    <script type="text/javascript">
-function consultaCita(){
-    document.getElementById('light').style.display='block';
-    document.getElementById('fade').style.display='block'     
-}
+       
+   function consultaServicio(codServicio) {
+        var x = $("#mensaje");
+        cargando();
+        x.html("<p>Cargando...</p>");
+        x.show("slow");
+
+        var data = { idServicio: codServicio };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/consultarServicio",
+            data: data
+        }).done(function(msg) {
+
+            var json = eval("(" + msg + ")");
+            $("#codServicio").val(json.idServicio);
+            $("#nombreServicio").val(json.nombre);
+            
+            $("#pServicio").val(json.precio);
+            
+            $("#tServicio").val(json.tiempo);
+
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+            ocultar();
+        });
+
+
+    }   
 
 $("#form").submit(function(){
         
@@ -53,6 +79,60 @@ $("#form").submit(function(){
                   });
         
     });
+    
+    function modificarServicio(){
+   
+        var x = $("#mensaje");
+        var y = $("#overlay");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+        y.show("speed");
+      
+        var codServicioC   = $("#codServicio").val();
+        var nombreServicioC = $("#nombreServicio").val();
+        var tServicioC = $("#tServicio").val();
+        var pServicioC = $("#pServicio").val();
+     
+       
+        var servicio ={ codServic:codServicioC,          
+                        nombreServic:nombreServicioC,
+                        tServic:tServicioC,
+                        pServic: pServicioC
+                    
+        };
+     
+        $.ajax({
+                
+        
+                      type: "POST",
+                      url: "/palace/administrador/modificarServicio",
+                      data: servicio
+                  })
+                  .done(function(msg) {
+                      
+                      var json = eval("(" + msg + ")");
+                     
+                      if (json == "exito") {
+                      
+                         document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+                         
+                            
+                            x.html ( "<p>Producto Modificado Correctamente</p>");
+                            y.html();
+                            exito();
+                            ocultar();
+                      } else if(json == 23000) {
+
+                            limpiarCajas();
+                            x.html ( "<p>Error al Modificar Producto</p>");
+                            y.html();
+                            error();
+                            ocultar();
+
+                      }
+                  });
+    }
 </script>
 <div  id="overlay"></div>
             <div  id="mensaje">
@@ -99,7 +179,7 @@ $("#form").submit(function(){
                          <td ><?php echo $servicio->getNombre(); ?></td>
                          <td ><?php echo $servicio->getTiempo(); ?></td>
                          <td ><?php echo $servicio->getPrecio(); ?></td>
-                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaCita();">...</button></td>
+                         <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaServicio('<?php echo $servicio->getIdServicio(); ?>');">...</button></td>
                          </tr>
                       <?php } ?>   
                          </tbody>
@@ -113,6 +193,49 @@ $("#form").submit(function(){
               <div style="float:right">
                   <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
              </div>
+                 <div style=" margin-top: 5%;margin-left: 5%; float:left; width:45%;">
+        <h2>Datos del producto</h2>
+        </br>
+        <table width="100%">
+            <tr>
+                <td>
+                    Codigo:
+                </td>
+                <td>
+                    <input class="box-text-disable" value="" id="codServicio" type="text" disabled >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Nombre del servicio:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="nombreServicio" type="text" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Tiempo estimado:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="tServicio" type="number" >
+                </td>                          
+            </tr>
+            <tr>
+                <td>
+                    Precio:
+                </td>
+                <td>
+                    <input class="box-text" value="" id="pServicio" type="number" >
+                </td>                          
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td><button type="submit" class="button red small" onclick="modificarServicio()">Modificar</button></td>
+            </tr>
+        </table>
+    </div>
                 
             </div>
                   
