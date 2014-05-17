@@ -94,6 +94,13 @@ private function mapearDetalleServicio(DetalleServicio $servicio, array $props) 
         return $this->consultar($sql);
         
         }
+        
+        public function leerServiciosPorIdPersonayRangoFecha($idPersona,$inicio,$fin){
+        $sql = "SELECT ds.idFactura, ds.idServicio, p.nombres, p.sApellido, p.pApellido, ds.precio, f.fecha, s.nombre FROM detalles_servicio ds, factura f, persona p, servicio s WHERE ds.idFactura=f.idFactura AND ds.idPersona=p.idPersona AND ds.idServicio=s.idServicio AND ds.idPersona='".$idPersona."' AND f.fecha BETWEEN '".$inicio."' AND '".$fin."' ORDER BY f.fecha DESC";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+        }
 }
 
 ?>

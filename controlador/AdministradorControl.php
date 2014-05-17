@@ -593,7 +593,19 @@ class AdministradorControl extends Controlador{
      $this->vista->set('detalles', $detalles);
      return $this->vista->imprimir();
      
- }       
+ }
+ 
+ public function tablaIngresoEmpleado(){
+     
+     $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+     $inicio= isset($_POST['inicio']) ? $_POST['inicio'] : NULL;
+     $fin = isset($_POST['fin']) ? $_POST['fin'] : NULL;
+     
+     $ds = new DetalleServicio();
+     $detalles = $ds->leerServiciosPorIdPersonayRangoFecha($idPersona, $inicio, $fin);
+     $this->vista->set('detalles', $detalles);
+     return $this->vista->imprimir();
+ }
         
     
 
