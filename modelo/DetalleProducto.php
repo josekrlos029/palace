@@ -87,6 +87,15 @@ private function mapearDetalleProducto(DetalleProducto $factura, array $props) {
         $this->__setSql($sql);
         return $this->ejecutar2($this->getParametros($factura));
         }
+        
+        public function leerPagosPorIdProductoyRangoFecha($idProducto,$inicio,$fin){
+        $sql = "SELECT dp.idFactura, dp.idProducto, dp.cantidad, dp.precioVenta, f.fecha FROM detalles_producto dp, factura f WHERE dp.idFactura=f.idFactura AND dp.idProducto='".$idProducto."' AND f.fecha BETWEEN '".$inicio."' AND '".$fin."' ORDER BY f.fecha DESC";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+        
+    }
+        
 }
 
 ?>
