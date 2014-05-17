@@ -10,13 +10,15 @@
             <td><input type="date" class="box-text"></td>
         </tr>
     </table>
-    <table width="50%">
+    <div style="margin-left: 17%;">
+    <table  width="100%">
         <tr>
             
-            <td><input type="text" class="box-text" placeholder="Cedula empleado"></td>
-            <td style="text-align:right;"><button type="submit" class="button orange large" >Buscar</button></td>
+            <td width="40%"><input type="text" class="box-text" placeholder="Cedula empleado"></td>
+            <td align="right" style="text-align:right;"><button type="submit" class="button orange large" >Buscar</button></td>
         </tr>
     </table>
+    </div>    
     <div id="mitabla">
         <table width="100%">
             <thead>
