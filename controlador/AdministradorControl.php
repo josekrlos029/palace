@@ -171,8 +171,8 @@ class AdministradorControl extends Controlador{
            
             $this->vista->set('titulo', 'Ingresos por Servicio');
             $servicio = new Servicio();
-            $productos = $servicio->leerServicios();
-            $this->vista->set('ingresos por servicio', $productos);
+            $servicios = $servicio->leerServicios();
+            $this->vista->set('servicios', $servicios);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -185,9 +185,9 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Ingresos por producto');
-            $servicio = new Servicio();
-            $productos = $servicio->leerServicios();
-            $this->vista->set('ingresos por producto', $productos);
+            $producto = new Producto();
+            $productos = $producto->leerProductos();
+            $this->vista->set('productos', $productos);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {
@@ -566,6 +566,35 @@ class AdministradorControl extends Controlador{
             echo json_encode($exc->getTraceAsString());
         }
         }
+        
+ public function tablaIngresoProducto(){
+     $idProducto = isset($_POST['idProducto']) ? $_POST['idProducto'] : NULL;
+     $inicio= isset($_POST['inicio']) ? $_POST['inicio'] : NULL;
+     $fin = isset($_POST['fin']) ? $_POST['fin'] : NULL;
+     
+     
+     $dp = new DetalleProducto();
+     $detalles = $dp->leerPagosPorIdProductoyRangoFecha($idProducto, $inicio, $fin);
+     
+     $this->vista->set('detalles', $detalles);
+     return $this->vista->imprimir();
+     
+ }       
+ 
+ public function tablaIngresoServicio(){
+     $idServicio = isset($_POST['idServicio']) ? $_POST['idServicio'] : NULL;
+     $inicio= isset($_POST['inicio']) ? $_POST['inicio'] : NULL;
+     $fin = isset($_POST['fin']) ? $_POST['fin'] : NULL;
+     
+     
+     $ds = new DetalleServicio();
+     $detalles = $ds->leerPagosPorIdServicioyRangoFecha($idServicio, $inicio, $fin);
+     
+     $this->vista->set('detalles', $detalles);
+     return $this->vista->imprimir();
+     
+ }       
+        
     
 
 }
