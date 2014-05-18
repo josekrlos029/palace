@@ -118,6 +118,32 @@ Class Servicio extends Modelo{
         return $servicio;
     }
     
+    public function leerServicioPorPersona($idPersona) {
+        $sql = "SELECT s.* FROM servicio s, servicio_empleado se WHERE s.idServicio=se.idServicio AND se.idPersona='".$idPersona."'";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $servicios = array();
+        foreach ($resultado as $fila) {
+            $servicio = new Servicio();
+            $this->mapearServicio($servicio, $fila);
+            $servicios[$servicio->getIdServicio()] = $servicio;
+        }
+        return $servicios;
+    }
+    
+    public function leerServicioPorIdServicioyPersona($idPersona,$idServicio) {
+        $sql = "SELECT s.* FROM servicio s, servicio_empleado se WHERE s.idServicio=se.idServicio AND se.idPersona='".$idPersona."' AND se.idServicio=".$idServicio;
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $servicio = NULL;
+        foreach ($resultado as $fila) {
+            $servicio = new Servicio();
+            $this->mapearServicio($servicio, $fila);
+            
+        }
+        return $servicio;
+    }
+    
     public function crearServicio(Servicio $servicio) {
         $sql = "INSERT INTO servicio (nombre, tiempo, precio) VALUES ( :nombre, :tiempo, :precio)";
         $this->__setSql($sql);
@@ -136,8 +162,13 @@ Class Servicio extends Modelo{
         $this->ejecutar($this->getParametros2($servicio));
         
     }
+    
+    public function eliminarServicioPersona($idPersona,$idServicio) {
+        $sql = "DELETE FROM servicio_empleado where idServicio=:idServicio AND idPersona=:idPersona";
+        $this->__setSql($sql);
+        $this->ejecutar(array(":idServicio"=>$idServicio, ":idPersona"=>$idPersona));        
+   }
         
 }
-
 
 ?>

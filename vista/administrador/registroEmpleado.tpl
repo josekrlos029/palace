@@ -1,4 +1,76 @@
 <script type="text/javascript">
+    
+    function eliminarServicio(idServicio){
+        var idPersona= $("#idPersonas").val();
+        
+        var data = {
+            idPersona: idPersona,
+            idServicio: idServicio
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/eliminarServiciosEmpleado",
+            data: data
+        })
+                .done(function(msg) {
+
+                    var json = eval("(" + msg + ")");
+
+                    if (json == "exito") {
+
+                        consultaPersona(idPersona);
+
+                    } else if (json == 23000) {
+
+                        
+                    }else{
+                        
+                    }
+                });
+    }
+    
+    function agregarServicios(){
+        var idPersona= $("#idPersonas").val();
+        var servicios = document.getElementById("servs").options;
+        var arreglo = new Array();
+        var j = 0;
+        for (var i = 0; i < servicios.length; i++) {
+            if (servicios[i].selected == true) {
+                arreglo[j] = servicios[i].value;
+                j++;
+            }
+        }
+
+
+        var data = {
+            idPersona: idPersona,
+            servicios: JSON.stringify(arreglo)
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/agregarServiciosEmpleado",
+            data: data
+        })
+                .done(function(msg) {
+
+                    var json = eval("(" + msg + ")");
+
+                    if (json == "exito") {
+
+                        consultaPersona(idPersona);
+
+                    } else if (json == 23000) {
+
+                        
+                    }else{
+                        
+                    }
+                });
+    }
+    
+    
      function consultaPersona(idPersona) {
         var x = $("#mensaje");
         cargando();
@@ -6,7 +78,7 @@
         x.show("speed");
       
 
-        var data = {idPersona: idPersona};
+        var data = { idPersona: idPersona };
 
         $.ajax({
             type: "POST",
@@ -28,10 +100,26 @@
             ocultar();
             document.getElementById('light').style.display = 'block';
             document.getElementById('fade').style.display = 'block';
+            consultarServicios(idPersona);
         });
 
 
     }  
+    
+    function consultarServicios(idPersona){
+       
+        var data = { idPersona: idPersona };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/consultarServiciosPersona",
+            data: data
+        }).done(function(msg) {
+            $("#vistaServicios").html(msg);
+        });
+
+    }
+    
 function modificarPersona(){
    
         var x = $("#mensaje");
@@ -329,18 +417,11 @@ function modificarPersona(){
                     <input  class="box-text" value="" id="correos" type="text"  >
                 </td>                          
             </tr>
-           
+           <tr><td align="right"><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td></tr>
         </table>
         </div>
-          <div style=" margin-top: 5%; margin-left:5%;float:right; width: 40%;">
-        <form action="javascript: return false;" id="form">
-            <table border="0" align="left" width="100%" >
-                <tr><td style="text-align: left;"><h2>Servicios</h2></td></tr>
-                <tr><td style="text-align: left;"><input type="number" id="unidadesP" required placeholder="unidades"  class="box-text" ></td></tr>
-                <tr><td align="right"><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td></tr>
-            </table>
-        </form> 
-
+    <div style=" margin-top: 5%; margin-left:5%;float:right; width: 40%;" id="vistaServicios">
+        
     </div>
     </div>  
           
