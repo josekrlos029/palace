@@ -59,25 +59,37 @@ root {
     height: 24px;
     margin: 4px 8px;
     background-repeat: no-repeat;
-    background-image: url(..utiles/image/icons.png);
+    background-image: url(../image/iconos.png);
     background-position: 0px 0px;
 }
 
-.accordion li.files > a:before { background-position: 0px 0px; }
-.accordion li.files:hover > a:before,
-.accordion li.files:target > a:before { background-position: 0px -24px; }
- 
-.accordion li.mail > a:before { background-position: -24px 0px; }
-.accordion li.mail:hover > a:before,
-.accordion li.mail:target > a:before { background-position: -24px -24px; }
- 
-.accordion li.cloud > a:before { background-position: -48px 0px; }
-.accordion li.cloud:hover > a:before,
-.accordion li.cloud:target > a:before { background-position: -48px -24px; }
- 
-.accordion li.sign > a:before { background-position: -72px 0px; }
-.accordion li.sign:hover > a:before,
-.accordion li.sign:target > a:before { background-position: -72px -24px; }
+.accordion li.clientes > a:before { background-position: 0px 0px; }
+.accordion li.clientes:hover > a:before,
+.accordion li.clientes:target > a:before { background-position: 0px -24px; }
+
+.accordion li.citas > a:before { background-position: 0px -48px; }
+.accordion li.citas:hover > a:before,
+.accordion li.citas:target > a:before { background-position: 0px -72px; }
+
+.accordion li.empleados > a:before { background-position: 0px -96px; }
+.accordion li.empleados:hover > a:before,
+.accordion li.empleados:target > a:before { background-position: 0px -120px; }
+
+.accordion li.productos > a:before { background-position: 0px -144px; }
+.accordion li.productos:hover > a:before,
+.accordion li.productos:target > a:before { background-position: 0px -168px; }
+
+.accordion li.servicio > a:before { background-position: 0px -192px; }
+.accordion li.servicio:hover > a:before,
+.accordion li.servicio:target > a:before { background-position: 0px -216px; }
+
+.accordion li.factura> a:before { background-position: 0px -240px; }
+.accordion li.factura:hover > a:before,
+.accordion li.factura:target > a:before { background-position: 0px -264px; }
+
+.accordion li.consulta> a:before { background-position: 0px -288px; }
+.accordion li.consulta:hover > a:before,
+.accordion li.consulta:target > a:before { background-position: 0px -312px; }
 
 .sub-menu li a {
    color: #00a8c5;
@@ -106,8 +118,7 @@ root {
 .accordion > li:hover > a,
 .accordion > li:target > a {
     color: #ffffff;
-    text-shadow: 1px 1px 1px rgba(255,255,255, .2);
-    background: url(../img/active.png) repeat-x;
+    text-shadow: 1px 1px 1px rgba(255,255,255, .2);    
     background: #0090d9; 
 }
  

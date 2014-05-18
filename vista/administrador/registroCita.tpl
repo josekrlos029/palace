@@ -38,7 +38,7 @@
 
         <tr>
             <td style="text-align: left;">
-                <select id="servicio" onchange="buscar();">
+                <select id="servicio" onchange="buscar();" class="box-text">
                     <option> </option>
                     <?php foreach($servicios as $servicio){ ?>
                     <option value="<?php echo $servicio->getIdServicio(); ?>"><?php echo $servicio->getNombre(); ?></option>

@@ -75,7 +75,7 @@
             </div>
             <div style="margin-top:20px;"> 
                 <ul class="accordion">
-                    <li id="one" class="files"><a onclick="cargarRegistroPersona()" href="#">Clientes<span><?php echo count($personas); ?></span></a>
+                    <li id="one" class="clientes"><a onclick="cargarRegistroPersona()" href="#">Clientes<span><?php echo count($personas); ?></span></a>
                         <!-- <ul class="sub-menu">
                              <li><a href="#"><em>01</em>Registrar Cliente<span</span></a></li>
                              <li><a href="#"><em>02</em>Consultar Cliente<span></span></a></li> 
@@ -83,16 +83,15 @@
                          </ul>-->
                     </li>
 
-                    <li id="three" class="cloud"><a onclick="cargarCitas()" href="#">Citas<span>0</span></a>
+                    <li id="three" class="citas"><a onclick="cargarCitas()" href="#">Citas<span>0</span></a>
 
                     </li>
-                    <li id="six" class="sign"><a onclick="cargarGestionEmpleado()" href="#">Empleados<span><?php echo count($empleados); ?></span></a></li>
-                    <li id="two" class="mail"><a onclick="cargarRegistroProducto()" href="#">Inventario de Productos<span><?php echo count($productos); ?></span></a>
-
+                    <li id="six" class="empleados"><a onclick="cargarGestionEmpleado()" href="#">Empleados<span><?php echo count($empleados); ?></span></a></li>
+                    <li id="two" class="productos"><a onclick="cargarRegistroProducto()" href="#">Inventario de Productos<span><?php echo count($productos); ?></span></a>
                     </li>
-                    <li id="five" class="sign"><a onclick="cargarGestionServicio()" href="#">Servicios<span><?php echo count($servicios); ?></span></a></li>
-                    <li id="six" class="sign"><a onclick="cargarFactura()" href="#">Facturar</a></li>
-                    <li id="seven" class="sign"><a onclick="cargarConsultas()" href="#">Consultas</a></li>
+                    <li id="five" class="servicio"><a onclick="cargarGestionServicio()" href="#">Servicios<span><?php echo count($servicios); ?></span></a></li>
+                    <li id="six" class="factura"><a onclick="cargarFactura()" href="#">Facturar</a></li>
+                    <li id="seven" class="consulta"><a onclick="cargarConsultas()" href="#">Consultas</a></li>
 
                 </ul>
             </div> 

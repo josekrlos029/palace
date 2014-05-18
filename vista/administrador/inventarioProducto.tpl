@@ -182,6 +182,18 @@
 
 
     }
+    
+    function cargarConsultaFecha() {
+                $("#cont-consulta").load("/palace/administrador/cargaFecha");
+                $("#titulo").html("<h1>Consultas</h1>");
+            }
+            
+            
+            
+            function cargarConsultaProducto() {
+                $("#cont-consulta").load("/palace/administrador/cargaProducto");
+                $("#titulo").html("<h1>Consultas</h1>");
+            }
 </script>
 <div  id="overlay"></div>
             <div  id="mensaje">
@@ -198,7 +210,19 @@
             <tr><td style="text-align: left;"><input type="text" id="pVenta" required placeholder="Precio Venta"  class="box-text" ></td></tr>
             <tr><td style="text-align:right;"><button type="submit" class="button orange large" >Guardar </button></td></tr>
         </table>
+        
+        <div>
+        <h2 >Consultas</h2>
+        </div>
+        <table border="0" align="left" width="100%" >
+                    
+                     <tr><td style="text-align: left;"><a onclick="cargarConsultaFecha()" href="#">Consultar carga por fecha</a></td></tr> 
+                     <tr><td style="text-align: left;"><a onclick="cargarConsultaProducto()" href="#">Consultar carga por producto</a></td>      
+                     
+        </table>
     </form> 
+    
+    
 
 
 </div>
@@ -241,7 +265,7 @@
         <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                 document.getElementById('fade').style.display = 'none'"><img src="../utiles/image/close.png"/></a>
     </div>
-    <div style=" margin-top: 5%;margin-left: 5%; float:left; width:45%;">
+    <div id="cont-consulta" style=" margin-top: 5%;margin-left: 5%; float:left; width:45%;">
         <h2>Datos del producto</h2>
         </br>
         <table width="100%">
