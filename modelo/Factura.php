@@ -86,6 +86,13 @@ Class Factura extends Modelo{
         $this->__setSql($sql);
         return $this->ejecutar2($this->getParametros($factura));
     }
+    
+    public function leerFacturaPorRangoFecha($inicio,$fin){
+        $sql = "SELECT f.idFactura, f.fecha, (SELECT sum(ds.precio) FROM detalles_servicio ds WHERE ds.idFactura=f.idFactura) as sumaServicios, (SELECT sum(dp.precioVenta*dp.cantidad) FROM detalles_producto dp WHERE dp.idFactura=f.idFactura) as sumaProductos FROM factura f WHERE f.fecha BETWEEN '".$inicio."' AND '".$fin."' GROUP BY f.idFactura ORDER BY f.fecha DESC ";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+        }
         
 }
 

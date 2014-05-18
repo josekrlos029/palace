@@ -608,5 +608,15 @@ class AdministradorControl extends Controlador{
  }
         
     
+ public function tablaIngresoTotal(){
+  
+     $inicio= isset($_POST['inicio']) ? $_POST['inicio'] : NULL;
+     $fin = isset($_POST['fin']) ? $_POST['fin'] : NULL;
+     
+     $factura = new Factura();
+     $detalles = $factura->leerFacturaPorRangoFecha($inicio, $fin);
+     $this->vista->set('detalles', $detalles);
+     return $this->vista->imprimir();   
+ }
 
 }
