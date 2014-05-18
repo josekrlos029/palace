@@ -31,4 +31,4 @@ setTimeout("asignarColor('#FFBABA','#e5582b','#D8000C','url(../utiles/imagenes/i
  setTimeout("$('#mensaje').hide();", 2000);
  setTimeout("$('#overlay').hide();", 2000);
  }
- 
+    

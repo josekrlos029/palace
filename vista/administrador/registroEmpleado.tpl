@@ -1,5 +1,26 @@
 <script type="text/javascript">
     
+    
+ $('#filter').keyup(function(){
+    var table = $('#table');
+    var value = this.value;
+    table.find('.recorrer').each(function(index, row) {
+        var allCells = $(row).find('td');
+        if(allCells.length > 0) {
+            var found = false;
+            allCells.each(function(index, td) {
+                var regExp = new RegExp(value, 'i');
+                if(regExp.test($(td).text())) {
+                    found = true;
+                    return false;
+                }
+            });
+            if (found == true) $(row).show();
+            else $(row).hide();
+        }
+    });
+});
+    
     function eliminarServicio(idServicio){
         var idPersona= $("#idPersonas").val();
         
@@ -297,7 +318,7 @@ function modificarPersona(){
 
     <table border="0" align="right" width="70%">
         <tr><td style="text-align: center;"><h2>Consulta de Empleados</h2></td>
-            <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Cedula del cliente" class="box-text" ></td>
+            <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Buscar" class="box-text" id="filter"></td>
     </table>
 
     <div style="margin-top:10%;">
@@ -310,9 +331,9 @@ function modificarPersona(){
             <th>Celular</th>
             <th width="5%"></th>
             </thead>
-            <tbody>
+            <tbody id="table">
                 <?php foreach($personas as $persona){ ?>
-                <tr align="left">
+                <tr class="recorrer" align="left">
                     <td width="20%"><?php echo $persona->getIdPersona(); ?></td>
                     <td width="30%"><?php echo $persona->getNombres(); ?></td>
                     <td width="30%" ><?php echo $persona->getpApellido()." ".$persona->getsApellido(); ?></td>

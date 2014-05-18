@@ -1,5 +1,23 @@
    <script type="text/javascript">
-       
+$('#filter').keyup(function(){
+    var table = $('#table');
+    var value = this.value;
+    table.find('.recorrer').each(function(index, row) {
+        var allCells = $(row).find('td');
+        if(allCells.length > 0) {
+            var found = false;
+            allCells.each(function(index, td) {
+                var regExp = new RegExp(value, 'i');
+                if(regExp.test($(td).text())) {
+                    found = true;
+                    return false;
+                }
+            });
+            if (found == true) $(row).show();
+            else $(row).hide();
+        }
+    });
+});       
    function consultaServicio(codServicio) {
         var x = $("#mensaje");
         cargando();
@@ -161,7 +179,7 @@ $("#form").submit(function(){
    
                 <table border="0" align="right" width="70%">
                      <tr><td style="text-align: center;"><h2>Consultar Servicios</h2></td>
-                   <td style="text-align: right;"><input type="text" name="idServicio" required placeholder="Codigo del Servicio" class="box-text" ></td>
+                         <td style="text-align: right;"><input type="text" name="idServicio" required placeholder="Buscar" id="filter" class="box-text" ></td>
                 </table>
                 <div style="margin-top:10%;">
                  <table border="0" align="center" width="100%" id="mitabla">
@@ -172,9 +190,9 @@ $("#form").submit(function(){
                           <th >Precio</th>
                           <th></th>
                          </thead>
-                         <tbody>
+                         <tbody id="table">
                       <?php foreach($servicios as $servicio){ ?>
-                      <tr align="left">
+                      <tr align="left" class="recorrer">
                          <td ><?php echo $servicio->getIdServicio(); ?></td>
                          <td ><?php echo $servicio->getNombre(); ?></td>
                          <td ><?php echo $servicio->getTiempo(); ?></td>
