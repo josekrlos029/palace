@@ -196,6 +196,36 @@ class AdministradorControl extends Controlador{
       
         }
         
+        public function cargaFecha(){
+        try {
+           
+            $this->vista->set('titulo', 'Cargas por fecha');
+            $producto = new Producto();
+            $productos = $producto->leerProductos();
+            $this->vista->set('productos', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
+        public function cargaProducto(){
+        try {
+           
+            $this->vista->set('titulo', 'Cargas por producto');
+            $producto = new Producto();
+            $productos = $producto->leerProductos();
+            $this->vista->set('productos', $productos);
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+        
         
     public function registrarPersona(){
         try {
