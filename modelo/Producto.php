@@ -135,6 +135,13 @@ Class Producto extends Modelo{
         
         return $resultado;
     }
+    
+     public function actualizarUnidades($idProducto, $cantidad) {
+           $sql = "UPDATE producto SET unidades=:unidades WHERE idProducto=:idProducto";
+        $this->__setSql($sql);
+        $this->ejecutar(array(":unidades"=>$cantidad, "idProducto"=>$idProducto));
+        
+    }
         
 }
 ?>

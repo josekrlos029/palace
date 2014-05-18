@@ -136,7 +136,7 @@
             $.ajax({
                 type: "POST",
                 url: "/palace/administrador/consultarProducto",
-                data: {idProducto: idProducto}
+                data: { idProducto: idProducto }
             })
                     .done(function(msg) {
                         var json = eval("(" + msg + ")");

@@ -163,8 +163,6 @@
 
                     if (json == "exito") {
                     
-                    
-                  
                         x.html("<p>Pedido Registrado Correctamente</p>");
                         y.html();
                         exito();
@@ -172,8 +170,7 @@
 
 
                     } else if (json == 23000) {
-
-                       
+   
                         x.html("<p>Error al registrar Producto</p>");
                         y.html();
                         error();

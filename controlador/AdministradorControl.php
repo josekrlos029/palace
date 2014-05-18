@@ -283,16 +283,22 @@ class AdministradorControl extends Controlador{
             $idProducto = isset($_POST['idProducto']) ? $_POST['idProducto'] : NULL;
             $precio = isset($_POST['precio']) ? $_POST['precio'] : NULL;
             $cantidad = isset($_POST['unidades']) ? $_POST['unidades'] : NULL;
+            
             $fecha = getdate();
-             $FechaTxt=$fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
+            $FechaTxt=$fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
             $producto = new IngresoProducto();
             $producto->setIdProducto($idProducto);
             $producto->setCantidad($cantidad);
             $producto->setPrecioFabrica($precio);
             $producto->setFechaIngreso($FechaTxt);
             
-
             $producto->crearProducto($producto);
+            
+            $p = new Producto();
+            $pro = $p->leerProductoPorId($idProducto);
+            
+            $p->actualizarUnidades($idProducto, $pro->getUnidades()+$cantidad);
+            
             echo json_encode("exito");
             
         } catch (Exception $exc) {
@@ -543,12 +549,17 @@ class AdministradorControl extends Controlador{
             $idFactura = $factura->crearFactura($factura);
             
             foreach ($productos as $p){
+                
                 $df = new DetalleProducto();
                 $df->setIdFactura($idFactura);
                 $df->setIdProducto($p[0]);
                 $df->setCantidad($p[1]);
                 $df->setPrecioVenta($p[2]);
                 $df->crearDetalleProducto($df);
+                
+                $producto = new Producto();
+                $pro = $producto->leerProductoPorId($p[0]);
+                $producto->actualizarUnidades($pro->getIdProducto(), $pro->getUnidades() - $p[1]);
             }
             
             foreach ($servicios as $s){
