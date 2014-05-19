@@ -4,6 +4,10 @@
 
         function guardar() {
             
+            if($("#idPersona").val()== null || $("#idPersona").val()== "" || $("#nombre").val()== "No existe en la Base de Datos"){
+                alert("Por Favor seleccione un Cliente Valido");
+            }else{
+            
             var x = $("#mensaje");
             cargando();
             x.html ("<p>Cargando...</p>");
@@ -98,7 +102,7 @@
                             
                 });
             
-            
+        }
         }
 
 
@@ -150,9 +154,9 @@
 
         $("#cantidad").keyup(function() {
 
-            var precio = $("#precioUnid").val();
-            var cantidad = $("#cantidad").val();
-
+            var precio = parseInt($("#precioUnid").val());
+            var cantidad = parseInt($("#cantidad").val());
+            
             $("#precioTotal").val(precio * cantidad);
 
         });
@@ -176,6 +180,45 @@
             $("#precioUnid").val("");
             $("#precioTotal").val("");
 
+    }
+    
+    function consultarTotal(){
+        
+            var suma =0;
+            $("#tServicios .rs").each(function(index) {
+                
+
+                $(this).children("td").each(function(index2) {
+                    switch (index2) {
+                        
+                        case 4:
+                            suma += parseInt($(this).text());
+                            break;
+                        
+                    }
+                    
+                });
+                
+            });
+
+            
+            $("#tProductos .rc").each(function(index) {
+                var idProducto, nombreProducto, cantidad, precio, subtotal;
+
+                $(this).children("td").each(function(index2) {
+                    switch (index2) {
+                        
+                        case 4:
+                            suma += parseInt($(this).text());
+                            break;
+                        
+                    }
+                    
+                });
+                
+            });
+            
+            $("#total").val(suma);
     }
 
         function servidores() {
@@ -232,14 +275,57 @@
 
             if ($("#servicio").attr("disabled") == "disabled") {
                 //Agregar Producto
-                $("#tProductos").append("<tr class='rc'><td>" + idProducto + "</td><td>" + producto + "</td><td>" + cantidad + "</td><td>" + precioU + "</td><td>" + precioT + "</td></tr>");
-
+                var band =0;
+                $("#tProductos .rc").each(function(index) {
+                var x, c, preu;
+                $(this).children("td").each(function(index2) {
+                    
+                    switch (index2) {
+                        case 0:
+                            if( $(this).text()== idProducto){
+                             band=1;
+                             x=prompt("El Producto ya Existe en la factura \nElige una de las Siguientes opciones DIGITANDO SOLO EL NUMERO DE LA OPCIÓN \n \n 1. Reemplazar Cantidad \n 2. Añadir Cantidad","");
+                            }
+                            break;
+                        
+                        case 2:
+                            
+                            if(x == "1"){
+                                
+                                $(this).text(cantidad);
+                                 c= cantidad;
+                            }else if(x=="2"){
+                                var cant = $(this).text();
+                                cant = parseInt(cant);
+                                cantidad = parseInt(cantidad);
+                                c=cant + cantidad;
+                                $(this).text(c);
+                            }    
+                            
+                            break;
+                        case 3:
+                            preu = parseInt($(this).text());
+                            
+                            break;
+                        case 4:
+                            $(this).text(preu*c);
+                            break;
+                        
+                    }
+                   
+                });
+                
+                });
+                if(band==0){
+                    $("#tProductos").append("<tr class='rc'><td>" + idProducto + "</td><td>" + producto + "</td><td>" + cantidad + "</td><td>" + precioU + "</td><td>" + precioT + "</td></tr>");
+                }  
             } else if ($("#producto").attr("disabled") == "disabled") {
                 //Agregar Servicio
                 $("#tServicios").append("<tr class='rs'><td>" + idServicio + "</td><td>" + servicio + "</td><td>" + servidor + "</td><td hidden>" + idServidor + "</td><td>" + precioU + "</td></tr>");
             }
 
             limpiar();
+            consultarTotal();
             //$("#detallesProducto").append("<tr><td>"+producto+"</td><td>"+cantidad+"</td><td></td><td></td></tr>");
 
         }
@@ -369,7 +455,7 @@
                         Total:
                     </td>
                     <td>
-                        <input class="box-text" id="precioTotal" type="number" />
+                        <input class="box-text" id="total" type="number" disabled />
                     </td>
                 </tr>
             </table>
