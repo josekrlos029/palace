@@ -714,4 +714,18 @@ class AdministradorControl extends Controlador{
         }
    
     }
+    
+    public function detallesFactura(){
+        $idFactura= isset($_POST['idFactura']) ? $_POST['idFactura'] : NULL;
+        
+        $ds = new DetalleServicio();
+        $dp = new DetalleProducto();
+        
+        $dServicios = $ds->leerServiciosPorIdFactura($idFactura);
+        $dProductos = $dp->leerProductosPorIdFactura($idFactura);
+     
+        $this->vista->set('ds', $dServicios);
+        $this->vista->set('dp', $dProductos);
+        return $this->vista->imprimir();   
+    }
 }

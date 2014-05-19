@@ -81,6 +81,13 @@ private function mapearDetalleServicio(DetalleServicio $servicio, array $props) 
         );
         return $parametros;
     }
+    
+    public function leerServiciosPorIdFactura($idFactura){
+        $sql = "SELECT * FROM detalles_servicio ds, persona p, servicio s WHERE ds.idServicio=s.idServicio AND ds.idPersona=p.idPersona AND ds.idFactura=".$idFactura;
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+        }
 
         public function crearDetalleServicio(DetalleServicio $factura) {
         $sql = "INSERT INTO detalles_servicio (idFactura,idServicio, idPersona, precio) VALUES ( :idFactura,:idServicio, :idPersona, :precio)";
