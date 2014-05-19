@@ -215,6 +215,40 @@
                 $("#cont-consulta").load("/palace/administrador/cargaProducto");
                 $("#titulo").html("<h1>Consultas</h1>");
             }
+            
+            function validarNro(e) {
+           var key;
+            if(window.event) // IE
+	         {
+	             key = e.keyCode;
+	         }
+             else if(e.which) // Netscape/Firefox/Opera
+	         {
+	            key = e.which;
+	         }
+
+                if (key < 48 || key > 57)
+                {
+                  if(key == 46 || key == 8) // Detectar . (punto) y backspace (retroceso)
+                { return true; }
+             else 
+               { return false; }
+               }
+              return true;
+             }
+
+    function validar_texto(e) {
+           tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+             if (tecla==8) return true; 
+
+             // Patron de entrada, en este caso solo acepta letras
+                 patron =/[A-Za-z\s]/; 
+
+                   tecla_final = String.fromCharCode(tecla);
+                  return patron.test(tecla_final); 
+        } 
 </script>
 <div  id="overlay"></div>
             <div  id="mensaje">
@@ -228,7 +262,7 @@
         <table border="0" align="left" width="100%" >
             <tr><td style="text-align: left;"><h2>Registro de Productos</h2></td></tr>
             <tr><td style="text-align: left;"><input type="text" id="nombre" required placeholder="Nombre del Producto"  class="box-text" ></td></tr>
-            <tr><td style="text-align: left;"><input type="text" id="pVenta" required placeholder="Precio Venta"  class="box-text" ></td></tr>
+            <tr><td style="text-align: left;"><input type="text" id="pVenta" required placeholder="Precio Venta"  class="box-text" onkeypress="javascript:return validarNro(event)"></td></tr>
             <tr><td style="text-align:right;"><button type="submit" class="button orange large" >Guardar </button></td></tr>
         </table>
         
