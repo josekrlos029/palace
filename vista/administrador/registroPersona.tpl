@@ -185,6 +185,10 @@
                     <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      
                     <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido" required placeholder="Segundo Apellido"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><select style="width:100%;" class="box-text" id="sexo"><option default>Sexo</option><option>M</option><option>F</option></select></td></tr>
+                    </table>
+        </br></br>
+           <table border="0" align="left" width="100%" >
+                    <tr><td style="text-align: left; color:#c3c3c3; font-size:12px;">Fecha de Nacimiento:</td></tr>
                     <tr><td style="text-align: left;"><input type="date" id="fNacimiento" required placeholder="Fecha de Nacimiento"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="number" id="telefono" required placeholder="Telefono"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" ></td></tr>

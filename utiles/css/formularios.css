@@ -67,6 +67,7 @@ font-size: 20px;
 }
 
 #titulo{
+  width: 50%;  
   float:left;
   font: normal 12px Arial, sans-serif;
   color:#0090d9;

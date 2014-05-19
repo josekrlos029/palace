@@ -65,7 +65,7 @@
     <body>
         <div id="menu">
             <div id="cont-title">
-                <h1><spam>Usuario</spam> | Administrador</h1>
+                <a  href="/palace/administrador/usuarioAdministrador" ><h1><spam>Usuario</spam> | Administrador</h1></a>
                 <div id="hora">
                     <?php
                     date_default_timezone_set('UTC');
@@ -101,8 +101,9 @@
     <div id="cuerpo">
         <div id="menu-horizontal">
             <div id="titulo"></div>
+            <div id=cont-conf> configuracion de usuario</div>
             <div id="cont-logo">
-                <img src="../utiles/image/logo.jpg" width="150px" height="60px"/> 
+                <img src="../utiles/image/logo.gif" width="150px" height="60px"/> 
             </div>
         </div>
 

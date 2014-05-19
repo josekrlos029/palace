@@ -16,15 +16,15 @@ function asignarColor(fondo,borde,texto,url) {
  }
 
 function error() { 
-setTimeout("asignarColor('#FFBABA','#e5582b','#D8000C','url(../utiles/imagenes/iconos/error.png)')",1);
+setTimeout("asignarColor('#FFBABA','#e5582b','#D8000C','url(../utiles/image/error.png)')",1);
 }
  
  function exito() { 
- setTimeout("asignarColor('#DFF2BF','#aacc5b','#4F8A10','url(../utiles/imagenes/iconos/exito.png)')",1);
+ setTimeout("asignarColor('#DFF2BF','#aacc5b','#4F8A10','url(../utiles/image/exito.png)')",1);
  }
  
   function cargando() { 
- setTimeout("asignarColor('#BDE5F8','#00529B','#00529B','url(../utiles/imagenes/iconos/cargando.gif)')",1);
+ setTimeout("asignarColor('#BDE5F8','#00529B','#00529B','url(../utiles/image/cargando.gif)')",1);
  }
  
  function ocultar(){
