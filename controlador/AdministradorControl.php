@@ -659,5 +659,59 @@ class AdministradorControl extends Controlador{
      $this->vista->set('detalles', $detalles);
      return $this->vista->imprimir();   
  }
+ 
+ public function consultarServiciosPersona() {
+     $idPersona= isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+     
+     $s = new Servicio();
+     $servs = $s->leerServicios();
+     $servicios = $s->leerServicioPorPersona($idPersona);
+     
+     $this->vista->set('servs', $servs);
+     $this->vista->set('servicios', $servicios);
+     return $this->vista->imprimir();   
+     
+ }
+ 
+ public function agregarServiciosEmpleado(){
+        try {
+            $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+            $servicios = isset($_POST['servicios']) ? $_POST['servicios'] : NULL;
+            $servicios = json_decode($servicios);
+                
+                $servicio = new Servicio();
+                foreach ($servicios as $a){
+                    
+                    $s = $servicio->leerServicioPorIdServicioyPersona($idPersona, $a);
+                    if($s == NULL){
+                        $servicio->crearServicioPersona($a, $idPersona);
+                    }
+                    
+                }
+            
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
 
+        
+        
+    }
+
+    public function eliminarServiciosEmpleado(){
+        try {
+            $idPersona = isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+            $idServicio = isset($_POST['idServicio']) ? $_POST['idServicio'] : NULL;
+            
+            $servicio = new Servicio();
+            $servicio->eliminarServicioPersona($idPersona, $idServicio);
+            
+            echo json_encode("exito");
+            
+        } catch (Exception $exc) {
+            echo json_encode($exc->getCode());
+        }
+   
+    }
 }

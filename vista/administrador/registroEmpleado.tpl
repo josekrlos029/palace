@@ -1,4 +1,97 @@
 <script type="text/javascript">
+    
+    
+ $('#filter').keyup(function(){
+    var table = $('#table');
+    var value = this.value;
+    table.find('.recorrer').each(function(index, row) {
+        var allCells = $(row).find('td');
+        if(allCells.length > 0) {
+            var found = false;
+            allCells.each(function(index, td) {
+                var regExp = new RegExp(value, 'i');
+                if(regExp.test($(td).text())) {
+                    found = true;
+                    return false;
+                }
+            });
+            if (found == true) $(row).show();
+            else $(row).hide();
+        }
+    });
+});
+    
+    function eliminarServicio(idServicio){
+        var idPersona= $("#idPersonas").val();
+        
+        var data = {
+            idPersona: idPersona,
+            idServicio: idServicio
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/eliminarServiciosEmpleado",
+            data: data
+        })
+                .done(function(msg) {
+
+                    var json = eval("(" + msg + ")");
+
+                    if (json == "exito") {
+
+                        consultaPersona(idPersona);
+
+                    } else if (json == 23000) {
+
+                        
+                    }else{
+                        
+                    }
+                });
+    }
+    
+    function agregarServicios(){
+        var idPersona= $("#idPersonas").val();
+        var servicios = document.getElementById("servs").options;
+        var arreglo = new Array();
+        var j = 0;
+        for (var i = 0; i < servicios.length; i++) {
+            if (servicios[i].selected == true) {
+                arreglo[j] = servicios[i].value;
+                j++;
+            }
+        }
+
+
+        var data = {
+            idPersona: idPersona,
+            servicios: JSON.stringify(arreglo)
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/agregarServiciosEmpleado",
+            data: data
+        })
+                .done(function(msg) {
+
+                    var json = eval("(" + msg + ")");
+
+                    if (json == "exito") {
+
+                        consultaPersona(idPersona);
+
+                    } else if (json == 23000) {
+
+                        
+                    }else{
+                        
+                    }
+                });
+    }
+    
+    
      function consultaPersona(idPersona) {
         var x = $("#mensaje");
         cargando();
@@ -6,7 +99,7 @@
         x.show("speed");
       
 
-        var data = {idPersona: idPersona};
+        var data = { idPersona: idPersona };
 
         $.ajax({
             type: "POST",
@@ -28,10 +121,26 @@
             ocultar();
             document.getElementById('light').style.display = 'block';
             document.getElementById('fade').style.display = 'block';
+            consultarServicios(idPersona);
         });
 
 
     }  
+    
+    function consultarServicios(idPersona){
+       
+        var data = { idPersona: idPersona };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/consultarServiciosPersona",
+            data: data
+        }).done(function(msg) {
+            $("#vistaServicios").html(msg);
+        });
+
+    }
+    
 function modificarPersona(){
    
         var x = $("#mensaje");
@@ -213,7 +322,7 @@ function modificarPersona(){
 
     <table border="0" align="right" width="70%">
         <tr><td style="text-align: center;"><h2>Consulta de Empleados</h2></td>
-            <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Cedula del cliente" class="box-text" ></td>
+            <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Buscar" class="box-text" id="filter"></td>
     </table>
 
     <div style="margin-top:10%;">
@@ -226,9 +335,9 @@ function modificarPersona(){
             <th>Celular</th>
             <th width="5%"></th>
             </thead>
-            <tbody>
+            <tbody id="table">
                 <?php foreach($personas as $persona){ ?>
-                <tr align="left">
+                <tr class="recorrer" align="left">
                     <td width="20%"><?php echo $persona->getIdPersona(); ?></td>
                     <td width="30%"><?php echo $persona->getNombres(); ?></td>
                     <td width="30%" ><?php echo $persona->getpApellido()." ".$persona->getsApellido(); ?></td>
@@ -333,18 +442,11 @@ function modificarPersona(){
                     <input  class="box-text" value="" id="correos" type="text"  >
                 </td>                          
             </tr>
-           
+           <tr><td align="right"><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td></tr>
         </table>
         </div>
-          <div style=" margin-top: 5%; margin-left:5%;float:right; width: 40%;">
-        <form action="javascript: return false;" id="form">
-            <table border="0" align="left" width="100%" >
-                <tr><td style="text-align: left;"><h2>Servicios</h2></td></tr>
-                <tr><td style="text-align: left;"><input type="number" id="unidadesP" required placeholder="unidades"  class="box-text" ></td></tr>
-                <tr><td align="right"><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td></tr>
-            </table>
-        </form> 
-
+    <div style=" margin-top: 5%; margin-left:5%;float:right; width: 40%;" id="vistaServicios">
+        
     </div>
     </div>  
           
