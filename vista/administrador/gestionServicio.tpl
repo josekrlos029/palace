@@ -151,6 +151,39 @@ $("#form").submit(function(){
                       }
                   });
     }
+    function validarNro(e) {
+           var key;
+            if(window.event) // IE
+	         {
+	             key = e.keyCode;
+	         }
+             else if(e.which) // Netscape/Firefox/Opera
+	         {
+	            key = e.which;
+	         }
+
+                if (key < 48 || key > 57)
+                {
+                  if(key == 46 || key == 8) // Detectar . (punto) y backspace (retroceso)
+                { return true; }
+             else 
+               { return false; }
+               }
+              return true;
+             }
+
+    function validar_texto(e) {
+           tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+             if (tecla==8) return true; 
+
+             // Patron de entrada, en este caso solo acepta letras
+                 patron =/[A-Za-z\s]/; 
+
+                   tecla_final = String.fromCharCode(tecla);
+                  return patron.test(tecla_final); 
+        } 
 </script>
 <div  id="overlay"></div>
             <div  id="mensaje">
@@ -166,8 +199,8 @@ $("#form").submit(function(){
                   
  
                     <tr><td style="text-align: left;"><input type="text" id="nombre" required placeholder="Nombre del Servicio"  class="box-text" ></td></tr> 
-                    <tr><td style="text-align: left;"><input type="number" id="tiempo" required placeholder="Tiempo de duracion en min."  class="box-text" ></td>      
-                    <tr><td style="text-align: left;"><input type="number" id="precio" required placeholder="Precio"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="number" id="tiempo" required placeholder="Tiempo de duracion en min."  class="box-text" onkeypress="javascript:return validarNro(event)"></td>      
+                    <tr><td style="text-align: left;"><input type="number" id="precio" required placeholder="Precio"  class="box-text" onkeypress="javascript:return validarNro(event)"></td></tr>
                      
                     
 

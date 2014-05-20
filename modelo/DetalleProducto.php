@@ -82,6 +82,13 @@ private function mapearDetalleProducto(DetalleProducto $factura, array $props) {
         return $parametros;
     }
 
+     public function leerProductosPorIdFactura($idFactura){
+        $sql = "SELECT * FROM detalles_producto dp, producto p WHERE dp.idProducto=p.idProducto AND dp.idFactura=".$idFactura;
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+        }
+    
         public function crearDetalleProducto(DetalleProducto $factura) {
         $sql = "INSERT INTO detalles_producto (idFactura,idProducto, cantidad, precioVenta) VALUES ( :idFactura, :idProducto, :cantidad, :precioVenta)";
         $this->__setSql($sql);

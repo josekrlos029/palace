@@ -27,6 +27,31 @@
 
 
     }
+    
+    function consultaFactura(idFactura){
+        var x = $("#mensaje");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+      
+
+        var data = { idFactura: idFactura };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/detallesFactura",
+            data: data
+        }).done(function(msg) {
+
+            $("#cargaDiv").html(msg);
+            ocultar();
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+            
+        });
+
+
+    }
 </script>
 <div  id="overlay"></div>
 <div  id="mensaje">
@@ -54,3 +79,13 @@
     </table>
     <div id="cargaTabla"></div>
 </div>
+<div id="fade" class="overlay"></div>
+<div id="light" class="modal">
+              <div style="float:right">
+                  <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
+             </div>
+    <div id="cargaDiv">
+        
+    </div>    
+       
+ </div>

@@ -329,6 +329,39 @@
             //$("#detallesProducto").append("<tr><td>"+producto+"</td><td>"+cantidad+"</td><td></td><td></td></tr>");
 
         }
+        function validarNro(e) {
+           var key;
+            if(window.event) // IE
+	         {
+	             key = e.keyCode;
+	         }
+             else if(e.which) // Netscape/Firefox/Opera
+	         {
+	            key = e.which;
+	         }
+
+                if (key < 48 || key > 57)
+                {
+                  if(key == 46 || key == 8) // Detectar . (punto) y backspace (retroceso)
+                { return true; }
+             else 
+               { return false; }
+               }
+              return true;
+             }
+
+    function validar_texto(e) {
+           tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+             if (tecla==8) return true; 
+
+             // Patron de entrada, en este caso solo acepta letras
+                 patron =/[A-Za-z\s]/; 
+
+                   tecla_final = String.fromCharCode(tecla);
+                  return patron.test(tecla_final); 
+        } 
 
     </script>
 
@@ -345,7 +378,7 @@
         <table width="60%" >
             <tr>
                 <td>Cedula:</td>
-                <td><input id="idPersona" class="box-text" type="number" /></td>
+                <td><input id="idPersona" class="box-text" type="number" onkeypress="javascript:return validarNro(event)" /></td>
             </tr>
 
             <tr >
@@ -392,8 +425,8 @@
                         <?php } ?>
                     </select>
                 </td>
-                <td><input class="box-text" id="cantidad" type="number" /></td>
-                <td><input class="box-text" id="precioUnid" type="number" /></td>
+                <td><input class="box-text" id="cantidad" type="number" onkeypress="javascript:return validarNro(event)"/></td>
+                <td><input class="box-text" id="precioUnid" type="number" onkeypress="javascript:return validarNro(event)" /></td>
                 <td ><input class="box-text" id="precioTotal" disabled type="number" /></td>
                 <td><button id="agregarProducto" class="button small red" onclick="agregarProducto()">Agregar</button></td>
             </tr>

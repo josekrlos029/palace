@@ -186,6 +186,40 @@
                       }
                   });
     }
+    
+    function validarNro(e) {
+           var key;
+            if(window.event) // IE
+	         {
+	             key = e.keyCode;
+	         }
+             else if(e.which) // Netscape/Firefox/Opera
+	         {
+	            key = e.which;
+	         }
+
+                if (key < 48 || key > 57)
+                {
+                  if(key == 46 || key == 8) // Detectar . (punto) y backspace (retroceso)
+                { return true; }
+             else 
+               { return false; }
+               }
+              return true;
+             }
+
+    function validar_texto(e) {
+           tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+             if (tecla==8) return true; 
+
+             // Patron de entrada, en este caso solo acepta letras
+                 patron =/[A-Za-z\s]/; 
+
+                   tecla_final = String.fromCharCode(tecla);
+                  return patron.test(tecla_final); 
+        } 
    
 </script>
 
@@ -200,18 +234,18 @@
     <form id="form" action="javascript: return false;">
      <table border="0" align="left" width="100%" >
                      <tr><td style="text-align: left;"><h2>Registro de Clientes</h2></td></tr>
-                     <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" ></td></tr>    
-                    <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" ></td></tr> 
-                    <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" ></td>      
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido" required placeholder="Segundo Apellido"  class="box-text" ></td></tr>
+                     <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" onkeypress="javascript:return validarNro(event)" ></td></tr>    
+                    <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td></tr> 
+                    <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td>      
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido" required placeholder="Segundo Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)"></td></tr>
                     <tr><td style="text-align: left;"><select style="width:100%;" class="box-text" id="sexo"><option default>Sexo</option><option>M</option><option>F</option></select></td></tr>
                     </table>
         </br></br>
            <table border="0" align="left" width="100%" >
                     <tr><td style="text-align: left; color:#c3c3c3; font-size:12px;">Fecha de Nacimiento:</td></tr>
-                    <tr><td style="text-align: left;"><input type="date" id="fNacimiento" required placeholder="Fecha de Nacimiento"  class="box-text" ></td></tr>
-                    <tr><td style="text-align: left;"><input type="number" id="telefono" required placeholder="Telefono"  class="box-text" ></td></tr>
-                    <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="date" id="fNacimiento" required placeholder="Fecha de Nacimiento"  class="box-text" onkeypress="javascript:return validarNro(event)"></td></tr>
+                    <tr><td style="text-align: left;"><input type="number" id="telefono" required placeholder="Telefono"  class="box-text" onkeypress="javascript:return validarNro(event)" ></td></tr>
+                    <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" onkeypress="javascript:return validarNro(event)" ></td></tr>
                     <tr><td style="text-align: left;"><input type="text" id="direccion" required placeholder="Direccion"  class="box-text" ></td></tr>
                     <tr><td style="text-align: left;"><input type="email" id="correo" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
 
