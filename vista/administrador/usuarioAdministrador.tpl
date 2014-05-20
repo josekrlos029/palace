@@ -29,7 +29,11 @@
                 $("#contenido").load("/palace/administrador/registroPersona");
 
             }
+                function configuracionUsuario() {
+                $("#titulo").html("<h1>Configuracion de Usuario</h1>");
+                $("#contenido").load("/palace/administrador/configuracionUsuario");
 
+            }
             function cargarRegistroProducto() {
                 $("#contenido").load("/palace/administrador/inventarioProducto");
                 $("#titulo").html("<h1>Inventario de Productos</h1>");
@@ -101,7 +105,7 @@
     <div id="cuerpo">
         <div id="menu-horizontal">
             <div id="titulo"></div>
-            <div id=cont-conf> configuracion de usuario</div>
+            <div id=cont-conf> <li id="" class="conf"><a onclick="configuracionUsuario()" href="#">Configuracion de Usuario</a></div>
             <div id="cont-logo">
                 <img src="../utiles/image/logo.gif" width="150px" height="60px"/> 
             </div>

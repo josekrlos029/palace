@@ -714,4 +714,29 @@ class AdministradorControl extends Controlador{
         }
    
     }
+    public function configuracionUsuario(){
+        try {
+           
+           if($this->verificarSession()){
+            $this->vista->set('titulo', 'configuracion de Usuario');
+          $idPersona = $_SESSION['idUsuario'];
+             $pers = new Persona();
+             $user = new Usuario();
+             $persona = $pers->leerPorId($idPersona);
+             $usuario = $user->leerPorId($idPersona);
+             $this->vista->set('usuario', $usuario);
+             $this->vista->set('persona', $persona);
+            return $this->vista->imprimir();
+           }
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }
+    }
+    
+    public function modificarUsuario(){
+         
+        
+    
 }
+
+        }

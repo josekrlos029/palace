@@ -79,5 +79,17 @@ class Usuario extends Modelo{
         return $usuario;
   
     }
+    public function actualizarUsuario($idPersona,$usuario) {
+        $sql = "UPDATE usuario SET usuario=:usuario WHERE idPersona=:idPersona";
+        $this->__setSql($sql);
+        $this->ejecutar(array(':idPersona'=> $idPersona, ':usuario'=>$usuario));    
+        }
+        
+        public function actualizarContraseña($idPersona,$clave) {
+        $sql = "UPDATE usuario SET contraseña=:clave WHERE idPersona=:idPersona";
+        $this->__setSql($sql);
+        $this->ejecutar(array(':idPersona'=> $idPersona, ':clave'=>$clave));    
+        }
+      
     
 }
