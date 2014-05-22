@@ -79,6 +79,9 @@ class AdministradorControl extends Controlador{
             $servicio = new Servicio();
             $servicios = $servicio->leerServicios();
             $this->vista->set('servicios', $servicios);
+            $cita = new Cita();
+            $citas = $cita->leerCitasCompletas();
+            $this->vista->set('citas', $citas);        
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {

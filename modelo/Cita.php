@@ -154,6 +154,13 @@ class Cita extends Modelo{
         
     }
         
+    public function leerCitasCompletas() {
+        $sql = "SELECT * FROM cita c, servicio s, persona p WHERE c.idServicio=s.idServicio AND c.idcliente=p.idPersona";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+    }
+        
 }
 
 ?>

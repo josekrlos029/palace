@@ -154,11 +154,12 @@
     <div style="margin-top:10%;">
         <table border="0" align="center" width="100%" id="mitabla">
             <thead>
-            <th >Cedula del Cliente</th>
-            <th width="30%">Nombre del Cliente</th>
-            <th >fecha</th>
+            <th>Cedula del Cliente</th>
+            <th>Nombre del Cliente</th>
+            <th>servidor</th>
+            <th>fecha</th>
             <th >Hora</th>
-            <th></th>
+            
             </thead>
             <tbody>
                 <tr align="left">
