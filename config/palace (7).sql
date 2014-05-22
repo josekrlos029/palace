@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-05-2014 a las 11:44:01
+-- Tiempo de generación: 23-05-2014 a las 00:57:59
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -29,11 +29,29 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `cita` (
   `idCita` int(11) NOT NULL AUTO_INCREMENT,
   `idPersona` varchar(15) NOT NULL,
+  `idCliente` varchar(15) NOT NULL,
+  `idServicio` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `estado` varchar(20) NOT NULL,
-  PRIMARY KEY (`idCita`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`idCita`),
+  KEY `idPersona_fk_cita_idx` (`idPersona`),
+  KEY `idServicio_fk_cita_idx` (`idServicio`),
+  KEY `idCliente_fk_cita_idx` (`idCliente`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`idCita`, `idPersona`, `idCliente`, `idServicio`, `fecha`, `hora`, `estado`) VALUES
+(2, '111', '777', 569, '2014-05-22', '08:00:00', 'reservado'),
+(3, '111', '777', 569, '2014-05-22', '16:20:00', 'reservado'),
+(4, '111', '777', 569, '2014-05-22', '10:00:00', 'reservado'),
+(5, '111', '777', 569, '2014-05-22', '23:30:00', 'reservado'),
+(6, '111', '777', 569, '2014-05-22', '11:00:00', 'reservado'),
+(7, '111', '777', 569, '2014-05-22', '00:00:00', 'reservado'),
+(8, '111', '777', 569, '2014-05-22', '14:00:00', 'reservado');
 
 -- --------------------------------------------------------
 
@@ -50,6 +68,26 @@ CREATE TABLE IF NOT EXISTS `detalles_producto` (
   KEY `idProducto_fk_dp_idx` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `detalles_producto`
+--
+
+INSERT INTO `detalles_producto` (`idFactura`, `idProducto`, `cantidad`, `precioVenta`) VALUES
+(16, 100, 2, 500),
+(16, 503, 1, 500),
+(17, 100, 2, 500),
+(17, 503, 1, 500),
+(18, 100, 2, 500),
+(18, 400, 1, 1500),
+(18, 502, 4, 500),
+(19, 100, 1, 500),
+(19, 500, 2, 1000),
+(19, 506, 2, 500),
+(20, 100, 5, 500),
+(21, 100, 5, 500),
+(22, 100, 3, 500),
+(23, 100, 3, 500);
+
 -- --------------------------------------------------------
 
 --
@@ -57,13 +95,28 @@ CREATE TABLE IF NOT EXISTS `detalles_producto` (
 --
 
 CREATE TABLE IF NOT EXISTS `detalles_servicio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idFactura` int(11) NOT NULL,
   `idServicio` int(11) NOT NULL,
   `idPersona` varchar(15) NOT NULL,
-  PRIMARY KEY (`idFactura`,`idServicio`,`idPersona`),
+  `precio` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `idServicio_fk_ds_idx` (`idServicio`),
-  KEY `idPersona_fk_ds_idx` (`idPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `idPersona_fk_ds_idx` (`idPersona`),
+  KEY `idFactura_fk_ds_idx` (`idFactura`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `detalles_servicio`
+--
+
+INSERT INTO `detalles_servicio` (`id`, `idFactura`, `idServicio`, `idPersona`, `precio`) VALUES
+(1, 16, 123, '111', 800),
+(2, 16, 123, '111', 800),
+(3, 18, 234, '222', 900),
+(4, 19, 123, '111', 800),
+(5, 22, 234, '222', 1500),
+(6, 23, 234, '222', 1500);
 
 -- --------------------------------------------------------
 
@@ -78,7 +131,21 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `hora` time NOT NULL,
   PRIMARY KEY (`idFactura`),
   KEY `idPersona_fk_factura_idx` (`idPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`idFactura`, `idPersona`, `fecha`, `hora`) VALUES
+(16, '123', '2014-05-17', '09:53:40'),
+(17, '123', '2014-05-17', '09:53:57'),
+(18, '111', '2014-05-17', '10:49:56'),
+(19, '222', '2014-05-17', '10:50:22'),
+(20, '123456', '2014-05-18', '15:01:58'),
+(21, '123456', '2014-05-18', '15:02:41'),
+(22, '111', '2014-05-21', '16:24:28'),
+(23, '111', '2014-05-21', '16:24:30');
 
 -- --------------------------------------------------------
 
@@ -94,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   `precioFabrica` int(11) NOT NULL,
   PRIMARY KEY (`idIngreso`),
   KEY `idProducto_fk_ip_idx` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `ingreso_producto`
@@ -106,7 +173,8 @@ INSERT INTO `ingreso_producto` (`idIngreso`, `idProducto`, `cantidad`, `fechaIng
 (3, 300, 400, '2014-04-05', 400),
 (4, 400, 100, '2014-04-05', 100),
 (5, 500, 450, '2014-04-05', 450),
-(6, 507, 500, '2014-05-11', 200);
+(6, 507, 500, '2014-05-11', 200),
+(7, 100, 500, '2014-05-18', 400);
 
 -- --------------------------------------------------------
 
@@ -138,7 +206,7 @@ INSERT INTO `persona` (`idPersona`, `nombres`, `pApellido`, `sApellido`, `sexo`,
 ('111', 'Pedro', 'Perez', 'Paramo', 'M', '2014-04-01', '3464567', '678934', 'calle 111', 'laksdfh'),
 ('123', 'kju', 'uiulu', 'liulu', 'M', '0000-00-00', '21321', '123', 'dasdj', 'kdsaj@dsadl.com'),
 ('1234', 'kju', 'uiulu', 'liulu', 'M', '2014-12-31', '21321', '123', 'dasdj', 'kdsaj@dsadll.com'),
-('123456', 'Jose Carlos ', 'Jimenez', 'Montenegro', 'M', '1005-02-12', '234234343', '11212339204', 'sadsakjlew', 'sdlksjaldksa@live.com'),
+('123456', '', 'Martinez', 'Montenegro', 'M', '1005-02-12', '234234343', '11212339204', 'sadsakjlew', 'sdlksjaldksa@live.com'),
 ('12345678', 'dalksdjl', 'jlsdajdl', 'jldsjaldj', 'M', '2014-12-31', '1233', '313', 'ldsajl', 'askljd@hotmail.com'),
 ('123456789', 'jose', 'dakdj', 'kjdaskdj', 'M', '2014-12-31', '323', '3213', 'sdasd', 'dsakjdq@jakdasd.cm'),
 ('1343241', 'ajsdasdj', 'dsajdjj', 'jsakjd', 'M', '2014-12-31', '123123', '12313', 'sadad', 'dasd@ad.com'),
@@ -153,8 +221,10 @@ INSERT INTO `persona` (`idPersona`, `nombres`, `pApellido`, `sApellido`, `sexo`,
 ('333', 'Jose ', 'Jimenez', 'Montenegro', 'M', '2014-04-06', '2309867', '8237456', 'calle 333', 'laskdfhkjads'),
 ('34324', 'ldkad', 'lkdjalkdj', 'ldkjlj', 'M', '2014-12-31', '213123', '2131', 'asdasdkj', 'kadjkaqq@jksad.com'),
 ('3871283', 'isaukdjkj', 'kjkdajkdj', 'kjdsakjd', 'M', '2014-01-01', '3213', '3213', 'kjdaskdj', 'kjdas@hotmail.com'),
+('39460556', 'Auris ', 'Parody', 'aaron', 'F', '1991-07-18', '320320320', '343456', 'calle 45 # 23 - 77', 'amparody@hotmail.com'),
 ('4234234234', 'dasdkj', 'kajd', 'kjdaskdj', 'M', '2014-12-31', '12312', '3123', 'djkajd', 'kdjaskj@hotmail.com'),
 ('4321', 'dad', 'dsad', 'dsad', 'M', '2014-12-31', '231', '1233', 'dasd', 'dsdad@asd.com'),
+('43211', 'jose', 'carrillo', 'lopez', 'M', '2014-12-31', '1234', '323', 'dsad', 'asd@das.com'),
 ('432421', 'kjdsakdj', 'kdjksajdk', 'jkdsajdk', 'M', '2014-12-31', '21312', '213', 'dasd', 'dasd@dakd.com'),
 ('444', 'Juan', 'Martinez', 'Oñate', 'M', '2014-04-04', '09328745', '4688797', 'Calle 444', 'wkegfihdfs'),
 ('543231', 'dkjdkasjk', 'djskadjk', 'jdksjadkj', 'M', '2014-12-31', '3123', '1231', 'kajdk', 'jdaskdjq@jdadj.com'),
@@ -178,14 +248,14 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `precioVenta` int(11) NOT NULL,
   `unidades` int(11) NOT NULL,
   PRIMARY KEY (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=508 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=509 ;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `precioVenta`, `unidades`) VALUES
-(100, 'Shampoo HyS', 500, 0),
+(100, 'Shampoo HyS', 500, 389),
 (200, 'Acondicionador Loreal', 600, 0),
 (300, 'Crema Pantene', 800, 0),
 (400, 'Ampolla Loreal', 1500, 0),
@@ -196,7 +266,8 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `precioVenta`, `unidades`) VALUE
 (504, 'ampolla Y', 500, 0),
 (505, 'ampolla z', 600, 0),
 (506, 'juan', 500, 0),
-(507, 'dasd', 213, 0);
+(507, 'dasd', 213, 0),
+(508, 'salpicon', 123, 0);
 
 -- --------------------------------------------------------
 
@@ -247,6 +318,7 @@ INSERT INTO `rol_persona` (`idPersona`, `idRol`) VALUES
 ('324', '002'),
 ('333', '002'),
 ('3871283', '002'),
+('43211', '002'),
 ('432421', '002'),
 ('543231', '002'),
 ('831283', '002'),
@@ -259,6 +331,7 @@ INSERT INTO `rol_persona` (`idPersona`, `idRol`) VALUES
 ('1234', '004'),
 ('123456', '004'),
 ('21334', '004'),
+('39460556', '004'),
 ('777', '004'),
 ('87878978', '004'),
 ('888', '004'),
@@ -289,7 +362,7 @@ INSERT INTO `servicio` (`idServicio`, `nombre`, `tiempo`, `precio`) VALUES
 (456, 'Manicure', 30, 900),
 (567, 'Pedicure', 40, 1000),
 (568, 'tratamiento capilar', 60, 70000),
-(569, 'tt', 40, 123);
+(569, 'tt', 80, 123);
 
 -- --------------------------------------------------------
 
@@ -324,16 +397,18 @@ CREATE TABLE IF NOT EXISTS `servicio_empleado` (
 --
 
 INSERT INTO `servicio_empleado` (`idPersona`, `idServicio`) VALUES
-('111', 123),
 ('3871283', 123),
 ('831283', 123),
 ('222', 234),
 ('3871283', 234),
+('43211', 234),
 ('333', 345),
 ('3871283', 345),
+('43211', 345),
 ('831283', 345),
-('111', 456),
-('222', 567);
+('43211', 456),
+('222', 567),
+('111', 569);
 
 -- --------------------------------------------------------
 
@@ -358,6 +433,14 @@ INSERT INTO `usuario` (`idPersona`, `usuario`, `clave`) VALUES
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cita`
+--
+ALTER TABLE `cita`
+  ADD CONSTRAINT `idCliente_fk_cita` FOREIGN KEY (`idCliente`) REFERENCES `persona` (`idPersona`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `idPersona_fk_cita` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `idServicio_fk_cita` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalles_producto`

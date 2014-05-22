@@ -14,12 +14,76 @@
 
 </style>
 <script type="text/javascript">
-    function consultaDisponibilidad(idPersona) {
-        document.getElementById('light').style.display = 'block';
-        document.getElementById('fade').style.display = 'block';        
+    
+    var servidor, calendario;
+    
+    function buscar() {
 
+        var idServicio = $("#servicio").val();
+        $("#consulta").load("/palace/administrador/consultarPersonaPorServicio/" + idServicio);
+
+    }
+    
+    function guardarCita(){
+        $("#msj").text("Cargando");
+        var idServicio = $("#servicio").val();
+        var idCliente = $("#idCliente").val();
+        var idPersona = servidor;
+        var fecha = $("#fechaCita").val();
+        var hora = $("#horaCita").val();
+        var tiempo = $("#tiempo").text();
+        var array =hora.split(":");
+        var h = array[0];
+        var m = array[1];
+        var s = array[2];
+        var hn = parseInt(h);
+        var mn = parseInt(m) + parseInt(tiempo);
+        
+        if (mn>60){
+            hn++;
+            mn -= 60;
+        }
+        
+        var data = {
+           idServicio : idServicio,
+           idCliente : idCliente,
+           idPersona : idPersona,
+           fecha: fecha,
+           hora: hora
+        };
+        
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/guardarCita",
+            data: data
+        }).done(function(msg) {
+
+            var json = eval("(" + msg + ")");
+            $("#msj").text(json.mensaje);
+            calendar.fullCalendar('renderEvent',
+            {
+                    title: json.servicio+" Para: "+json.cliente,
+                    start: fecha+" "+hora,
+                    end: fecha+" "+hn+":"+mn,
+                    allDay: false
+            },
+            false // make the event "stick"
+    );
+        
+        });
+        
+        
+    }
+    
+    function consultaDisponibilidad(idPersona) {
+        
+        var idServicio = $("#servicio").val();
+        
         $("#calendario").html("");
-        var data = { idPersona: idPersona };
+        var data = { 
+            idPersona: idPersona,
+            idServicio: idServicio
+        };
 
         $.ajax({
             type: "POST",
@@ -28,8 +92,12 @@
         }).done(function(msg) {
 
             var json = eval("(" + msg + ")");
-            
-            $('#calendario').fullCalendar({
+            $("#serv1").text(json.nombreS);
+            $("#serv2").text(json.nombre);
+            $("#precio").text(json.precio);
+            $("#tiempo").text(json.tiempo);
+            servidor = json.idPersona;
+            calendar = $('#calendario').fullCalendar({
 		       header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -37,7 +105,7 @@
 			},
 			editable: false,
 			defaultView: 'agendaDay',
-			events: json,
+			events: json.array,
 			loading: function(bool) {
 				if (bool) $('#loading').show();
 				else $('#loading').hide();
@@ -47,15 +115,11 @@
         });
 
         $(".fc-button-today").click();
+        document.getElementById('light').style.display = 'block';
+        document.getElementById('fade').style.display = 'block';        
         
     }
 
-    function buscar() {
-
-        var idServicio = $("#servicio").val();
-        $("#consulta").load("/palace/administrador/consultarPersonaPorServicio/" + idServicio);
-
-    }
     
 </script>
 <div id="cont-form">   
@@ -118,38 +182,94 @@
            document.getElementById('fade').style.display = 'none'"><img src="../utiles/image/close.png"/></a>
        
     </div>  
-    <div style="margin-top: 5%; margin-left: 10%">
-           <h1>Horario Servidor</h1>
+    <div style="margin-top: 5%; margin-left: 10%; float: left">
+        <h2>Datos</h2>
+           <br><br>
+           <table width="200%">
+               <tr>
+                   <td>
+                       Servicio: 
+                   </td>
+                   <td id="serv1">
+                       
+                   </td>
+                </tr>
+                <tr>
+                   <td>
+                       Servidor:
+                   </td>
+                
+                   <td id="serv2">
+                       
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       Precio: 
+                   </td>
+                   <td id="precio">
+                       
+                   </td>
+                </tr>
+                <tr>
+                   <td>
+                       Duración:
+                   </td>
+                
+                   <td id="tiempo">
+                       
+                   </td>
+               </tr>
+               
+           </table>
+       </div>
+    <div style="margin-top: 5%; float: right; margin-right: 10%">
+        <h2>Agregar Cita</h2>
            <br><br>
            <table width="70%">
                <tr>
                    <td>
-                       hora inicio:
+                       <input type="number" id="idCliente"  required>
                    </td>
+                </tr>
+               <tr>
                    <td>
-                       <input type="time" class="box-text">
+                       Fecha:
                    </td>
+                </tr>
+                <tr>
                    <td>
-                       Duracion:
+                       <input type="date" id="fechaCita" > 
                    </td>
+                </tr>
+                <tr>
                    <td>
-                       <input type="number" class="box-text">
+                       Hora:
+                   </td>
+                </tr>
+                <tr>
+                   <td>
+                       <input type="time" id="horaCita" > 
                    </td>
                </tr>
+               <tr>
+                   <td>
+                       <button type="submit" class="button small red" onclick="guardarCita()"> Guardar</button>
+                   </td>
+                   
+                </tr>
+                <tr>
+                   <td>
+                       <p id="msj"></p>
+                   </td>
+                   
+                </tr>
+                
            </table>
        </div>
-    
     <br>
+    <h2 style="margin-left: 10%;margin-top:25%">Horario Servidor</h2>
     <div id="loading"></div>
     <div id="calendario"></div>
-    
-    <div style="margin-top: 40%; margin-left: 80%;">
-        
-        <button class="button small red"> Agendar</button>
-    </div>
-    <div id="consultaServidor" style="float: left;"></div>
-    
-    
+   
 </div>
-
-

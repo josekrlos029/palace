@@ -18,6 +18,8 @@ class Cita extends Modelo{
     
     private $idCita;
     private $idPersona;
+    private $idServicio;
+    private $idCliente;
     private $fecha;
     private $hora;
     private $estado;
@@ -69,13 +71,50 @@ class Cita extends Modelo{
         $this->estado = $estado;
     }
 
+    public function getIdServicio() {
+        return $this->idServicio;
+    }
 
-private function mapearCita(Cita $cita, array $props) {
+    public function getIdCliente() {
+        return $this->idCliente;
+    }
+
+    public function setIdServicio($idServicio) {
+        $this->idServicio = $idServicio;
+    }
+
+    public function setIdCliente($idCliente) {
+        $this->idCliente = $idCliente;
+    }
+
+    public function getReservado() {
+        return $this->reservado;
+    }
+
+    public function getExitosa() {
+        return $this->exitosa;
+    }
+
+    public function getCancelada() {
+        return $this->cancelada;
+    }
+
+    public function getRechazada() {
+        return $this->rechazada;
+    }
+
+    private function mapearCita(Cita $cita, array $props) {
         if (array_key_exists('idCita', $props)) {
             $cita->setIdCita($props['idCita']);
         }
          if (array_key_exists('idPersona', $props)) {
             $cita->setIdPersona($props['idPersona']);
+        }
+        if (array_key_exists('idServicio', $props)) {
+            $cita->setIdServicio($props['idServicio']);
+        }
+        if (array_key_exists('idCliente', $props)) {
+            $cita->setIdCliente($props['idCliente']);
         }
          if (array_key_exists('fecha', $props)) {
             $cita->setFecha($props['fecha']);
@@ -93,6 +132,8 @@ private function mapearCita(Cita $cita, array $props) {
               
         $parametros = array(
             ':idPersona' => $pro->getIdPersona(),
+            ':idServicio' => $pro->getIdServicio(),
+            ':idCliente' => $pro->getIdCliente(),
             ':fecha' => $pro->getFecha(),
             ':hora' => $pro->getHora(),
             ':estado' => $pro->getEstado()
@@ -101,13 +142,13 @@ private function mapearCita(Cita $cita, array $props) {
     }
         
        public function crearCita(Cita $cita) {
-        $sql = "INSERT INTO cita (idPersona, fecha, hora, estado) VALUES ( :idPersona, :fecha, :hora, :estado)";
+        $sql = "INSERT INTO cita (idPersona, idServicio, idCliente, fecha, hora, estado) VALUES ( :idPersona, :idServicio, :idCliente, :fecha, :hora, :estado)";
         $this->__setSql($sql);
-        return $this->ejecutar2($this->getParametros($cita));
+        $this->ejecutar($this->getParametros($cita));
     }
     
     public function leerCitaPorId($idPersona) {
-        $sql = "SELECT * FROM cita c, servicio s WHERE c.idServicio=s.idServicio AND c.idPersona='".$idPersona."'";
+        $sql = "SELECT * FROM cita c, servicio s, persona p WHERE c.idServicio=s.idServicio AND c.idcliente=p.idPersona AND c.idPersona='".$idPersona."'";
         $this->__setSql($sql);
         return $this->consultar($sql);
         

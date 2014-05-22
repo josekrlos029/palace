@@ -706,8 +706,6 @@ class AdministradorControl extends Controlador{
             echo json_encode($exc->getCode());
         }
 
-        
-        
     }
   public function configuracionUsuario(){
           try {
@@ -759,7 +757,12 @@ class AdministradorControl extends Controlador{
     public function disponibilidadServidor(){
         
         $idPersona= isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+        $idServicio= isset($_POST['idServicio']) ? $_POST['idServicio'] : NULL;
         
+        $persona= new Persona();
+        $servicio = new Servicio();
+        $p = $persona->leerPorId($idPersona);
+        $serv = $servicio->leerServicioPorId($idServicio);
         $cita = new Cita();
         
         $citas = $cita->leerCitaPorId($idPersona);
@@ -782,15 +785,48 @@ class AdministradorControl extends Controlador{
             
            $array[] = array(
                 'id' => $c["idCita"],
-                'title' => $c["nombre"],
+                'title' => $c["nombre"]." Para:".$c["nombres"]." ".$c["pApellido"],
                 'start' => $c["fecha"]." ".$h.":".$m,
                 'end' => $c["fecha"]." ".$nh.":".$nm,
                 'allDay'=>false
            );            
         }
         
-        echo json_encode($array);
+        echo json_encode(array("idPersona"=>$p->getIdPersona(),"nombre"=>$p->getNombres()." ".$p->getPApellido(),"nombreS"=>$serv->getNombre(),"precio"=>$serv->getPrecio(),"tiempo"=>$serv->getTiempo(),"array"=>$array));
         
+        
+    }
+    public function guardarCita(){
+        try {
+            $idPersona= isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+        $idServicio= isset($_POST['idServicio']) ? $_POST['idServicio'] : NULL;
+        $idCliente= isset($_POST['idCliente']) ? $_POST['idCliente'] : NULL;
+        $fecha= isset($_POST['fecha']) ? $_POST['fecha'] : NULL;
+        $hora= isset($_POST['hora']) ? $_POST['hora'] : NULL;
+        
+        $persona = new Persona();
+        $p = $persona->leerPorId($idCliente);
+        
+        $servicio = new Servicio();
+        $s= $servicio->leerServicioPorId($idServicio);
+        
+        $cita = new Cita();
+        $cita->setEstado($cita->getReservado());
+        $cita->setFecha($fecha);
+        $cita->setHora($hora);
+        $cita->setIdCliente($idCliente);
+        $cita->setIdServicio($idServicio);
+        $cita->setIdPersona($idPersona);
+        
+        $cita->crearCita($cita);
+        
+        echo json_encode(array("mensaje"=>"Cita Guardada Correctamente","cliente"=>$p->getNombres()." ".$p->getPApellido(),"servicio"=>$s->getNombre(),"tiempo"=>$s->getTiempo()));
+        
+        
+        } catch (Exception $exc) {
+            echo json_encode(array("mensaje"=>"Error al Guardar Cita"));
+        }
+
         
     }
 }
