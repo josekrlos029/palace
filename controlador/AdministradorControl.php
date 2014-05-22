@@ -660,6 +660,17 @@ class AdministradorControl extends Controlador{
      return $this->vista->imprimir();   
  }
  
+ public function tablaCargaFecha(){
+  
+     $inicio= isset($_POST['inicio']) ? $_POST['inicio'] : NULL;
+     $fin = isset($_POST['fin']) ? $_POST['fin'] : NULL;
+     
+     $ingreso = new IngresoProducto();
+     $detalles = $ingreso->leerIngresoPorRangoFecha($inicio, $fin);
+     $this->vista->set('detalles', $detalles);
+     return $this->vista->imprimir();   
+ }
+ 
  public function consultarServiciosPersona() {
      $idPersona= isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
      
@@ -743,5 +754,43 @@ class AdministradorControl extends Controlador{
         $this->vista->set('ds', $dServicios);
         $this->vista->set('dp', $dProductos);
         return $this->vista->imprimir();   
+    }
+    
+    public function disponibilidadServidor(){
+        
+        $idPersona= isset($_POST['idPersona']) ? $_POST['idPersona'] : NULL;
+        
+        $cita = new Cita();
+        
+        $citas = $cita->leerCitaPorId($idPersona);
+        $array = array();
+        foreach ($citas as $c) {
+            
+            $hora= $c["hora"];
+            $ah = explode(":", $hora);
+            
+            $h = $ah[0];
+            $m = $ah[1];
+            $s= $ah[2];
+            
+            $nm= $m + $c["tiempo"];
+            $nh= $h;
+            if($nm>60){
+                $nm -=60;
+                $nh +=1;
+            }
+            
+           $array[] = array(
+                'id' => $c["idCita"],
+                'title' => $c["nombre"],
+                'start' => $c["fecha"]." ".$h.":".$m,
+                'end' => $c["fecha"]." ".$nh.":".$nm,
+                'allDay'=>false
+           );            
+        }
+        
+        echo json_encode($array);
+        
+        
     }
 }

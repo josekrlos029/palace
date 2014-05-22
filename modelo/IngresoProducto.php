@@ -104,6 +104,12 @@ public function crearProducto(IngresoProducto $producto) {
         $this->ejecutar($this->getParametros($producto));
     }
 
+    public function leerIngresoPorRangoFecha($inicio,$fin){
+        $sql = "SELECT * FROM ingreso_producto ip, producto p WHERE ip.idProducto=p.idProducto AND ip.fechaIngreso BETWEEN '".$inicio."' AND '".$fin."' ORDER BY ip.fechaIngreso DESC ";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+        }
         
 }
 

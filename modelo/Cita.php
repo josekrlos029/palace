@@ -21,7 +21,13 @@ class Cita extends Modelo{
     private $fecha;
     private $hora;
     private $estado;
-        
+         
+    private $reservado = "reservado";
+    private $exitosa = "exitosa";
+    private $cancelada = "cancelada";
+    private $rechazada = "rechazada"; // se apartó la cita.. y no fue
+
+
     public function getIdCita() {
         return $this->idCita;
     }
@@ -64,8 +70,48 @@ class Cita extends Modelo{
     }
 
 
-
+private function mapearCita(Cita $cita, array $props) {
+        if (array_key_exists('idCita', $props)) {
+            $cita->setIdCita($props['idCita']);
+        }
+         if (array_key_exists('idPersona', $props)) {
+            $cita->setIdPersona($props['idPersona']);
+        }
+         if (array_key_exists('fecha', $props)) {
+            $cita->setFecha($props['fecha']);
+        }
         
+        if (array_key_exists('hora', $props)) {
+            $cita->setHora($props['hora']);
+        }
+        if (array_key_exists('estado', $props)) {
+            $cita->setEstado($props['estado']);
+        }
+    }
+      
+    private function getParametros(Cita $pro){
+              
+        $parametros = array(
+            ':idPersona' => $pro->getIdPersona(),
+            ':fecha' => $pro->getFecha(),
+            ':hora' => $pro->getHora(),
+            ':estado' => $pro->getEstado()
+        );
+        return $parametros;
+    }
+        
+       public function crearCita(Cita $cita) {
+        $sql = "INSERT INTO cita (idPersona, fecha, hora, estado) VALUES ( :idPersona, :fecha, :hora, :estado)";
+        $this->__setSql($sql);
+        return $this->ejecutar2($this->getParametros($cita));
+    }
+    
+    public function leerCitaPorId($idPersona) {
+        $sql = "SELECT * FROM cita c, servicio s WHERE c.idServicio=s.idServicio AND c.idPersona='".$idPersona."'";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+    }
         
 }
 

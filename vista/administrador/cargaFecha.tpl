@@ -1,3 +1,34 @@
+<script>
+    function cargarTabla(){
+        var x = $("#mensaje");
+        cargando();
+        x.html ("<p>Cargando...</p>");
+        x.show("speed");
+        
+        var idProducto = $("#producto").val();
+        var inicio = $("#inicio").val();
+        var fin = $("#fin").val();
+        var data = { 
+            idProducto: idProducto,
+            inicio: inicio,
+            fin: fin
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/tablaCargaFecha",
+            data: data
+        }).done(function(msg) {
+
+            //var json = eval("(" + msg + ")");
+            $("#cargaTabla").html(msg);
+            ocultar();
+            
+        });
+
+
+    }
+</script>
 <div  id="overlay"></div>
 <div  id="mensaje">
     <div style="float:right">
@@ -15,7 +46,7 @@
             <td align="right">Fecha Incio:</td>
             <td><input type="date" class="box-text" id="inicio"></td>
             <td align="right">Fecha Final:</td>
-            <td><input type="date" class="box-text" id="inicio"></td>
+            <td><input type="date" class="box-text" id="fin"></td>
             
         </tr>
     </table>

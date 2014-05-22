@@ -33,7 +33,7 @@
    
         
         $(document).ready(function(){
-            $('#calendar').fullCalendar({
+            $('#calendario').fullCalendar({
 		
 			editable: false,
 			defaultView: 'agendaDay',
@@ -112,7 +112,7 @@
 </table>
 <div class="calendario-agenda">
             <div id="loading"></div>
-            <div id="calendar" style="width: 500px; margin: 0 auto;" ></div>
+            <div id="calendar" ></div>
 </div>
 </div>
 </div> 

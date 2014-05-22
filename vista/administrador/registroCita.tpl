@@ -1,10 +1,53 @@
+<style>
+
+	#light {
+		margin: 0;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendario {
+		width: 700px;
+		margin: 40px auto;
+	}
+
+</style>
 <script type="text/javascript">
     function consultaDisponibilidad(idPersona) {
         document.getElementById('light').style.display = 'block';
-        document.getElementById('fade').style.display = 'block';
+        document.getElementById('fade').style.display = 'block';        
 
-        $("#consultaServidor").html("...");
+        $("#calendario").html("");
+        var data = { idPersona: idPersona };
 
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/disponibilidadServidor",
+            data: data
+        }).done(function(msg) {
+
+            var json = eval("(" + msg + ")");
+            
+            $('#calendario').fullCalendar({
+		       header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: false,
+			defaultView: 'agendaDay',
+			events: json,
+			loading: function(bool) {
+				if (bool) $('#loading').show();
+				else $('#loading').hide();
+			}
+			
+		});
+        });
+
+        $(".fc-button-today").click();
+        
     }
 
     function buscar() {
@@ -14,23 +57,6 @@
 
     }
     
-    $(document).ready(function(){
-        $('#calendario').fullCalendar({
-		       header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			editable: false,
-			defaultView: 'agendaDay',
-			events: "",
-			loading: function(bool) {
-				if (bool) $('#loading').show();
-				else $('#loading').hide();
-			}
-			
-		});
-    })
 </script>
 <div id="cont-form">   
     <table border="0" align="left" width="100%" >
@@ -114,7 +140,8 @@
        </div>
     
     <br>
-    <div id="calendario" style="width: 90%;position: absolute;"></div>
+    <div id="loading"></div>
+    <div id="calendario"></div>
     
     <div style="margin-top: 40%; margin-left: 80%;">
         
