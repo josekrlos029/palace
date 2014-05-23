@@ -220,6 +220,8 @@
                    tecla_final = String.fromCharCode(tecla);
                   return patron.test(tecla_final); 
         } 
+        
+     
    
 </script>
 
@@ -237,7 +239,7 @@
                      <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" onkeypress="javascript:return validarNro(event)" ></td></tr>    
                     <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td></tr> 
                     <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td>      
-                    <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido" required placeholder="Segundo Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)"></td></tr>
+                    <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido"  placeholder="Segundo Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)"></td></tr>
                     <tr><td style="text-align: left;"><select style="width:100%;" class="box-text" id="sexo"><option default>Sexo</option><option>M</option><option>F</option></select></td></tr>
                     </table>
         </br></br>
@@ -289,13 +291,16 @@
                 </div>
                  
                 </div>
+
 <div id="fade" class="overlay"></div>
             <div id="light" class="modal">
+                <form id="form" action="javascript: return false;">    
               <div style="float:right">
                   <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="../utiles/image/close.png"/></a>
              </div>
                 
               <div style=" margin-top: 2%;margin-left: 5%; float:left; width:45%;">
+                             
         <h2>Datos del Cliente</h2>
         </br>
         <table width="100%">
@@ -312,7 +317,7 @@
                     Nombres:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="nombre" type="text" >
+                    <input class="box-text" value="" id="nombre" type="text"  >
                 </td>                          
             </tr>
             <tr>
@@ -320,7 +325,7 @@
                     Primer Apellido:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="pApellidos" type="text">
+                    <input class="box-text" value="" id="pApellidos"  type="text" >
                 </td>                          
             </tr>
             <tr>
@@ -328,7 +333,7 @@
                     Segundo Apellido:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="sApellidos" type="text" >
+                    <input class="box-text" value="" id="sApellidos"  type="text" >
                 </td>                          
             </tr>
             <tr>
@@ -344,7 +349,7 @@
                     fecha de Nacimiento:
                 </td>
                 <td>
-                    <input class="box-text" value="" id="fNacimientos" type="date" >
+                    <input class="box-text" value="" id="fNacimientos"  type="date" >
                 </td>                          
             </tr>
             <tr>
@@ -376,7 +381,7 @@
                     Correo:
                 </td>
                 <td>
-                    <input  class="box-text" value="" id="correos" type="text"  >
+                    <input  class="box-text" value="" id="correos"  type="text"  >
                 </td>                          
             </tr>
             <tr>
@@ -384,5 +389,7 @@
                 <td><button type="submit" class="button red small" onclick="modificarPersona()">Modificar</button></td>
             </tr>
         </table>
-    </div>  
+     
+    </div> 
+                   </form>
             </div>

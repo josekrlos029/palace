@@ -331,7 +331,7 @@ function modificarPersona(){
             <tr><td style="text-align: left;"><input type="number" id="idPersona" name="idPersona" required placeholder="Cedula" class="box-text" onkeypress="javascript:return validarNro(event)" ></td></tr>    
             <tr><td style="text-align: left;"><input type="text" name="nombres" id="nombres" required placeholder="Nombres"  class="box-text" onkeypress="javascript:return validar_texto(event)"></td></tr> 
             <tr><td style="text-align: left;"><input type="text" name="pApellido" id="pApellido" required placeholder="Primer Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td>      
-            <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido" required placeholder="Segundo Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td></tr>
+            <tr><td style="text-align: left;"><input type="text" name="sApellido" id="sApellido"  placeholder="Segundo Apellido"  class="box-text" onkeypress="javascript:return validar_texto(event)" ></td></tr>
            <tr><td style="text-align: left;"><select style="width:100%;" class="box-text" id="sexo"><option default>Sexo</option><option>M</option><option>F</option></select></td></tr>
       </table>
         </br></br>
