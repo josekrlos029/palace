@@ -224,7 +224,10 @@ function modificarPersona(){
         var celular = $("#celular").val();
         var direccion = $("#direccion").val();
         var correo = $("#correo").val();
-
+        var rol = "E"
+        if($("#activarMedico").is(':checked')) { 
+            rol = "M";
+        }
         var servicios = document.getElementById("servicios").options;
         var arreglo = new Array();
         var j = 0;
@@ -246,7 +249,7 @@ function modificarPersona(){
             celular: celular,
             direccion: direccion,
             correo: correo,
-            rol: "E",
+            rol: rol,
             servicios: JSON.stringify(arreglo)
         };
 
@@ -342,6 +345,10 @@ function modificarPersona(){
             <tr><td style="text-align: left;"><input type="number" id="celular" required placeholder="Celular"  class="box-text" onkeypress="javascript:return validarNro(event)" ></td></tr>
             <tr><td style="text-align: left;"><input type="text" id="direccion" required placeholder="Direccion"  class="box-text" ></td></tr>
             <tr><td style="text-align: left;"><input type="email" id="correo" required placeholder="Correo Electronico"  class="box-text" ></td></tr>
+            <tr>
+                <td align="left" width="40%" style="padding: 2px" ><input id="activarMedico" type="checkbox" />Médico</td>
+                    
+                </tr>
             <tr><td style="text-align: left;"><select multiple="" id="servicios" class="box-text" >
                         <?php foreach($servicios as $servicio){ ?>
                         <option value="<?php echo $servicio->getIdServicio(); ?>"><?php echo $servicio->getNombre(); ?></option>

@@ -94,6 +94,20 @@ Class Factura extends Modelo{
         
         }
         
+        public function leerFacturaPorId($idFactura){
+        $sql = "SELECT * FROM factura WHERE idFactura=".$idFactura;
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $factura = NULL;
+        foreach ($resultado as $fila) {
+            $factura = new Factura();
+            $this->mapearFactura($factura, $fila);
+            
+        }
+        return $factura;
+        
+        }
+        
 }
 
 ?>

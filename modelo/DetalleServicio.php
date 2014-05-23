@@ -83,7 +83,7 @@ private function mapearDetalleServicio(DetalleServicio $servicio, array $props) 
     }
     
     public function leerServiciosPorIdFactura($idFactura){
-        $sql = "SELECT * FROM detalles_servicio ds, persona p, servicio s WHERE ds.idServicio=s.idServicio AND ds.idPersona=p.idPersona AND ds.idFactura=".$idFactura;
+        $sql = "SELECT s.*, p.*, ds.precio as precioFactura, ds.idFactura as idFactura FROM detalles_servicio ds, persona p, servicio s WHERE ds.idServicio=s.idServicio AND ds.idPersona=p.idPersona AND ds.idFactura=".$idFactura;
         $this->__setSql($sql);
         return $this->consultar($sql);
         

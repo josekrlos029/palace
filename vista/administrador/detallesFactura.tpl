@@ -22,7 +22,7 @@
                     <td><?php echo $d["idFactura"]; ?></td>
                     <td><?php echo $d["nombre"]; ?></td>
                     <td><?php echo $d["nombres"]." ".$d["pApellido"]; ?></td>
-                    <td><?php echo $d["precio"];?></td>
+                    <td><?php echo $d["precioFactura"];?></td>
                     
                 </tr>
                 <?php $sumaS += $d["precio"]; } ?>

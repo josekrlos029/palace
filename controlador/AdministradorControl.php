@@ -276,6 +276,17 @@ class AdministradorControl extends Controlador{
                     $servicio->crearServicioPersona($a, $idPersona);
                 }
                 
+            }elseif($r == "M"){
+                $idRol = $rol->getMedico();
+                $servicios = isset($_POST['servicios']) ? $_POST['servicios'] : NULL;
+                $servicios = json_decode($servicios);
+                
+                $servicio = new Servicio();
+                foreach ($servicios as $a){
+                    
+                    $servicio->crearServicioPersona($a, $idPersona);
+                }
+                
             }
             
             $rol->crearRolPersona($idPersona, $idRol);
@@ -606,7 +617,7 @@ class AdministradorControl extends Controlador{
                 $ds->crearDetalleServicio($ds);
             }
             
-            echo json_encode("exito");
+            echo json_encode(array("respuesta"=>"exito","idFactura"=>$idFactura));
             
         } catch (Exception $exc) {
             echo json_encode($exc->getTraceAsString());
@@ -850,4 +861,150 @@ class AdministradorControl extends Controlador{
       
         }
     
+    public function generarFactura($idFactura){
+        
+        $factura = new Factura();
+        $dp = new DetalleProducto();
+        $ds = new DetalleServicio();
+        $persona = new Persona();
+        $f = $factura->leerFacturaPorId($idFactura);
+        $detp = $dp->leerProductosPorIdFactura($idFactura);
+        $dets = $ds->leerServiciosPorIdFactura($idFactura);
+        
+        $p = $persona->leerPorId($f->getIdPersona());
+        
+        
+        $pdf = new FPDF('P', 'cm', 'Letter');
+        
+        $x=1; $y=1;
+        
+        $pdf->AddPage();
+        $pdf->SetFont("Arial", "B", 15);
+        $pdf->SetXY($x,$y);
+        $pdf->SetTextColor(53,187, 240);
+        $pdf->cell(19, 1, utf8_decode("PALACE SPA MÉDICO ESTÉTICO"), 0, 0, "C");
+        $pdf->Image('utiles/image/logo.jpg', 1, 1.25, 4.5);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont("Arial", "", 10);
+        $y+=.5;
+        $pdf->SetXY($x,$y);
+        $pdf->Cell(19, 1, utf8_decode("NIT. 42.493.910 - 8"), 0, 1, "C");
+        $y+=.5;
+        $pdf->SetXY($x,$y);
+        $pdf->Cell(19, 1, utf8_decode("Carrera 19 # 7B - 14 Los Músicos"), 0, 1, "C");
+        $y+=.5;
+        $pdf->SetXY($x,$y);
+        $pdf->Cell(19, 1, "Valledupar - Cesar", 0, 1, "C");
+        $x=16; $y = 1;
+        $pdf->SetXY($x,$y);
+        $pdf->SetFillColor(53,187, 240);
+        $pdf->SetTextColor(255,255, 255);
+        $pdf->SetDrawColor(0,144,217);
+        $pdf->Cell(4, 0.5, utf8_decode("Factura N°"), 1, 0, "L",1);
+        $y += .5;
+        $pdf->SetXY($x,$y);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont("Arial", "", 12);
+        $pdf->Cell(4, 1, $idFactura."    ", 1, 0, "R",0);
+        $pdf->SetFont("Arial", "", 10);
+        $y += 1.25;
+        $pdf->SetXY($x,$y);
+        $pdf->SetFillColor(53,187, 240);
+        $pdf->SetTextColor(255,255, 255);
+        $pdf->SetDrawColor(0,144,217);
+        $pdf->Cell(4, 0.5, utf8_decode("Fecha"), 1, 0, "L",1);
+        $y += .5;
+        $pdf->SetXY($x,$y);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont("Arial", "", 12);
+        $pdf->Cell(4, 1, $f->getFecha()."    ", 1, 0, "R",0);
+        $y += 1.25;
+        $x = 1;
+        $pdf->SetXY($x,$y);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont("Arial", "", 10);
+        $pdf->SetTextColor(255,255, 255);
+        $pdf->Cell(19, 0.5, utf8_decode("Datos del Cliente"), 1, 0, "L",1);
+        $y += .5;
+        $pdf->SetXY($x,$y);
+        $pdf->SetFont("Arial", "", 11);
+        $pdf->SetTextColor(53,187, 240);
+        $pdf->Cell(2, 1, "Nombre:", 0, 0, "R",0);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Cell(8, 1, utf8_decode($p->getNombres()." ".$p->getPApellido()." ".$p->getSApellido()), 0, 0, "L",0);
+        $pdf->SetTextColor(53,187, 240);
+        $pdf->Cell(2, 1, utf8_decode("Dirección:"), 0, 0, "R",0);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Cell(7, 1, utf8_decode($p->getDireccion()), 0, 0, "L",0);
+        
+        $y += .5;
+        $pdf->SetXY($x,$y);
+        $pdf->SetFont("Arial", "", 11);
+        $pdf->SetTextColor(53,187, 240);
+        $pdf->Cell(2, 1, "C.C:", 0, 0, "R",0);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Cell(8, 1, $p->getIdPersona(), 0, 0, "L",0);
+        $pdf->SetTextColor(53,187, 240);
+        $pdf->Cell(2, 1, utf8_decode("Teléfono:"), 0, 0, "R",0);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Cell(7, 1, $p->getCelular(), 0, 0, "L",0);
+        
+        $y-=.5;
+        $pdf->SetXY($x,$y);
+        $pdf->Cell(19, 1.5, "", 1, 0, "R",0);
+        
+        $y+=2;
+        $pdf->SetXY($x,$y);
+        $pdf->SetFont("Arial", "", 10);
+         $pdf->SetTextColor(255,255, 255);
+        $pdf->Cell(2.5, 0.5, "CANTIDAD", 1, 0, "C",1);
+        $pdf->Cell(11.5, 0.5, "PRODUCTO/SERVICIO", 1, 0, "C",1);
+        $pdf->Cell(2.5, 0.5, "PRECIO UNIT.", 1, 0, "C",1);
+        $pdf->Cell(2.5, 0.5, "SUBTOTAL", 1, 0, "C",1);
+        
+        $y+=.5;
+        $pdf->SetXY($x,$y);
+        $pdf->Cell(2.5, 16, "", 1, 0, "R",0);
+        $pdf->Cell(11.5, 16, "", 1, 0, "R",0);
+        $pdf->Cell(2.5, 16, "", 1, 0, "R",0);
+        $pdf->Cell(2.5, 16, "", 1, 0, "R",0);
+        $yn = $y;
+        
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetXY($x,$y);
+        $suma=0;
+        foreach ($dets as $det){
+            
+            $pdf->Cell(2.5, 0.5, "1", 0, 0, "R",0);
+            $pdf->Cell(11.5, 0.5, $det["nombre"], 0, 0, "R",0);
+            $pdf->Cell(2.5, 0.5, $det["precioFactura"], 0, 0, "R",0);
+            $pdf->Cell(2.5, 0.5, $det["precioFactura"], 0, 0, "R",0);
+            $suma +=$det["precioFactura"];
+            $y+=.5;
+            $pdf->SetXY($x,$y);
+        }
+        
+        foreach ($detp as $det){
+            $pdf->Cell(2.5, 0.5, $det["cantidad"], 0, 0, "R",0);
+            $pdf->Cell(11.5, 0.5, $det["nombre"], 0, 0, "R",0);
+            $pdf->Cell(2.5, 0.5, $det["precioVenta"], 0, 0, "R",0);
+            $pdf->Cell(2.5, 0.5, $det["precioVenta"] * $det["cantidad"], 0, 0, "R",0);
+            $suma += $det["precioVenta"] * $det["cantidad"];
+            $y+=.5;
+            $pdf->SetXY($x,$y);
+            
+        }
+        
+        $yn += 16;
+        $pdf->SetXY($x,$yn);
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(2.5, 0.5, "", 0, 0, "R",0);
+            $pdf->Cell(11.5, 0.5, "", 0, 0, "R",0);
+            $pdf->Cell(2.5, 0.5,"TOTAL", 1, 0, "R",1);
+            $pdf->SetTextColor(0,0,0);
+            $pdf->Cell(2.5, 0.5, $suma, 1, 0, "R",0);
+            
+        $pdf->Output("Factura N° ".$idFactura, "I");
+    }
+        
 }

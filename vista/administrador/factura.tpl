@@ -88,9 +88,9 @@
                 })
                         .done(function(msg) {
                             var json = eval("(" + msg + ")");
-                            if(json == "exito"){
+                            if(json.respuesta == "exito"){
                                 x.html ( "<p>Factura Guardada Correctamente</p>");
-                                
+                                window.open("/palace/administrador/generarFactura/"+json.idFactura);
                                 exito();
                                 ocultar();
                             }else{
