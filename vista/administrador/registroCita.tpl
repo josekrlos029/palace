@@ -17,6 +17,25 @@
     
     var servidor, calendario;
     
+    function consultaPorFecha(){
+        
+        var fecha = $("#fechaC").val();
+        var data = {
+           fecha: fecha
+           
+        };
+        
+        $.ajax({
+            type: "POST",
+            url: "/palace/administrador/tablaCitas",
+            data: data
+        }).done(function(msg) {
+            $("#cargaTabla").html(msg);
+            
+        });
+        
+    }
+    
     function buscar() {
 
         var idServicio = $("#servicio").val();
@@ -149,27 +168,32 @@
 
     <table border="0" align="right" width="70%">
         <tr><td style="text-align: center;"><h2>Consultar Citas</h2></td>
-            <td style="text-align: right;"><input type="text" name="idPersona" required placeholder="Cedula del Cliente" class="box-text" ></td>
+            <td style="text-align: right;"><input type="date" required class="box-text" id="fechaC"></td>
+            <td style="text-align: right;"><button type="submit" class="button small red" onclick="consultaPorFecha()">Consultar</button></td>
     </table>
-    <div style="margin-top:10%;">
+    <div style="margin-top:10%;" id="cargaTabla">
         <table border="0" align="center" width="100%" id="mitabla">
             <thead>
             <th>Cedula del Cliente</th>
             <th>Nombre del Cliente</th>
-            <th>servidor</th>
-            <th>fecha</th>
+            <th>Servicio</th>
+            <th>Servidor</th>
+            <th>Fecha</th>
             <th >Hora</th>
             
             </thead>
             <tbody>
+                <?php foreach($citas as $cita){ ?>
                 <tr align="left">
-                    <td >1065655456</div></td>
-                    <td >Jose Carlos Jimenez</div></td>
-                    <td >10000</div></td>
-                    <td >50000</div></td>
-                    <td style="text-align:right;"><button type="submit" class="button small red"  onclick="consultaCita();">...</button></td>
+                    <td><?php echo $cita["idCliente"]; ?></td>
+                    <td ><?php echo $cita["nombres"]." ".$cita["pApellido"]; ?></td>
+                    <td><?php echo $cita["nombre"]; ?></td>
+                    <td ><?php echo $cita["nombreCliente"]." ".$cita["apellidoCliente"]; ?></td>
+                    <td><?php echo $cita["fecha"]; ?></td>
+                    <td><?php echo $cita["hora"]; ?></td>
+                    
                 </tr>
-
+                <?php } ?>
             </tbody>
 
         </table>

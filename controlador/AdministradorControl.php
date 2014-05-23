@@ -80,7 +80,9 @@ class AdministradorControl extends Controlador{
             $servicios = $servicio->leerServicios();
             $this->vista->set('servicios', $servicios);
             $cita = new Cita();
-            $citas = $cita->leerCitasCompletas();
+            $fecha = getdate();
+            $FechaTxt=$fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
+            $citas = $cita->leerCitasDelDia($FechaTxt);
             $this->vista->set('citas', $citas);        
             return $this->vista->imprimir();
  
@@ -832,4 +834,20 @@ class AdministradorControl extends Controlador{
 
         
     }
+    
+    public function tablaCitas(){
+        try {
+           $fecha= isset($_POST['fecha']) ? $_POST['fecha'] : NULL;
+            $cita = new Cita();
+            
+            $citas = $cita->leerCitasDelDia($fecha);
+            $this->vista->set('citas', $citas);        
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }
+    
 }
