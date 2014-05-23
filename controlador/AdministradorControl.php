@@ -281,6 +281,12 @@ class AdministradorControl extends Controlador{
                 $servicios = isset($_POST['servicios']) ? $_POST['servicios'] : NULL;
                 $servicios = json_decode($servicios);
                 
+                $usuario = new Usuario();
+                $usuario->setIdPersona($idPersona);
+                $usuario->setUsuario($idPersona);
+                $usuario->setClave($idPersona);
+                $usuario->crearUsuario($usuario);
+                
                 $servicio = new Servicio();
                 foreach ($servicios as $a){
                     

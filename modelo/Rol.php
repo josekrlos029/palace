@@ -52,14 +52,15 @@ class Rol extends Modelo{
   public function leerRoles($idPersona){
         $sql =  "SELECT rp.idRol, r.nombre FROM rol_persona rp, rol r WHERE rp.idRol= r.idRol AND rp.idPersona='".$idPersona."'";
         $this->__setSql($sql);
-        $resultado = $this->consultar($sql);
-        $roles = array();
+        return $this->consultar($sql);
+        
+        /*$roles = array();
         foreach ($resultado as $fila){
             $rol = new Rol();
             $this->mapearRol($rol, $fila);
             $roles[$rol->getIdRol()] = $rol;
         }
-        return $roles;
+        return $roles;*/
     }
     
     public function rolPersona($idPersona){

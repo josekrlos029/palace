@@ -49,7 +49,19 @@ class InicioControl extends Controlador{
                 echo json_encode("error"); 
             }else{
                 $_SESSION['idUsuario'] = $usuario->getIdPersona();
-                echo json_encode("/palace/administrador/usuarioAdministrador"); 
+                $rol= new Rol();
+                $roles = $rol->leerRoles($usuario->getIdPersona());
+                
+                foreach ($roles as $r){
+                    
+                    if ($r["idRol"] == "001"){
+                        echo json_encode("/palace/administrador/usuarioAdministrador"); 
+                    }elseif ($r["idRol"] == "003"){
+                        echo json_encode("/palace/medico/usuarioMedico"); 
+                    }
+                    
+                }
+                
             }
         } catch (Exception $exc){
             echo  json_encode('Error de aplicacion: ' . $exc->getMessage());

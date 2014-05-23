@@ -59,11 +59,17 @@ class Usuario extends Modelo{
         $parametros = array(
             ':idPersona' => $adm->getIdPersona(),
             ':usuario' => $adm->getUsuario(),
-            ':clave' => sha1( $adm->getContraseña())
+            ':clave' => sha1( $adm->getClave())
             );
         return $parametros;
     }
 
+    public function crearUsuario(Usuario $usuario) {
+        $sql = "INSERT INTO usuario (idPersona, usuario, clave) VALUES (:idPersona,:usuario,:clave)";
+        $this->__setSql($sql);
+        $this->ejecutar($this->getParametros($usuario));
+    }
+    
  public function verificarUsuario($usuario, $clave) {
         $sql = "SELECT * FROM usuario WHERE usuario=? AND clave=?";
         $clave1= sha1($clave);
