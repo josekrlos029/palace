@@ -2,6 +2,60 @@
 
     <script>
 
+        function quitarProducto(idProducto){
+            $("#tProductos .rc").each(function(index) {
+                
+                var band = false; var precio; var total;
+                $(this).children("td").each(function(index2) {
+                    switch (index2) {
+                        case 0:
+                            if($(this).text()== idProducto){
+                                band=true;
+                            }
+                            break;
+                        case 4:
+                            precio = $(this).text();
+                    }
+                    
+                });
+                if (band==true){
+                    $(this).remove();
+                    total = parseInt($("#total").val());
+                    precio = parseInt(precio);
+                    $("#total").val(total- precio);
+                }
+                    
+            });
+        }
+        
+        function quitarServicio(idServicio){
+            $("#tServicios .rs").each(function(index) {
+                var band = false; var precio; var total;
+
+                $(this).children("td").each(function(index2) {
+                    switch (index2) {
+                        case 0:
+                             if($(this).text()== idServicio){
+
+                                band = true;
+                            }
+                            break;
+                        case 4:
+                            precio = $(this).text();    
+                                                
+                    }
+                   
+                });
+               if (band==true){
+                    $(this).remove();
+                    total = parseInt($("#total").val());
+                    precio = parseInt(precio);
+                    
+                    $("#total").val(total- precio);
+                } 
+            });
+        }
+
         function guardar() {
             
             if($("#idPersona").val()== null || $("#idPersona").val()== "" || $("#nombre").val()== "No existe en la Base de Datos"){
@@ -203,7 +257,7 @@
 
             
             $("#tProductos .rc").each(function(index) {
-                var idProducto, nombreProducto, cantidad, precio, subtotal;
+                
 
                 $(this).children("td").each(function(index2) {
                     switch (index2) {
@@ -293,15 +347,17 @@
                             if(x == "1"){
                                 
                                 $(this).text(cantidad);
-                                 c= cantidad;
+                                 c= parseInt(cantidad);
                             }else if(x=="2"){
                                 var cant = $(this).text();
                                 cant = parseInt(cant);
                                 cantidad = parseInt(cantidad);
                                 c=cant + cantidad;
                                 $(this).text(c);
-                            }    
-                            
+                            } else{
+                                var cant = $(this).text();
+                                c =parseInt(cant);
+                            }
                             break;
                         case 3:
                             preu = parseInt($(this).text());
@@ -317,11 +373,11 @@
                 
                 });
                 if(band==0){
-                    $("#tProductos").append("<tr class='rc'><td>" + idProducto + "</td><td>" + producto + "</td><td>" + cantidad + "</td><td>" + precioU + "</td><td>" + precioT + "</td></tr>");
+                    $("#tProductos").append("<tr class='rc'><td>" + idProducto + "</td><td>" + producto + "</td><td>" + cantidad + "</td><td>" + precioU + "</td><td>" + precioT + "</td><td><button class='button small red' onclick='quitarProducto("+idProducto+")'>x</button></td></tr>");
                 }  
             } else if ($("#producto").attr("disabled") == "disabled") {
                 //Agregar Servicio
-                $("#tServicios").append("<tr class='rs'><td>" + idServicio + "</td><td>" + servicio + "</td><td>" + servidor + "</td><td hidden>" + idServidor + "</td><td>" + precioU + "</td></tr>");
+                $("#tServicios").append("<tr class='rs'><td>" + idServicio + "</td><td>" + servicio + "</td><td>" + servidor + "</td><td hidden>" + idServidor + "</td><td>" + precioU + "</td><td><button class='button small red' onclick='quitarServicio("+idServicio+")'>x</button></td></tr>");
             }
 
             limpiar();
@@ -425,7 +481,7 @@
                         <?php } ?>
                     </select>
                 </td>
-                <td><input class="box-text" id="cantidad" type="number" onkeypress="javascript:return validarNro(event)"/></td>
+                <td><input class="box-text" id="cantidad" type="text" onkeypress="javascript:return validarNro(event)"/></td>
                 <td><input class="box-text" id="precioUnid" type="number" onkeypress="javascript:return validarNro(event)" /></td>
                 <td ><input class="box-text" id="precioTotal" disabled type="number" /></td>
                 <td><button id="agregarProducto" class="button small red" onclick="agregarProducto()">Agregar</button></td>
