@@ -551,7 +551,7 @@
         </div>
         <div style="margin-left: 70%; margin-top: 3%;"> 
             <button type="submit" class="button small red" onclick="guardar()"> Guardar</button>
-            <button type="submit" class="button small red"> Imprimir</button>
+            
         </div>
         <br>
 
