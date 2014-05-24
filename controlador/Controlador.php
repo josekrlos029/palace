@@ -33,8 +33,7 @@ class Controlador {
              session_start();
             if (!isset($_SESSION['idUsuario'])) {
                 
-                $inicio = new InicioControl("inicio","index");
-                $inicio->index();
+                header("Location: /palace");
                 return false;
             }else{
                 return true;

@@ -19,6 +19,10 @@ class AdministradorControl extends Controlador{
     public function usuarioAdministrador(){
         try {
            
+            if($this->verificarSession()){
+                
+            
+            
             $this->vista->set('titulo', 'Usuario Administrador');
             $persona = new Persona();
             $rol = new Rol();
@@ -34,7 +38,7 @@ class AdministradorControl extends Controlador{
             $this->vista->set('empleados', $empleados);
             $this->vista->set('servicios', $servicios);
             return $this->vista->imprimir();
- 
+            }
         } catch (Exception $exc) {
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }
