@@ -17,10 +17,20 @@ class MedicoControl extends Controlador {
     public function usuarioMedico(){
         try {
            
-            $this->vista->set('titulo', 'Usuario Medico');
+            if($this->verificarSession()){
+                $this->vista->set('titulo', 'Usuario Medico');
+                 $persona = new Persona();
+                $idMedico = $_SESSION['idUsuario'];
+                $personas = $persona->leerPacientesPorMedico($idMedico);
+                $this->vista->set('personas', $personas);
+                $cita = new Cita();
+                $fecha = getdate();
+                $FechaTxt=$fecha["year"]."-".$fecha["mon"]."-".$fecha["mday"];
+                $citas = $cita->leerCitasDelMedico($FechaTxt, $idMedico);
+                $this->vista->set('citas', $citas);
+                return $this->vista->imprimir();
+            }
             
-            return $this->vista->imprimir();
- 
         } catch (Exception $exc) {
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }
@@ -30,7 +40,10 @@ class MedicoControl extends Controlador {
         try {
            
             $this->vista->set('titulo', 'Informacion de Pacientes');
-            
+            $persona = new Persona();
+            $idMedico = $_SESSION['idUsuario'];
+            $personas = $persona->leerPacientesPorMedico($idMedico);
+            $this->vista->set('personas', $personas);
             return $this->vista->imprimir();
  
         } catch (Exception $exc) {

@@ -72,7 +72,7 @@
                 <a  href="/palace/administrador/usuarioAdministrador" ><h1><spam>Usuario</spam> | Administrador</h1></a>
                 <div id="hora">
                     <?php
-                    date_default_timezone_set('UTC');
+
                     echo date("r");
                     ?>    
                 </div>

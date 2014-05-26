@@ -198,6 +198,19 @@ class Persona extends Modelo{
         return $pers;
     }
     
+    public function leerEmpleados() {
+        $sql = "SELECT persona.* FROM persona INNER JOIN rol_persona ON (persona.idPersona = rol_persona.idPersona) AND rol_persona.idRol='003' OR rol_persona.idRol='002'";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $pers = array();
+        foreach ($resultado as $fila) {
+            $persona = new Persona();
+            $this->mapearPersona($persona, $fila);
+            $pers[$persona->getIdPersona()] = $persona;
+        }
+        return $pers;
+    }
+    
     public function leerPersonasPorServicio($idServicio) {
         $sql = "SELECT persona.* FROM persona INNER JOIN servicio_empleado ON (persona.idPersona = servicio_empleado.idPersona) AND servicio_empleado.idServicio='".$idServicio."'";
         $this->__setSql($sql);
@@ -261,6 +274,19 @@ class Persona extends Modelo{
             $this->mapearPersona($persona, $fila);
         }
         return $persona;
+    }
+    
+    public function leerPacientesPorMedico($idMedico){
+        $sql = "SELECT DISTINCT p.* FROM persona p, cita c WHERE c.idCliente = p.idPersona AND c.idPersona='".$idMedico."'";
+        $this->__setSql($sql);
+        $resultado = $this->consultar($sql);
+        $pers = array();
+        foreach ($resultado as $fila) {
+            $persona = new Persona();
+            $this->mapearPersona($persona, $fila);
+            $pers[$persona->getIdPersona()] = $persona;
+        }
+        return $pers;
     }
           
            

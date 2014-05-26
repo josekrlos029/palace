@@ -22,7 +22,7 @@
                         <thead>
                         <th >
                             Cedula
-                        </th>  
+                        </th> 
                         <th >
                             Nombre
                         </th>  
@@ -31,41 +31,30 @@
                         </th> 
                         <th>
                             Sexo
-                        </th> 
-                        <th width="20%">
-                            Fecha de Nacimiento
-                        </th> 
+                        </th>
                         <th>
                             Celular
                         </th>  
                         <th>
+                            Datos
+                        </th> 
+                        <th>
                             Historial
                         </th> 
+                        
                     </thead>
                     <tbody>
+                    <?php foreach($personas as $p){ ?>    
                      <tr align="left">
-                         <td>1065655456</td>
-                         <td>Andy Yair </td>
-                         <td>Bolaño Castilla</td>
-                         <td>M</td>
-                         <td>15/03/1993</td>
-                         <td>3215288972</td>
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td> 
+                         <td><?php echo $p->getIdPersona(); ?></td>
+                         <td><?php echo $p->getNombres(); ?></td>
+                         <td><?php echo $p->getPApellido(); ?></td>
+                         <td><?php echo $p->getSexo(); ?></td>
+                         <td><?php echo $p->getCelular(); ?></td>
+                         <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaPersona('<?php echo $p->getIdPersona(); ?>');"></td> 
+                         <td style="text-align:right;"><input type="submit" class="button small red"  value="..." onclick="consultaHistorial('<?php echo $p->getIdPersona(); ?>');"></td> 
                      </tr>
-                      <tr align="left">
-                         <td>1065655456</td>
-                         <td>Andy Yair </td>
-                         <td>Bolaño Castilla</td>
-                         <td>M</td>
-                         <td>15/03/1993</td>
-                         <td>3215288972</td>
-                         <td valign="center" style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="envio()"></td> 
-                     </tr>
+                     <?php } ?>
                      </tbody>
                 </table>
                 </div>     
-                
-            
-  
-  
-    

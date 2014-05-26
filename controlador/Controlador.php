@@ -30,7 +30,7 @@ class Controlador {
     }
     
     protected function verificarSession(){
-             session_start();
+             
             if (!isset($_SESSION['idUsuario'])) {
                 
                 header("Location: /palace");

@@ -100,10 +100,10 @@ class AdministradorControl extends Controlador{
         try {
            
             $this->vista->set('titulo', 'Registro Empleado');
-             $rol = new Rol();
+             
             $persona = new Persona();
             $servicio = new Servicio();
-            $personas = $persona->leerPersonasPorRol($rol->getEmpleado());
+            $personas = $persona->leerEmpleados();
             $servicios = $servicio->leerServicios();
             $this->vista->set('personas', $personas);
             $this->vista->set('servicios', $servicios);

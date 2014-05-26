@@ -167,6 +167,13 @@ class Cita extends Modelo{
         return $this->consultar($sql);
         
     }
+    
+    public function leerCitasDelMedico($fecha, $idMedico) {
+        $sql = "SELECT c.*, s.*, p.*, pe.nombres as nombreCliente, pe.pApellido as apellidoCliente  FROM cita c, servicio s, persona p, persona pe WHERE c.idServicio=s.idServicio AND c.idcliente=pe.idPersona AND c.idPersona=p.idPersona AND fecha >= '".$fecha."' AND c.idPersona ='".$idMedico."'";
+        $this->__setSql($sql);
+        return $this->consultar($sql);
+        
+    }
 }
 
 ?>

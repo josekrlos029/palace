@@ -51,24 +51,22 @@
                <h1><spam>Usuario</spam> | Mèdico</h1>
                <div id="hora">
                 <?php
-                    date_default_timezone_set('UTC');
+                    
                      echo date("r");
                 ?>    
                 </div>
            </div>
         <div style="margin-top:20px;"> 
            <ul class="accordion">
-                <li id="one" class="files"><a onclick="cargarPaciente()" href="#">Pacientes<span>495</span></a>
+                <li id="one" class="files"><a onclick="cargarPaciente()" href="#">Pacientes<span><?php echo count($personas); ?></span></a>
                            <!-- <ul class="sub-menu">
                                 <li><a href="#"><em>01</em>Registrar Cliente<span</span></a></li>
                                 <li><a href="#"><em>02</em>Consultar Cliente<span></span></a></li> 
                                 <li><a href="#"><em>03</em>Modificar Cliente<span></span></a></li> 
                             </ul>-->
                 </li>
-                <li id="two" class="mail"><a href="#" onclick="cargarMedicamentos()">Medicamentos y Productos<span>26</span></a>
-                    
-                </li>
-                <li id="three" class="cloud"><a href="#three">Citas<span>58</span></a>
+                
+                <li id="three" class="citas"><a href="#three">Citas<span><?php echo count($citas); ?></span></a>
                       
                 </li>
                 
