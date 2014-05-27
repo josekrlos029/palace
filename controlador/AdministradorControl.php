@@ -33,7 +33,7 @@ class AdministradorControl extends Controlador{
             $this->vista->set('productos', $productos);
             $empleado = new Persona();
             $servicio = new Servicio();
-            $empleados = $empleado->leerPersonasPorRol($rol->getEmpleado());
+            $empleados = $empleado->leerEmpleados();
             $servicios = $servicio->leerServicios();
             $this->vista->set('empleados', $empleados);
             $this->vista->set('servicios', $servicios);

@@ -199,7 +199,7 @@ class Persona extends Modelo{
     }
     
     public function leerEmpleados() {
-        $sql = "SELECT persona.* FROM persona INNER JOIN rol_persona ON (persona.idPersona = rol_persona.idPersona) AND rol_persona.idRol='003' OR rol_persona.idRol='002'";
+        $sql = "SELECT p.* FROM persona p, rol_persona rp WHERE p.idPersona = rp.idPersona AND rp.idRol IN ('002','003')";
         $this->__setSql($sql);
         $resultado = $this->consultar($sql);
         $pers = array();
