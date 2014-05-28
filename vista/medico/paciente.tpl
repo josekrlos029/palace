@@ -1,5 +1,11 @@
 
-   
+   <script>
+       function cargarHistorial(){
+               $("#contenido").load("/palace/medico/historial");
+               $("#titulo").html("<h1>Historial medico</h1>");
+           }
+   </script>    
+       
             
             <div style="margin-left: 10%; margin-top: 5%;">
                 <table width="45%">
@@ -52,7 +58,7 @@
                          <td><?php echo $p->getSexo(); ?></td>
                          <td><?php echo $p->getCelular(); ?></td>
                          <td style="text-align:right;"><input type="submit" class="button small red"  value="Ver +" onclick="consultaPersona('<?php echo $p->getIdPersona(); ?>');"></td> 
-                         <td style="text-align:right;"><input type="submit" class="button small red"  value="..." onclick="consultaHistorial('<?php echo $p->getIdPersona(); ?>');"></td> 
+                         <td style="text-align:right;"><input type="submit" class="button small red"  value="..." onclick="cargarHistorial();"></td> 
                      </tr>
                      <?php } ?>
                      </tbody>

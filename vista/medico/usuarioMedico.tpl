@@ -35,8 +35,9 @@
                $("#contenido").load("/palace/administrador/registroCita");
                $("#titulo").html("<h1>Gestion de Citas</h1>");
            }
-           function cargarRegistroPersona(){
-               $("#contenido").load("/palace/administrador/registroPersona");
+           function cargarHistorial(){
+               $("#contenido").load("/palace/medico/historial");
+               $("#titulo").html("<h1>Historial medico</h1>");
            }
            function cargarRegistroPersona(){
                $("#contenido").load("/palace/administrador/registroPersona");

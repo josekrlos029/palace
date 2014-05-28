@@ -63,7 +63,20 @@ class MedicoControl extends Controlador {
             echo 'Error de aplicacion: ' . $exc->getMessage();
         }  
       
-        }    
+        }  
+        
+     public function historial(){
+        try {
+           
+            $this->vista->set('titulo', 'Historial medico ');
+            
+            return $this->vista->imprimir();
+ 
+        } catch (Exception $exc) {
+            echo 'Error de aplicacion: ' . $exc->getMessage();
+        }  
+      
+        }     
     
 }
 
